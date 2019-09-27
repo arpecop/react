@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { List } from 'antd';
 import { Helmet } from 'react-helmet';
-
+import LazyLoad from 'react-lazyload';
 import { FacebookProvider, Like, ShareButton } from 'react-facebook';
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 const App = props => {
@@ -11,7 +11,7 @@ const App = props => {
      const [query, setQuery] = useState(isIndex ? '' : `&start_key="${match.params.id}"`);
      const [isLoading, setIsLoading] = useState(false);
      const [url, setUrl] = useState(
-          `https://pouchdb.herokuapp.com/quotes/_all_docs?include_docs=true&limit=10${query}`
+          `https://pouchdb.herokuapp.com/quotes/_all_docs?include_docs=true&limit=50${query}`
      );
 
      useEffect(() => {
@@ -50,25 +50,38 @@ const App = props => {
                               //footer={<div>Footer</div>}
                               bordered
                               dataSource={data.rows}
-                              renderItem={item => (
+                              renderItem={(item, i) => (
                                    <List.Item>
-                                        <div style={{ marginRight: 90, marginLeft: 42 }}>
-                                             {item.doc.text} {item.doc._id}
-                                        </div>
-                                        <div style={{ position: 'absolute', right: 10 }}>
-                                             <ShareButton
-                                                  className="ant-btn ant-btn-primary"
-                                                  href={`https://citati.netlify.com/${item.doc._id}`}
+                                        <LazyLoad height={200}>
+                                             <div style={{ marginRight: 90, marginLeft: 42 }}>
+                                                  {i === 0 ? (
+                                                       <h1 style={{ fontWeight: 100 }}>{item.doc.text} </h1>
+                                                  ) : (
+                                                       <h2 style={{ fontWeight: 100 }}>{item.doc.text} </h2>
+                                                  )}
+                                             </div>
+                                             <div style={{ position: 'absolute', right: 10 }}>
+                                                  <ShareButton
+                                                       className="ant-btn ant-btn-primary"
+                                                       href={`https://citati.netlify.com/${item.doc._id}`}
+                                                  >
+                                                       Сподели
+                                                  </ShareButton>
+                                             </div>
+                                             <div
+                                                  style={{
+                                                       width: 52,
+                                                       overflow: 'hidden',
+                                                       position: 'absolute',
+                                                       left: 10,
+                                                  }}
                                              >
-                                                  Сподели
-                                             </ShareButton>
-                                        </div>
-                                        <div style={{ width: 52, overflow: 'hidden', position: 'absolute', left: 10 }}>
-                                             <Like
-                                                  href={`https://citati.netlify.com/${item.doc._id}`}
-                                                  colorScheme="dark"
-                                             />
-                                        </div>
+                                                  <Like
+                                                       href={`https://citati.netlify.com/${item.doc._id}`}
+                                                       colorScheme="dark"
+                                                  />
+                                             </div>
+                                        </LazyLoad>
                                    </List.Item>
                               )}
                          />
