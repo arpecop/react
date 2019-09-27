@@ -41,52 +41,51 @@ const App = props => {
                               <meta property="og:image:width" content="617" />
                               <meta property="og:image:height" content="324" />
                          </Helmet>
-                         <div style={{}}></div>
-                         <List
-                              size="large"
-                              //header={<div style={{ backgroundColor: 'red' }}>Header</div>}
-                              //footer={<div>Footer</div>}
-                              bordered
-                              dataSource={data.rows}
-                              renderItem={(item, i) => (
-                                   <List.Item>
-                                        <LazyLoad height={200}>
-                                             <div style={{ marginRight: 90, marginLeft: 42 }}>
-                                                  {i === 0 ? (
-                                                       <h1 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
-                                                            {item.doc.text}{' '}
-                                                       </h1>
-                                                  ) : (
-                                                       <h2 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
-                                                            {item.doc.text}{' '}
-                                                       </h2>
-                                                  )}
-                                             </div>
-                                             <div style={{ position: 'absolute', right: 10 }}>
-                                                  <ShareButton
-                                                       className="ant-btn ant-btn-primary"
-                                                       href={`https://citati.netlify.com/${item.doc._id}`}
+                         <div style={{ padding: 10 }}>
+                              <List
+                                   size="large"
+                                   header={<div>citati.netlify.com</div>}
+                                   //footer={<div>Footer</div>}
+                                   bordered
+                                   dataSource={data.rows}
+                                   renderItem={(item, i) => (
+                                        <List.Item>
+                                             <LazyLoad height={200}>
+                                                  <div style={{ marginRight: 90 }}>
+                                                       {i === 0 ? (
+                                                            <h1 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
+                                                                 {item.doc.text}{' '}
+                                                            </h1>
+                                                       ) : (
+                                                            <h2 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
+                                                                 {item.doc.text}{' '}
+                                                            </h2>
+                                                       )}
+                                                  </div>
+                                                  <div style={{ position: 'absolute', right: 10 }}>
+                                                       <ShareButton
+                                                            className="ant-btn ant-btn-primary"
+                                                            href={`https://citati.netlify.com/${item.doc._id}`}
+                                                       >
+                                                            Сподели
+                                                       </ShareButton>
+                                                  </div>
+                                                  <div
+                                                       style={{
+                                                            marginLeft: -20,
+                                                            marginBottom: -15,
+                                                       }}
                                                   >
-                                                       Сподели
-                                                  </ShareButton>
-                                             </div>
-                                             <div
-                                                  style={{
-                                                       width: 52,
-                                                       overflow: 'hidden',
-                                                       position: 'absolute',
-                                                       left: 10,
-                                                  }}
-                                             >
-                                                  <Like
-                                                       href={`https://citati.netlify.com/${item.doc._id}`}
-                                                       colorScheme="dark"
-                                                  />
-                                             </div>
-                                        </LazyLoad>
-                                   </List.Item>
-                              )}
-                         />
+                                                       <Like
+                                                            href={`https://citati.netlify.com/${item.doc._id}`}
+                                                            colorScheme="dark"
+                                                       />
+                                                  </div>
+                                             </LazyLoad>
+                                        </List.Item>
+                                   )}
+                              />
+                         </div>
                     </div>
                )}
           </FacebookProvider>
