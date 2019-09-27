@@ -54,14 +54,14 @@ const App = props => {
                                         <div style={{ position: 'absolute', right: 10 }}>
                                              <ShareButton
                                                   className="ant-btn ant-btn-primary"
-                                                  href={`http://grafix.herokuapp.com/tw/?text=${item.doc.text}`}
+                                                  href={`https://citati.netlify.com/${item.doc._id}`}
                                              >
                                                   Сподели
                                              </ShareButton>
                                         </div>
                                         <div style={{ width: 52, overflow: 'hidden', position: 'absolute', left: 10 }}>
                                              <Like
-                                                  href={`http://grafix.herokuapp.com/tw/?text=${item.doc.text}`}
+                                                  href={`https://citati.netlify.com/${item.doc._id}`}
                                                   colorScheme="dark"
                                              />
                                         </div>
