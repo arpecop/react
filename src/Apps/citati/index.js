@@ -75,12 +75,7 @@ const App = props => {
                                                             marginLeft: -20,
                                                             marginBottom: -15,
                                                        }}
-                                                  >
-                                                       <Like
-                                                            href={`https://citati.netlify.com/${item.doc._id}`}
-                                                            colorScheme="dark"
-                                                       />
-                                                  </div>
+                                                  ></div>
                                              </LazyLoad>
                                         </List.Item>
                                    )}
