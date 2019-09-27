@@ -36,7 +36,10 @@ const App = props => {
                               <meta property="og:description" content={props.desc} />
                               <meta
                                    property="og:image"
-                                   content={`https://grafix.herokuapp.com/tw/?text=${data.rows[0].doc.text}`}
+                                   content={`https://grafix.herokuapp.com/tw/?text=${data.rows[0].doc.text.replace(
+                                        / /gi,
+                                        '_'
+                                   )}`}
                               />
                               <meta property="og:image:width" content="617" />
                               <meta property="og:image:height" content="324" />
