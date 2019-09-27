@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { List } from 'antd';
-import Helmet from 'helmet';
+import { Helmet } from 'react-helmet';
+
 import { FacebookProvider, Like, ShareButton } from 'react-facebook';
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 const App = props => {
@@ -30,7 +31,7 @@ const App = props => {
                ) : (
                     <div>
                          <Helmet>
-                              <title>{props.title}</title>
+                              <title>{data.rows[0].doc.text}</title>
                               <meta property="og:url" content={window.location.href} />
                               <meta property="og:type" content="article" />
                               <meta property="og:title" content={data.rows[0].doc.text} />
