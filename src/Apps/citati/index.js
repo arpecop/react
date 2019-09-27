@@ -50,7 +50,7 @@ const App = props => {
                               dataSource={data.rows}
                               renderItem={item => (
                                    <List.Item>
-                                        <div style={{ marginRight: 90 }}>{item.doc.text}</div>
+                                        <div style={{ marginRight: 90, marginLeft: 42 }}>{item.doc.text}</div>
                                         <div style={{ position: 'absolute', right: 10 }}>
                                              <ShareButton
                                                   className="ant-btn ant-btn-primary"
@@ -59,10 +59,12 @@ const App = props => {
                                                   Сподели
                                              </ShareButton>
                                         </div>
-                                        <Like
-                                             href={`http://grafix.herokuapp.com/tw/?text=${item.doc.text}`}
-                                             colorScheme="dark"
-                                        />
+                                        <div style={{ width: 52, overflow: 'hidden', position: 'absolute', left: 10 }}>
+                                             <Like
+                                                  href={`http://grafix.herokuapp.com/tw/?text=${item.doc.text}`}
+                                                  colorScheme="dark"
+                                             />
+                                        </div>
                                    </List.Item>
                               )}
                          />
