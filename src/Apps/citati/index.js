@@ -40,6 +40,7 @@ const App = props => {
                               />
                               <meta property="og:image:width" content="617" />
                               <meta property="og:image:height" content="324" />
+                              <meta property="fb:app_id" content="770341770061627" />
                          </Helmet>
                          <div style={{ padding: 10 }}>
                               <List
