@@ -52,7 +52,9 @@ const App = props => {
                               dataSource={data.rows}
                               renderItem={item => (
                                    <List.Item>
-                                        <div style={{ marginRight: 90, marginLeft: 42 }}>{item.doc.text}</div>
+                                        <div style={{ marginRight: 90, marginLeft: 42 }}>
+                                             {item.doc.text} {item.doc._id}
+                                        </div>
                                         <div style={{ position: 'absolute', right: 10 }}>
                                              <ShareButton
                                                   className="ant-btn ant-btn-primary"
