@@ -40,6 +40,8 @@ const App = props => {
                                    property="og:image"
                                    content={`https://grafix.herokuapp.com/tw/?text=${data.rows[0].doc.text}`}
                               />
+                              <meta property="og:image:width" content="617" />
+                              <meta property="og:image:height" content="324" />
                          </Helmet>
                          <div style={{}}></div>
                          <List
