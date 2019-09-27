@@ -8,11 +8,9 @@ import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 const App = props => {
      const { isIndex, match } = props;
      const [data, setData] = useState({ rows: [{ doc: { text: '', _id: 0 } }] });
-     const [query, setQuery] = useState(isIndex ? '' : `&start_key="${match.params.id}"`);
+     const query = isIndex ? '' : `&start_key="${match.params.id}"`;
      const [isLoading, setIsLoading] = useState(false);
-     const [url, setUrl] = useState(
-          `https://pouchdb.herokuapp.com/quotes/_all_docs?include_docs=true&limit=50${query}`
-     );
+     const url = `https://pouchdb.herokuapp.com/quotes/_all_docs?include_docs=true&limit=50${query}`;
 
      useEffect(() => {
           const fetchData = async () => {
@@ -55,7 +53,9 @@ const App = props => {
                                         <LazyLoad height={200}>
                                              <div style={{ marginRight: 90, marginLeft: 42 }}>
                                                   {i === 0 ? (
-                                                       <h1 style={{ fontWeight: 100,padding: 0, margin: 0 }}>{item.doc.text} </h1>
+                                                       <h1 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
+                                                            {item.doc.text}{' '}
+                                                       </h1>
                                                   ) : (
                                                        <h2 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
                                                             {item.doc.text}{' '}
