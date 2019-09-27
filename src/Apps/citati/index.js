@@ -55,9 +55,11 @@ const App = props => {
                                         <LazyLoad height={200}>
                                              <div style={{ marginRight: 90, marginLeft: 42 }}>
                                                   {i === 0 ? (
-                                                       <h1 style={{ fontWeight: 100 }}>{item.doc.text} </h1>
+                                                       <h1 style={{ fontWeight: 100,padding: 0, margin: 0 }}>{item.doc.text} </h1>
                                                   ) : (
-                                                       <h2 style={{ fontWeight: 100 }}>{item.doc.text} </h2>
+                                                       <h2 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
+                                                            {item.doc.text}{' '}
+                                                       </h2>
                                                   )}
                                              </div>
                                              <div style={{ position: 'absolute', right: 10 }}>
