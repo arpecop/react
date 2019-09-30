@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Card, Col, Row } from 'antd';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import axios from 'axios';
-
+import 'antd/dist/antd.css';
 import { Meta } from './src/meta';
 
 const getApi = async url => {
@@ -11,23 +11,6 @@ const getApi = async url => {
       resolve(res.data);
     });
   });
-};
-
-const Refine = item => {
-  if (item.item && item.item.tag === 'p' && item.item.child) {
-    return <p>{item.item.child[0].text}</p>;
-  }
-  if (item.item && item.item.tag === 'img') {
-    return (
-      <div style={{ textAlign: 'center' }}>
-        <LazyLoadImage alt="example" src={item.item.attr.src} style={{ maxWidth: '100%', margin: 'auto' }} />
-      </div>
-    );
-  }
-  if (item.item.text) {
-    return null;
-  }
-  return null;
 };
 
 class NightChat extends Component {
@@ -71,13 +54,13 @@ class NightChat extends Component {
                   cover={
                     single.urlToImage ? (
                       <div style={{ textAlign: 'center' }}>
-                        <LazyLoadImage alt="example" src={single.urlToImage} />
+                        <LazyLoadImage alt="example" style={{ maxWidth: '100%' }} src={single.urlToImage} />
                       </div>
                     ) : null
                   }
                 />
-
-                <a href={single.href} rel="nofollow">
+                {single.content}
+                <a href={single.url} rel="nofollow">
                   {`  source:  ${single.source.name} »`}
                 </a>
               </Col>
