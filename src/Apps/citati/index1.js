@@ -11,7 +11,7 @@ const App = props => {
   const [data, setData] = useState({ rows: [{ doc: { text: '', _id: 0 } }] });
   const [lastkey, setlastkey] = useState('xxx');
   const [firstkey, setfirsttkey] = useState('xxx');
-  const [query, setQ] = isIndex ? '' : `&start_key="${match.params.id}"`;
+  const [query, setQ] = ;
   const [isLoading, setIsLoading] = useState(false);
   const url = `https://pouchdb.herokuapp.com/quotes/_all_docs?include_docs=true&limit=20${query}`;
 
