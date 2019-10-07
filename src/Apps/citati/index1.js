@@ -46,6 +46,13 @@ const App = props => {
             <meta property="og:image:width" content="617" />
             <meta property="og:image:height" content="324" />
             <meta property="fb:app_id" content="770341770061627" />
+            <script type="text/javascript">
+    (sc_adv_out = window.sc_adv_out || []).push({
+        id : "508143",
+        domain : "n.ads1-adnow.com"
+    });
+</script>
+<script type="text/javascript" src="//st-n.ads1-adnow.com/js/a.js"></script>
           </Helmet>
           <div style={{ padding: 10 }}>
             <List

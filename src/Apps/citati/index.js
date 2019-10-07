@@ -52,11 +52,12 @@ export default class componentName extends Component {
 
               <meta
                 property="og:image"
-                content={`https://grafix.herokuapp.com/tw/?text=${result.rows[0].doc.text.replace(/ /gi, '_')}`}
+                content={`https://grafix.herokuapp.com/tw/?db=quotes&id=${result.rows[0].doc._id}`}
               />
               <meta property="og:image:width" content="617" />
               <meta property="og:image:height" content="324" />
               <meta property="fb:app_id" content="770341770061627" />
+              <script type="text/javascript" src="//st-n.ads1-adnow.com/js/a.js"></script>
             </Helmet>
             <div style={{ padding: 10 }}>
               <List
@@ -74,7 +75,7 @@ export default class componentName extends Component {
                         <h2 style={{ fontWeight: 100, padding: 0, margin: 0 }}>{item.doc.text} </h2>
                       )}
                     </div>
-
+                    <div id="SC_TBlock_508143" class="SC_TBlock"></div>
                     <div style={{ position: 'absolute', right: 10 }}>
                       <ShareButton
                         className="ant-btn ant-btn-primary"
