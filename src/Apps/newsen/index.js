@@ -50,7 +50,7 @@ class NightChat extends Component {
                 <h3 style={{ fontWeight: 100 }}>{single.title}</h3>
                 <Card
                   hoverable
-                  style={{ border: 'none' }}
+                  style={{ border: 'none', minHeight: 416 }}
                   cover={
                     single.urlToImage ? (
                       <div style={{ textAlign: 'center' }}>
@@ -74,7 +74,7 @@ class NightChat extends Component {
               <a href={`/${item.key}`}>
                 <Card
                   hoverable
-                  style={{ border: 'none' }}
+                  style={{ border: 'none', minHeight: 495 }}
                   cover={
                     item.doc.image ? (
                       <div style={{ textAlign: 'center' }}>

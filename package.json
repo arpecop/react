@@ -6,6 +6,7 @@
           "antd": "^3.23.5",
           "axios": "^0.19.0",
           "react": "^16.10.2",
+          "react-cookie": "^4.0.1",
           "react-dom": "^16.10.2",
           "react-facebook": "^8.0.4",
           "react-helmet": "^5.2.1",
