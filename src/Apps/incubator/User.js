@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 import Item from './components/Item';
 const User = props => {
   const [data, setData] = useState({ rows: [] });
@@ -17,11 +18,17 @@ const User = props => {
   }, [props.user]);
   return (
     <div>
-      <ul>
-        {data.rows.map(item => (
-          <Item key={item.key} item={item.doc}></Item>
-        ))}
-      </ul>
+      {data.rows[0] ? (
+        <Helmet>
+          <title>
+            {data.rows[0].doc.screenName} :{data.rows[0].doc.title}
+          </title>
+        </Helmet>
+      ) : null}
+
+      {data.rows.map(item => (
+        <Item key={item.key} item={item.doc}></Item>
+      ))}
     </div>
   );
 };

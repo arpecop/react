@@ -20,16 +20,16 @@ const Tag = props => {
   }, [url]);
   return (
     <div>
-      <ul>
-        {data.rows[0] ? (
-          <Helmet>
-            <title>dsadas</title>
-          </Helmet>
-        ) : null}
-        {data.rows.map(item => (
-          <Item key={item.key} item={item.doc}></Item>
-        ))}
-      </ul>
+      {data.rows[0] ? (
+        <Helmet>
+          <title>
+            {data.rows[0].doc.screenName} :{data.rows[0].doc.title}
+          </title>
+        </Helmet>
+      ) : null}
+      {data.rows.map(item => (
+        <Item key={item.key} item={item.doc}></Item>
+      ))}
     </div>
   );
 };

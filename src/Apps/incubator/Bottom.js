@@ -30,12 +30,12 @@ const Bottom = props => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        'https://arpecop.serveo.net/proxy/twitter/_design/api/_view/users?reduce=true&group=true&limit=50&skip=50&start_key="' +
+        'https://arpecop.serveo.net/proxy/twitter/_design/api/_view/users?reduce=true&group=true&limit=20&skip=20&start_key="' +
           props.tag +
           '"',
       );
       const result1 = await axios(
-        'https://arpecop.serveo.net/proxy/twitter/_design/api/_view/tags?reduce=true&group=true&limit=50&skip=50&start_key="' +
+        'https://arpecop.serveo.net/proxy/twitter/_design/api/_view/tags?reduce=true&group=true&limit=20&skip=20&start_key="' +
           props.tag +
           '"',
       );
