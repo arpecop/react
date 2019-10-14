@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
+import { Avatar } from 'antd';
 import { Helmet } from 'react-helmet';
+import { Header } from './components/UI';
 import Item from './components/Item';
 const User = props => {
   const [data, setData] = useState({ rows: [] });
@@ -19,11 +21,17 @@ const User = props => {
   return (
     <div>
       {data.rows[0] ? (
-        <Helmet>
-          <title>
-            {data.rows[0].doc.screenName} :{data.rows[0].doc.title}
-          </title>
-        </Helmet>
+        <Fragment>
+          <Header>
+            <img src={`https://avatars.io/twitter/${data.rows[0].doc.screenName}`} size="large" />
+            {data.rows[0].doc.screenName}
+          </Header>
+          <Helmet>
+            <title>
+              {data.rows[0].doc.screenName} :{data.rows[0].doc.title}
+            </title>
+          </Helmet>
+        </Fragment>
       ) : null}
 
       {data.rows.map(item => (

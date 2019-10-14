@@ -1,17 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
-import { List, Row, Tag, Badge } from 'antd';
 
-const Title = styled.div`
-  font-size: 1.5em;
-  text-align: left;
-  padding: 0px;
-  margin-bottom: 0px;
-  margin-left: 14px;
-  color: palevioletred;
-  font-weight: lighter;
-`;
+import { List, Row, Tag, Badge } from 'antd';
+import { Title } from './components/UI';
+
 const Listx = ({ prefix, rows }) => {
   return (
     <List
