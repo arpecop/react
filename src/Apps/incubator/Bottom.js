@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import { List, Row, Tag, Badge } from 'antd';
 
+const Title = styled.div`
+  font-size: 1.5em;
+  text-align: left;
+  padding: 0px;
+  margin-bottom: 0px;
+  margin-left: 14px;
+  color: palevioletred;
+  font-weight: lighter;
+`;
 const Listx = ({ prefix, rows }) => {
   return (
     <List
@@ -47,9 +57,9 @@ const Bottom = ({ tag }) => {
   return (
     <div>
       <Row style={{ textAlign: 'center' }}>
-        <h2>Users</h2>
+        <Title>Users</Title>
         <Listx rows={data.rows} prefix="u"></Listx>
-        <h2>Tags</h2>
+        <Title>Tags</Title>
         <Listx rows={data1.rows} prefix="t"></Listx>
       </Row>
     </div>

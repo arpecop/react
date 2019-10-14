@@ -1,5 +1,4 @@
-import { Avatar, Button, Card, Col, Comment, Icon, Row, Tag } from 'antd';
-import shuffle from 'lodash/shuffle';
+import { Avatar, Card, Col, Comment, Row, Tag } from 'antd';
 import PropTypes from 'prop-types';
 import React from 'react';
 import LazyLoad from 'react-lazy-load';
