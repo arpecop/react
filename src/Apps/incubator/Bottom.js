@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import { List, Row, Tag, Badge } from 'antd';
+import { List, Row, Tag, Badge, Layout } from 'antd';
 import { Title } from './components/UI';
+const { Content } = Layout;
 
 const Listx = ({ prefix, rows }) => {
   return (
@@ -48,12 +49,15 @@ const Bottom = ({ tag }) => {
   }, [tag]);
   return (
     <div>
-      <Row style={{ textAlign: 'center' }}>
+      <div style={{ width: '70%', margin: 'auto' }}>
         <Title>Users</Title>
         <Listx rows={data.rows} prefix="u"></Listx>
+      </div>
+      <div style={{ width: '70%', margin: 'auto' }}>
         <Title>Tags</Title>
+
         <Listx rows={data1.rows} prefix="t"></Listx>
-      </Row>
+      </div>
     </div>
   );
 };
