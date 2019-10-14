@@ -35,7 +35,7 @@ export default class componentName extends Component {
     const { isLoading, result, resultAll, firstkey, lastkey } = this.state;
 
     return (
-      <FacebookProvider appId="770341770061627">
+      <FacebookProvider appId="2477940979150999">
         {isLoading ? (
           <div style={{ textAlign: 'center' }}>
             <Button type="primary" loading />
