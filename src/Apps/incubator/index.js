@@ -1,6 +1,6 @@
-import React, { Component, useState, useEffect } from 'react';
+import React from 'react';
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
-import axios from 'axios';
+
 import User from './User';
 import Tag from './Tag';
 import Main from './Main';
