@@ -13,17 +13,18 @@ export const Header = styled.div`
   padding: 0px;
   margin-bottom: 0px;
   margin-top: -6px;
-
-  transform: rotate(-2deg);
+  background-color: #dfe6e9;
+  padding: 4px;
   h1 {
     font-size: 3em;
     font-weight: lighter;
     color: palevioletred;
-    float: right;
   }
   img {
     width: 150px;
     transform: rotate(4deg);
     padding-right: 5px;
+    float: right;
+    margin-top: 30px;
   }
 `;
