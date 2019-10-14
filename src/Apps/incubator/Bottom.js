@@ -36,7 +36,6 @@ const Bottom = props => {
                 style={{
                   backgroundColor: '#95a5a6',
                   border: 'none',
-                  boxShadow: 'none',
                 }}
               >
                 <Tag style={{ color: '#252425' }}>{item.key}</Tag>
