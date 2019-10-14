@@ -24,7 +24,7 @@ const User = props => {
         <Fragment>
           <Header>
             <img src={`https://avatars.io/twitter/${data.rows[0].doc.screenName}`} size="large" />
-            {data.rows[0].doc.screenName}
+            <h1>{data.rows[0].doc.screenName}</h1>
           </Header>
           <Helmet>
             <title>
