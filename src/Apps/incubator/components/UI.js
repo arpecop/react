@@ -13,7 +13,7 @@ export const Header = styled.div`
   padding: 0px;
   margin-bottom: 0px;
   margin-top: -6px;
-  background-color: #dfe6e9;
+
   padding: 4px;
   h1 {
     font-size: 3em;
