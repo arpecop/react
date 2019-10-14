@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 import Item from './components/Item';
+import { Helmet } from 'react-helmet';
 const Tag = props => {
   const [data, setData] = useState({ rows: [] });
   const [query, setQuery] = useState('redux');
@@ -20,6 +21,11 @@ const Tag = props => {
   return (
     <div>
       <ul>
+        {data.rows[0] ? (
+          <Helmet>
+            <title>dsadas</title>
+          </Helmet>
+        ) : null}
         {data.rows.map(item => (
           <Item key={item.key} item={item.doc}></Item>
         ))}

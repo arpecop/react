@@ -30,7 +30,7 @@ const Bottom = props => {
           itemLayout="horizontal"
           dataSource={data.rows}
           renderItem={item => (
-            <a href={`${item.key}`}>
+            <a href={`/u/${item.key}`}>
               <Badge
                 count={item.value > 1 ? item.value : 0}
                 style={{
@@ -48,7 +48,7 @@ const Bottom = props => {
           itemLayout="horizontal"
           dataSource={data1.rows}
           renderItem={item => (
-            <a href={`${item.key}`}>
+            <a href={`/t/${item.key}`}>
               <Badge
                 count={item.value > 1 ? item.value : 0}
                 style={{
