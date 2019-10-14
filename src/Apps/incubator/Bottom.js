@@ -2,6 +2,28 @@ import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 import { List, Row, Tag, Badge } from 'antd';
 import Item from './components/Item';
+const Listx = props => {
+  return (
+    <List
+      itemLayout="horizontal"
+      dataSource={props.rows}
+      renderItem={item => (
+        <a href={`/${props.prefix}/${item.key}`}>
+          <Badge
+            count={item.value > 1 ? item.value : 0}
+            style={{
+              backgroundColor: '#95a5a6',
+              border: 'none',
+            }}
+          >
+            <Tag style={{ color: '#252425' }}>{item.key}</Tag>
+          </Badge>
+        </a>
+      )}
+    />
+  );
+};
+
 const Bottom = props => {
   const [data, setData] = useState({ rows: [] });
   const [data1, setData1] = useState({ rows: [] });
@@ -26,42 +48,9 @@ const Bottom = props => {
     <div>
       <Row style={{ textAlign: 'center' }}>
         <h2>Users</h2>
-        <List
-          itemLayout="horizontal"
-          dataSource={data.rows}
-          renderItem={item => (
-            <a href={`/u/${item.key}`}>
-              <Badge
-                count={item.value > 1 ? item.value : 0}
-                style={{
-                  backgroundColor: '#95a5a6',
-                  border: 'none',
-                }}
-              >
-                <Tag style={{ color: '#252425' }}>{item.key}</Tag>
-              </Badge>
-            </a>
-          )}
-        />
+        <Listx rows={data.rows} prefix="u"></Listx>
         <h2>Tags</h2>
-        <List
-          itemLayout="horizontal"
-          dataSource={data1.rows}
-          renderItem={item => (
-            <a href={`/t/${item.key}`}>
-              <Badge
-                count={item.value > 1 ? item.value : 0}
-                style={{
-                  backgroundColor: '#95a5a6',
-                  border: 'none',
-                  boxShadow: 'none',
-                }}
-              >
-                <Tag style={{ color: '#252425' }}>{item.key}</Tag>
-              </Badge>
-            </a>
-          )}
-        />
+        <Listx rows={data1.rows} prefix="t"></Listx>
       </Row>
     </div>
   );
