@@ -6,9 +6,7 @@ import { Helmet } from 'react-helmet';
 import { FacebookProvider, ShareButton } from 'react-facebook';
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 
-const Footer = props => {
-  return <Button type="primary" icon="right" href={'/' + props.lastkey} />;
-};
+const Footer = props => <Button type="primary" icon="right" href={'/' + props.lastkey} />;
 export default class componentName extends Component {
   state = {
     firstkey: 0,
