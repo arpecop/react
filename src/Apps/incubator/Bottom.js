@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import { List, Tag, Badge, Layout } from 'antd';
+import { List, Tag, Badge } from 'antd';
 import { Title, TagsWrapper } from './components/UI';
 
 const Listx = ({ prefix, rows }) => {

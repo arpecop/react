@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
-import { Avatar } from 'antd';
+
 import { Helmet } from 'react-helmet';
 import { Header } from './components/UI';
 import Item from './components/Item';
@@ -23,7 +23,7 @@ const User = props => {
       {data.rows[0] ? (
         <Fragment>
           <Header>
-            <img src={`https://avatars.io/twitter/${data.rows[0].doc.screenName}`} size="large" />
+            <img src={`https://avatars.io/twitter/${data.rows[0].doc.screenName}`} size="large" alt="" />
             <h1>{data.rows[0].doc.screenName}</h1>
           </Header>
           <Helmet>
