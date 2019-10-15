@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Item from './components/Item';
 import { Helmet } from 'react-helmet';
+import { Header } from './components/UI';
 const Tag = ({ tag }) => {
   const [data, setData] = useState({ rows: [] });
 
@@ -18,6 +19,9 @@ const Tag = ({ tag }) => {
   }, [tag]);
   return (
     <div>
+      <Header>
+        <h1>#{tag}</h1>
+      </Header>
       {data.rows[0] ? (
         <Helmet>
           <title>

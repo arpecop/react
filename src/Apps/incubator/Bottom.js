@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import { List, Row, Tag, Badge, Layout } from 'antd';
+import { List, Tag, Badge, Layout } from 'antd';
 import { Title } from './components/UI';
-const { Content } = Layout;
 
 const Listx = ({ prefix, rows }) => {
   return (
