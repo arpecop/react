@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import { List, Tag, Badge } from 'antd';
+import { List, Tag, Badge, Button } from 'antd';
 import { Title, TagsWrapper } from './components/UI';
 
 const Listx = ({ prefix, rows }) => {
@@ -26,8 +26,8 @@ const Listx = ({ prefix, rows }) => {
 };
 
 const Bottom = ({ tag }) => {
-  const [data, setData] = useState({ rows: [] });
-  const [data1, setData1] = useState({ rows: [] });
+  const [data, setData] = useState(null);
+  const [data1, setData1] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
@@ -49,15 +49,24 @@ const Bottom = ({ tag }) => {
     <div>
       <div style={{ width: '70%', margin: 'auto' }}>
         <Title>Users</Title>
-        <TagsWrapper>
+        {data ? (
           <Listx rows={data.rows} prefix="u"></Listx>
-        </TagsWrapper>
+        ) : (
+          <Button type="primary" size="small" loading>
+            Loading
+          </Button>
+        )}
       </div>
       <div style={{ width: '70%', margin: 'auto' }}>
         <Title>Tags</Title>
-        <TagsWrapper>
+
+        {data1 ? (
           <Listx rows={data1.rows} prefix="t"></Listx>
-        </TagsWrapper>
+        ) : (
+          <Button type="primary" size="small" loading>
+            Loading
+          </Button>
+        )}
       </div>
     </div>
   );
