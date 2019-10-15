@@ -7,12 +7,13 @@ export const Title = styled.div`
   margin-left: 14px;
   color: palevioletred;
   font-weight: lighter;
+  clear: both;
+  display: block;
 `;
 export const Header = styled.div`
   text-align: left;
   padding: 0px;
   margin-bottom: 0px;
-  margin-top: -6px;
 
   padding: 4px;
   h1 {
@@ -21,10 +22,8 @@ export const Header = styled.div`
     color: palevioletred;
   }
   img {
-    width: 150px;
-    transform: rotate(4deg);
-    padding-right: 5px;
-    float: right;
-    margin-top: 30px;
+    width: 90px;
+    float: left;
+    margin-right: 5px;
   }
 `;
