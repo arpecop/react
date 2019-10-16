@@ -64,7 +64,7 @@ const Komentar = ({ children, item }) => {
       />
       <Comment
         // actions={[<span>Reply to</span>]}
-        datetime={<TimeAgo date={new Date(Math.round(item.date)).toDateString()} />}
+        datetime={<TimeAgo date={new Date(parseInt(item.date))} />}
         author={
           <a href={`/u/${item.screenName}`}>
             <h2 style={{ fontWeight: 'lighter' }}>{item.screenName}</h2>
