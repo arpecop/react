@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import { List, Tag, Badge, Button } from 'antd';
+import { List, Tag, Badge, Button, Spin } from 'antd';
 import { Title } from './components/UI';
 
 const Listx = ({ prefix, rows }) => {
@@ -49,24 +49,12 @@ const Bottom = ({ tag }) => {
     <div>
       <div style={{ width: '70%', margin: 'auto' }}>
         <Title>Users</Title>
-        {data ? (
-          <Listx rows={data.rows} prefix="u"></Listx>
-        ) : (
-          <Button type="primary" size="small" loading>
-            Loading
-          </Button>
-        )}
+        {data ? <Listx rows={data.rows} prefix="u"></Listx> : <Spin />}
       </div>
       <div style={{ width: '70%', margin: 'auto' }}>
         <Title>Tags</Title>
 
-        {data1 ? (
-          <Listx rows={data1.rows} prefix="t"></Listx>
-        ) : (
-          <Button type="primary" size="small" loading>
-            Loading
-          </Button>
-        )}
+        {data1 ? <Listx rows={data1.rows} prefix="t"></Listx> : <Spin />}
       </div>
     </div>
   );
