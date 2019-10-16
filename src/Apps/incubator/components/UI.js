@@ -10,13 +10,6 @@ export const Title = styled.div`
   clear: both;
   display: block;
 `;
-export const TagsWrapper = styled.div`
-  .ant-list-items {
-    .ant-badge {
-      cursor: pointer;
-    }
-  }
-`;
 
 export const Header = styled.div`
   text-align: left;

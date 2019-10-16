@@ -15,6 +15,7 @@ const User = props => {
           '"&reduce=false&include_docs=true&limit=200',
       );
       setData(result.data);
+      console.log(result.data);
     };
     fetchData();
   }, [props.user]);

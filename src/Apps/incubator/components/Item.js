@@ -2,7 +2,7 @@ import { Avatar, Card, Col, Comment, Row, Tag } from 'antd';
 import PropTypes from 'prop-types';
 import React from 'react';
 import LazyLoad from 'react-lazy-load';
-
+import TimeAgo from 'react-timeago';
 const uuid = require('uuid/v4');
 
 function TextFormat({ text }) {
@@ -46,7 +46,6 @@ function TextFormat({ text }) {
   );
 }
 const Komentar = ({ children, item }) => {
-  console.log(item);
   let title = item.title || item.text;
   const url = item.urls && item.urls[0] ? item.urls[0] : null;
 
@@ -65,7 +64,7 @@ const Komentar = ({ children, item }) => {
       />
       <Comment
         // actions={[<span>Reply to</span>]}
-        datetime={new Date(Math.round(item.date)).toDateString()}
+        datetime={<TimeAgo date={new Date(Math.round(item.date)).toDateString()} />}
         author={
           <a href={`/u/${item.screenName}`}>
             <h2 style={{ fontWeight: 'lighter' }}>{item.screenName}</h2>
@@ -86,7 +85,7 @@ const Komentar = ({ children, item }) => {
 
 function Item({ item }) {
   const { screenName, quote, images } = item;
-  console.log(quote);
+
   const href = `/u/${screenName}`;
   const thread = quote ? (
     <Komentar item={quote} href={href}>
