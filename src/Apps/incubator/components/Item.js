@@ -28,22 +28,14 @@ function TextFormat({ text }) {
             .replace('#', '')
             .replace('.', '')}`}
         >
-          <Tag style={{ color: '#161616', backgroundColor: '#95a5a6' }}>{word.word}</Tag>
+          <Tag style={{ color: '#161616', backgroundColor: '#95a5a6' }}>{word.word.replace('#', '')}</Tag>
         </a>
       );
     }
     return <React.Fragment key={word.key}>{`${word.word} `}</React.Fragment>;
   });
 
-  return (
-    <div
-      style={{
-        textOverflow: 'ellipsis',
-      }}
-    >
-      {cont}
-    </div>
-  );
+  return cont;
 }
 const Komentar = ({ children, item }) => {
   let title = item.title || item.text;

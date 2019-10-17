@@ -11,7 +11,7 @@ const Tag = ({ tag }) => {
       const result = await axios(
         'https://arpecop.serveo.net/proxy/twitter/_design/api/_view/tags?key="' +
           tag +
-          '"&reduce=false&include_docs=true&limit=200',
+          '"&reduce=false&include_docs=true&limit=200&update=false',
       );
       setData(result.data);
     };

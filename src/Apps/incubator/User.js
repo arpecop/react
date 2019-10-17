@@ -12,10 +12,9 @@ const User = props => {
       const result = await axios(
         'https://arpecop.serveo.net/proxy/twitter/_design/api/_view/users?key="' +
           props.user +
-          '"&reduce=false&include_docs=true&limit=200',
+          '"&reduce=false&include_docs=true&limit=200&update=false',
       );
       setData(result.data);
-      console.log(result.data);
     };
     fetchData();
   }, [props.user]);
@@ -35,8 +34,8 @@ const User = props => {
         </Fragment>
       ) : null}
       <p></p>
-      {data.rows.map(item => (
-        <Item key={item.key} item={item.doc}></Item>
+      {data.rows.map((item, i) => (
+        <Item key={i} item={item.doc}></Item>
       ))}
     </div>
   );

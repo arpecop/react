@@ -5,6 +5,7 @@ import User from './User';
 import Tag from './Tag';
 import Main from './Main';
 import Bottom from './Bottom';
+console.log('test');
 const App = props => {
   const { match, isIndex } = props;
 
