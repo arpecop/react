@@ -12,9 +12,12 @@ export const Title = styled.div`
 `;
 export const Body = styled.div`
   .headertop {
+    height: 40px;
+    text-align: 'center';
     background-color: #231f20;
     img {
-      max-width: 30%;
+      margin: 'auto';
+      height: 40px;
     }
   }
 `;
