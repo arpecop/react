@@ -30,7 +30,7 @@ export const Header = styled.div`
   h1 {
     font-size: 3em;
     font-weight: lighter;
-    color: palevioletred;
+    color: #02bac8;
   }
   img {
     width: 90px;
