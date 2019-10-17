@@ -13,7 +13,7 @@ export const Title = styled.div`
 export const Body = styled.div`
   .headertop {
     height: 40px;
-    text-align: 'center';
+    text-align: center;
     background-color: #231f20;
     img {
       margin: 'auto';
