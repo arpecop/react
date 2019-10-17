@@ -1,6 +1,6 @@
-import { Avatar, Card, Col, Comment, Row, Tag } from 'antd';
-import PropTypes from 'prop-types';
 import React from 'react';
+import { Avatar, Card, Col, Comment, Row, Tag } from 'antd';
+
 import LazyLoad from 'react-lazy-load';
 import TimeAgo from 'react-timeago';
 const uuid = require('uuid/v4');
@@ -15,14 +15,14 @@ function TextFormat({ text }) {
     }
     return { word, type: 'word', key: uuid() };
   });
-  const cont = arr.map(word => {
+  const cont = arr.map((word, i) => {
     if (word.type === 'url') {
       return <React.Fragment key={word.key}>dsdsxxxxx</React.Fragment>;
     }
     if (word.type === 'tag') {
       return (
         <a
-          key={word.key}
+          key={i}
           href={`/t/${word.word
             .toLowerCase()
             .replace('#', '')
@@ -32,7 +32,7 @@ function TextFormat({ text }) {
         </a>
       );
     }
-    return <React.Fragment key={word.key}>{`${word.word} `}</React.Fragment>;
+    return <React.Fragment key={i}>{`${word.word} `}</React.Fragment>;
   });
 
   return cont;
@@ -74,8 +74,7 @@ const Komentar = ({ children, item }) => {
     </div>
   );
 };
-
-function Item({ item }) {
+const Item = ({ item }) => {
   const { screenName, quote, images } = item;
 
   const href = `/u/${screenName}`;
@@ -107,16 +106,6 @@ function Item({ item }) {
       </Col>
     </Row>
   );
-}
-TextFormat.propTypes = {
-  text: PropTypes.string.isRequired,
-};
-Komentar.propTypes = {
-  children: PropTypes.node,
-  item: PropTypes.object.isRequired,
-};
-Item.propTypes = {
-  item: PropTypes.object.isRequired,
 };
 
 export default Item;

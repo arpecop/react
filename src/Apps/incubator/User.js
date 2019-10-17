@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Helmet } from 'react-helmet';
 import { Header } from './components/UI';
 import Item from './components/Item';
+import Bottom from './Bottom';
 const User = props => {
   const [data, setData] = useState({ rows: [] });
 
@@ -31,12 +32,12 @@ const User = props => {
               {data.rows[0].doc.screenName} :{data.rows[0].doc.title}
             </title>
           </Helmet>
+          {data.rows.map((item, i) => (
+            <Item key={i} item={item.doc}></Item>
+          ))}
         </Fragment>
       ) : null}
-      <p></p>
-      {data.rows.map((item, i) => (
-        <Item key={i} item={item.doc}></Item>
-      ))}
+      <Bottom tag={props.user}></Bottom>
     </div>
   );
 };

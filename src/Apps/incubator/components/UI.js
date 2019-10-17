@@ -10,7 +10,14 @@ export const Title = styled.div`
   clear: both;
   display: block;
 `;
-
+export const Body = styled.div`
+  .headertop {
+    background-color: #231f20;
+    img {
+      max-width: 30%;
+    }
+  }
+`;
 export const Header = styled.div`
   text-align: left;
   padding: 0px;
