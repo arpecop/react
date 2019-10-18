@@ -1,31 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Spin } from 'antd';
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Header } from './components/UI';
 import Item from './components/Item';
 import Bottom from './Bottom';
 
 const uuid = require('uuid/v4');
 
-const User = (props) => {
+const User = ({ user }) => {
   const [data, setData] = useState({ rows: [] });
 
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `https://arpecop.serveo.net/proxy/twitter/_design/api/_view/users?key="${
-          props.user
-        }"&reduce=false&include_docs=true&limit=200&update=false&descending=true`,
+        `https://arpecop.serveo.net/proxy/twitter/_design/api/_view/users?key="${user}"&reduce=false&include_docs=true&limit=200&update=false&descending=true`,
       );
       setData(result.data);
     };
     fetchData();
-  }, []);
-  const { user } = props;
+  }, [user]);
+
   return (
 
-    <div>
+    <HelmetProvider>
       {data.rows[0] ? (
         <>
           <Header>
@@ -45,7 +43,7 @@ const User = (props) => {
         <Spin />
       )}
       <Bottom tag={user} />
-    </div>
+    </HelmetProvider>
   );
 };
 

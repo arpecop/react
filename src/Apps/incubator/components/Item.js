@@ -3,7 +3,7 @@ import {
   Avatar, Card, Col, Comment, Row, Tag,
 } from 'antd';
 
-import LazyLoad from 'react-lazy-load';
+
 import TimeAgo from 'react-timeago';
 
 const uuid = require('uuid/v4');
@@ -66,9 +66,9 @@ const Komentar = ({ children, item }) => {
           </a>
         )}
         avatar={(
-          <LazyLoad offset={200}>
-            <Avatar src={`https://avatars.io/twitter/${item.screenName}`} size="large" />
-          </LazyLoad>
+
+          <Avatar src={`https://avatars.io/twitter/${item.screenName}`} size="large" />
+
         )}
         content={<TextFormat text={title} />}
       >
@@ -96,11 +96,11 @@ const Item = ({ item }) => {
           type="inner"
           cover={
             images ? (
-              <LazyLoad offset={200}>
-                <a href={href}>
-                  <img alt="" style={{ width: '100%' }} src={images[0]} />
-                </a>
-              </LazyLoad>
+
+              <a href={href}>
+                <img alt="" style={{ width: '100%' }} src={images[0]} />
+              </a>
+
             ) : null
           }
         >

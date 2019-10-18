@@ -10,7 +10,7 @@ const Tag = () => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        'https://arpecop.serveo.net/proxy/twitter/_design/api/_view/tags?reduce=false&include_docs=true&limit=100&update=false&descending=true',
+        'https://arpecop.serveo.net/proxy/twitter/_design/api/_view/tags?reduce=false&include_docs=true&limit=22&update=false&descending=true',
       );
       setData(result.data);
     };

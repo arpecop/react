@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Spin } from 'antd';
 import Item from './components/Item';
 import { Header } from './components/UI';
@@ -23,7 +23,7 @@ const Tag = ({ tag }) => {
     fetchData();
   }, [tag]);
   return (
-    <div>
+    <HelmetProvider>
       <Header>
         <h1>
           {`#${tag}`}
@@ -44,7 +44,7 @@ const Tag = ({ tag }) => {
         <Spin />
       )}
       <Bottom tag={tag} />
-    </div>
+    </HelmetProvider>
   );
 };
 
