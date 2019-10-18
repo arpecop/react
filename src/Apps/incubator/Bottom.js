@@ -35,12 +35,20 @@ const Bottom = ({ tag }) => {
           tag +
           '"&update=false',
       );
+
+      setData(result.data);
+    };
+    fetchData();
+  }, [tag]);
+
+  useEffect(() => {
+    const fetchData = async () => {
       const result1 = await axios(
         'https://arpecop.serveo.net/proxy/twitter/_design/api/_view/tags?reduce=true&group=true&limit=20&skip=20&start_key="' +
           tag +
           '"&update=false',
       );
-      setData(result.data);
+
       setData1(result1.data);
     };
     fetchData();
