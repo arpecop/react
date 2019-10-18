@@ -16,7 +16,7 @@ const User = (props) => {
       const result = await axios(
         `https://arpecop.serveo.net/proxy/twitter/_design/api/_view/users?key="${
           props.user
-        }"&reduce=false&include_docs=true&limit=200&update=false`,
+        }"&reduce=false&include_docs=true&limit=200&update=false&descending=true`,
       );
       setData(result.data);
     };
