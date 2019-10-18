@@ -6,16 +6,20 @@ import { Helmet } from 'react-helmet';
 import { FacebookProvider, ShareButton } from 'react-facebook';
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 
-const Footer = props => <Button type="primary" icon="right" href={'/' + props.lastkey} />;
+const Footer = ({ lastkey }) => <Button type="primary" icon="right" href={`/${lastkey}`} />;
 export default class componentName extends Component {
-  state = {
-    firstkey: 0,
-    lastkey: 0,
-    isLoading: true,
+  constructor(props) {
+    super(props);
+    this.state = {
+      firstkey: 0,
+      lastkey: 0,
+      isLoading: true,
 
-    result: { rows: [] },
-    resultAll: { rows: [] },
-  };
+      result: { rows: [] },
+      resultAll: { rows: [] },
+    };
+  }
+
   async componentDidMount() {
     const { isIndex, match } = this.props;
     const query = isIndex ? '' : `&key="${match.params.id}"&skip=0`;
@@ -31,8 +35,11 @@ export default class componentName extends Component {
       isLoading: false,
     });
   }
+
   render() {
-    const { isLoading, result, resultAll, firstkey, lastkey } = this.state;
+    const {
+      isLoading, result, resultAll, firstkey, lastkey,
+    } = this.state;
 
     return (
       <FacebookProvider appId="2477940979150999">
@@ -44,7 +51,7 @@ export default class componentName extends Component {
           <div>
             <Helmet>
               <title>{result.rows[0].doc.text}</title>
-              <meta property="og:url" content={window.location.href} />
+              <meta property="og:url" content={`https://citati.netlify.com/${result.rows[0].key}`} />
               <meta property="og:type" content="article" />
               <meta property="og:title" content={result.rows[0].doc.text} />
 
@@ -55,7 +62,7 @@ export default class componentName extends Component {
               <meta property="og:image:width" content="617" />
               <meta property="og:image:height" content="324" />
               <meta property="fb:app_id" content="770341770061627" />
-              <script type="text/javascript" src="//st-n.ads1-adnow.com/js/a.js"></script>
+              <script type="text/javascript" src="//st-n.ads1-adnow.com/js/a.js" />
             </Helmet>
             <div style={{ padding: 10 }}>
               <List
@@ -68,12 +75,18 @@ export default class componentName extends Component {
                   <List.Item>
                     <div style={{ marginRight: 90 }}>
                       {i === 0 ? (
-                        <h1 style={{ fontWeight: 100, padding: 0, margin: 0 }}>{item.doc.text} </h1>
+                        <h1 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
+                          {item.doc.text}
+                          {' '}
+                        </h1>
                       ) : (
-                        <h2 style={{ fontWeight: 100, padding: 0, margin: 0 }}>{item.doc.text} </h2>
+                        <h2 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
+                          {item.doc.text}
+                          {' '}
+                        </h2>
                       )}
                     </div>
-                    <div id="SC_TBlock_508143" class="SC_TBlock"></div>
+                    <div id="SC_TBlock_508143" className="SC_TBlock" />
                     <div style={{ position: 'absolute', right: 10 }}>
                       <ShareButton
                         className="ant-btn ant-btn-primary"
@@ -87,7 +100,7 @@ export default class componentName extends Component {
                         marginLeft: -20,
                         marginBottom: -15,
                       }}
-                    ></div>
+                    />
                   </List.Item>
                 )}
               />
