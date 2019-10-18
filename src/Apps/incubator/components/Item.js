@@ -1,12 +1,15 @@
 import React from 'react';
-import { Avatar, Card, Col, Comment, Row, Tag } from 'antd';
+import {
+  Avatar, Card, Col, Comment, Row, Tag,
+} from 'antd';
 
 import LazyLoad from 'react-lazy-load';
 import TimeAgo from 'react-timeago';
+
 const uuid = require('uuid/v4');
 
 function TextFormat({ text }) {
-  const arr = text.split(' ').map(word => {
+  const arr = text.split(' ').map((word) => {
     if (word.substring(0, 1) === '#') {
       return { type: 'tag', word, key: uuid() };
     }
@@ -15,14 +18,14 @@ function TextFormat({ text }) {
     }
     return { word, type: 'word', key: uuid() };
   });
-  const cont = arr.map((word, i) => {
+  const cont = arr.map((word) => {
     if (word.type === 'url') {
       return <React.Fragment key={word.key}>dsdsxxxxx</React.Fragment>;
     }
     if (word.type === 'tag') {
       return (
         <a
-          key={i}
+          key={word.key}
           href={`/t/${word.word
             .toLowerCase()
             .replace('#', '')
@@ -32,7 +35,7 @@ function TextFormat({ text }) {
         </a>
       );
     }
-    return <React.Fragment key={i}>{`${word.word} `}</React.Fragment>;
+    return <React.Fragment key={word.key}>{`${word.word} `}</React.Fragment>;
   });
 
   return cont;
@@ -56,17 +59,17 @@ const Komentar = ({ children, item }) => {
       />
       <Comment
         // actions={[<span>Reply to</span>]}
-        datetime={<TimeAgo date={new Date(parseInt(item.date))} />}
-        author={
+        datetime={<TimeAgo date={new Date(parseInt(item.date, 10))} />}
+        author={(
           <a href={`/u/${item.screenName}`}>
             <h2 style={{ fontWeight: 'lighter' }}>{item.screenName}</h2>
           </a>
-        }
-        avatar={
+        )}
+        avatar={(
           <LazyLoad offset={200}>
             <Avatar src={`https://avatars.io/twitter/${item.screenName}`} size="large" />
           </LazyLoad>
-        }
+        )}
         content={<TextFormat text={title} />}
       >
         {children}

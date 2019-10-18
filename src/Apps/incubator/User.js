@@ -6,6 +6,8 @@ import { Header } from './components/UI';
 import Item from './components/Item';
 import Bottom from './Bottom';
 
+const uuid = require('uuid/v4');
+
 const User = (props) => {
   const [data, setData] = useState({ rows: [] });
 
@@ -36,7 +38,7 @@ const User = (props) => {
             </title>
           </Helmet>
           {data.rows.map((item) => (
-            <Item key={item.key} item={item.doc} />
+            <Item key={uuid()} item={item.doc} />
           ))}
         </>
       ) : (

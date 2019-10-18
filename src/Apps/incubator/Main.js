@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Item from './components/Item';
 
+const uuid = require('uuid/v4');
+
 const Tag = () => {
   const [data, setData] = useState({ rows: [] });
 
@@ -18,7 +20,7 @@ const Tag = () => {
     <div>
       <ul>
         {data.rows.map((item) => (
-          <Item key={item.key} item={item.doc} />
+          <Item key={uuid()} item={item.doc} />
         ))}
       </ul>
     </div>

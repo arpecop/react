@@ -6,6 +6,8 @@ import Item from './components/Item';
 import { Header } from './components/UI';
 import Bottom from './Bottom';
 
+const uuid = require('uuid/v4');
+
 const Tag = ({ tag }) => {
   const [data, setData] = useState({ rows: [] });
 
@@ -35,7 +37,7 @@ const Tag = ({ tag }) => {
             </title>
           </Helmet>
           {data.rows.map((item) => (
-            <Item key={item.key} item={item.doc} />
+            <Item key={uuid()} item={item.doc} />
           ))}
         </>
       ) : (
