@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Item from './components/Item';
-const Tag = props => {
+
+const Tag = () => {
   const [data, setData] = useState({ rows: [] });
 
   useEffect(() => {
@@ -16,8 +17,8 @@ const Tag = props => {
   return (
     <div>
       <ul>
-        {data.rows.map(item => (
-          <Item key={item.key} item={item.doc}></Item>
+        {data.rows.map((item) => (
+          <Item key={item.key} item={item.doc} />
         ))}
       </ul>
     </div>

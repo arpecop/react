@@ -4,19 +4,21 @@ import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import User from './User';
 import Tag from './Tag';
 import Main from './Main';
-import { HeaderTop, Body } from './components/UI';
+import { Body } from './components/UI';
 
-const App = props => {
-  const { match, isIndex } = props;
+const App = (props) => {
+  const { match } = props;
 
   return (
     <Body>
       <div className="headertop">
-        <img src="/twitterlogo.png"></img>
+        <img src="/twitterlogo.png" alt="" />
       </div>
-      {match && match.params.id === 'u' ? <User user={match.params.id2} /> : null}
-      {match && match.params.id === 't' ? <Tag tag={match.params.id2} /> : null}
-      {isIndex ? <Main /> : null}
+      {(() => {
+        if (match && match.params.id === 'u') return <User user={match.params.id2} />;
+        if (match && match.params.id === 't') return <Tag tag={match.params.id2} />;
+        return <Main />;
+      })()}
     </Body>
   );
 };
