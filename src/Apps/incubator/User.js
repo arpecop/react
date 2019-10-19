@@ -40,7 +40,7 @@ const User = ({ user }) => {
           ))}
         </>
       ) : (
-        <Spin />
+        <div style={{ textAlign: 'center', padding: 20 }}><Spin /></div>
       )}
       <Bottom tag={user} />
     </HelmetProvider>
