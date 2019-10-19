@@ -31,7 +31,7 @@ function TextFormat({ text }) {
             .replace('#', '')
             .replace('.', '')}`}
         >
-          <Tag style={{ color: '#161616', backgroundColor: '#95a5a6' }}>{word.word.replace('#', '')}</Tag>
+          <Tag style={{ color: '#161616', cursor: 'pointer' }}>{word.word.replace('#', '')}</Tag>
         </a>
       );
     }
