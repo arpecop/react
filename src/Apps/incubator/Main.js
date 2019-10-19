@@ -5,7 +5,7 @@ import Item from './components/Item';
 const uuid = require('uuid/v4');
 
 const Tag = () => {
-  const [data, setData] = useState({ rows: [] });
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,9 +19,9 @@ const Tag = () => {
   return (
     <div>
       <ul>
-        {data.rows.map((item) => (
+        {data ? data.rows.map((item) => (
           <Item key={uuid()} item={item.doc} />
-        ))}
+        )) : (<div>Loading</div>)}
       </ul>
     </div>
   );
