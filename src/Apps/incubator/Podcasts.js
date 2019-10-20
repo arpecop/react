@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Card, Row, Col } from 'antd';
+import { Card, Row } from 'antd';
 import { Title } from './components/UI';
 
 const { Meta } = Card;
