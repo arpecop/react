@@ -16,10 +16,21 @@ const Listx = ({ prefix, rows }) => (
           <Badge
             count={item.value > 1 ? item.value : 0}
             style={{
-              backgroundColor: '#95a5a6',
+              backgroundColor: '#ffb163',
+              border: 'none',
             }}
           >
-            <Tag style={{ color: '#252425', cursor: 'pointer', margin: 4 }}>{item.key}</Tag>
+            <Tag
+              style={{
+                backgroundColor: '#231f20',
+                border: 'none',
+                color: '#67d5e4',
+                cursor: 'pointer',
+                margin: 4,
+              }}
+            >
+              {item.key}
+            </Tag>
           </Badge>
         </a>
       )}

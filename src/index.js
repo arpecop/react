@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Main from './App';
 import * as serviceWorker from './serviceWorker';
 
-const App = () => {
-  return (
+
+const App = () => (
     <Router>
       <div>
         <Route path="/" exact component={() => <Main isIndex />} />
@@ -16,7 +16,6 @@ const App = () => {
       </div>
     </Router>
   );
-};
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

@@ -5,6 +5,7 @@ import User from './User';
 import Tag from './Tag';
 import Main from './Main';
 import { Body } from './components/UI';
+import './components/index.css';
 
 const App = (props) => {
   const { match } = props;

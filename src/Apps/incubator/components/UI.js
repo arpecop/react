@@ -34,7 +34,7 @@ export const Header = styled.div`
     color: #02bac8;
   }
   img {
-    width: 90px;
+    width: 60px;
     float: left;
     margin-right: 5px;
   }

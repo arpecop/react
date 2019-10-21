@@ -52,11 +52,11 @@ const Komentar = ({ children, item }) => {
 
     <Comment
 
-        // actions={[<span>Reply to</span>]}
+     // actions={[<span>Reply to</span>]}
       datetime={<TimeAgo date={new Date(parseInt(item.date, 10))} />}
       author={(
         <a href={`/u/${item.screenName}`}>
-          <h2 style={{ fontWeight: 'lighter' }}>{item.screenName}</h2>
+          <h2 style={{ fontWeight: 'lighter', color: '#ccc' }}>{item.screenName}</h2>
         </a>
         )}
       avatar={(
@@ -64,10 +64,8 @@ const Komentar = ({ children, item }) => {
         <Avatar src={`https://avatars.io/twitter/${item.screenName}`} size="large" />
 
         )}
-      content={<h3 style={{ fontWeight: 'lighter' }}><TextFormat text={title} /></h3>}
-    >
-      {children}
-    </Comment>
+      content={<h3 style={{ fontWeight: 'lighter', color: '#fff' }}><TextFormat text={title} /></h3>}
+    />
 
   );
 };
@@ -86,6 +84,7 @@ const Item = ({ item }) => {
     <Row type="flex" justify="center">
       <Col xs={24} sm={20} md={18} lg={10}>
         <Card
+          style={{ marginBottom: 5, backgroundColor: '#231f20' }}
           bordered={false}
           type="inner"
           cover={
