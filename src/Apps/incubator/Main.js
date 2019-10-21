@@ -1,16 +1,21 @@
 import React from 'react';
+import { Button } from 'antd';
 
-const data = 'abcdefghijklmnopqrstuvwxyz'.split('');
-const Tag = () => (
-  <div>
-    {data.map((item) => (
-      <li key={item}>
-        <a href={`/t/${item}`}>
-          {item}
-        </a>
-      </li>
-    ))}
-  </div>
-);
+const Tag = () => {
+  const data = 'abcdefghijklmnopqrstuvwxyz'.split('');
+  return (
+    <div style={{ textAlign: 'center' }}>
+      <Button.Group size="small">
+        {data.map((item) => (
+          <Button type="primary" key={item} href={`/t/${item}`}>
+
+            {item.toUpperCase()}
+
+          </Button>
+        ))}
+      </Button.Group>
+    </div>
+  );
+};
 
 export default Tag;
