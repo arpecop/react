@@ -47,34 +47,28 @@ const Komentar = ({ children, item }) => {
   title = url ? title.replace(url, '') : title;
 
   return (
-    // eslint-disable-next-line react/jsx-filename-extension
-    <div>
-      <div
-        style={{
-          minWidth: 100,
-          position: 'absolute',
-          right: 0,
-          fontSize: 14,
-        }}
-      />
-      <Comment
+  // eslint-disable-next-line react/jsx-filename-extension
+
+
+    <Comment
+
         // actions={[<span>Reply to</span>]}
-        datetime={<TimeAgo date={new Date(parseInt(item.date, 10))} />}
-        author={(
-          <a href={`/u/${item.screenName}`}>
-            <h2 style={{ fontWeight: 'lighter' }}>{item.screenName}</h2>
-          </a>
+      datetime={<TimeAgo date={new Date(parseInt(item.date, 10))} />}
+      author={(
+        <a href={`/u/${item.screenName}`}>
+          <h2 style={{ fontWeight: 'lighter' }}>{item.screenName}</h2>
+        </a>
         )}
-        avatar={(
+      avatar={(
 
-          <Avatar src={`https://avatars.io/twitter/${item.screenName}`} size="large" />
+        <Avatar src={`https://avatars.io/twitter/${item.screenName}`} size="large" />
 
         )}
-        content={<TextFormat text={title} />}
-      >
-        {children}
-      </Comment>
-    </div>
+      content={<h3 style={{ fontWeight: 'lighter' }}><TextFormat text={title} /></h3>}
+    >
+      {children}
+    </Comment>
+
   );
 };
 const Item = ({ item }) => {
@@ -90,18 +84,12 @@ const Item = ({ item }) => {
   );
   return (
     <Row type="flex" justify="center">
-      <Col xs={24} sm={20} md={18} lg={10}>
+      <Col xs={24} sm={20} md={18} lg={10} style={{ float: 'left' }}>
         <Card
           bordered={false}
           type="inner"
           cover={
-            images ? (
-
-              <a href={href}>
-                <img alt="" style={{ width: '100%' }} src={images[0]} />
-              </a>
-
-            ) : null
+            images ? (<img alt={quote} style={{ width: '100%' }} src={images[0]} />) : null
           }
         >
           {thread}
