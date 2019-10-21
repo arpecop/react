@@ -40,7 +40,7 @@ function TextFormat({ text }) {
 
   return cont;
 }
-const Komentar = ({ children, item }) => {
+const Komentar = ({ item }) => {
   let title = item.title || item.text;
   const url = item.urls && item.urls[0] ? item.urls[0] : null;
 
