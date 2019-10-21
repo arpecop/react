@@ -5,7 +5,7 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Header } from './components/UI';
 import Item from './components/Item';
 import Bottom from './Bottom';
-import Podcasts from './Podcasts';
+
 
 const uuid = require('uuid/v4');
 
@@ -21,7 +21,7 @@ const User = ({ user }) => {
     };
     fetchData();
   }, [user]);
-
+  // //<Podcasts length={data.rows.length} tag={user} />
   return (
 
     <HelmetProvider>
@@ -44,7 +44,7 @@ const User = ({ user }) => {
         <div style={{ textAlign: 'center', padding: 20 }}><Spin /></div>
       )}
       <Bottom tag={user} />
-      <Podcasts length={data.rows.length} tag={user} />
+
     </HelmetProvider>
   );
 };
