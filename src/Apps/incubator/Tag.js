@@ -29,12 +29,18 @@ const Tag = ({ tag }) => {
           {`#${tag}`}
         </h1>
       </Header>
+      <Helmet>
+        <title>
+          {`#${tag}`}
+        </title>
+      </Helmet>
       {data.rows[0] ? (
         <>
           <Helmet>
             <title>
-              {`${data.rows[0].doc.screenName} : ${data.rows[0].doc.title}`}
+              {`#${tag}`}
             </title>
+            <meta name="description" content={`${data.rows[0].doc.screenName} : ${data.rows[0].doc.title}`} />
           </Helmet>
           {data.rows.map((item) => (
             <Item key={uuid()} item={item.doc} />

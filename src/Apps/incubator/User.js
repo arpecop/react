@@ -25,6 +25,11 @@ const User = ({ user }) => {
   return (
 
     <HelmetProvider>
+      <Helmet>
+        <title>
+          {`${user}`}
+        </title>
+      </Helmet>
       {data.rows[0] ? (
         <>
           <Header>
@@ -33,8 +38,9 @@ const User = ({ user }) => {
           </Header>
           <Helmet>
             <title>
-              {`${data.rows[0].doc.screenName} : ${data.rows[0].doc.title}`}
+              {`#${user}`}
             </title>
+            <meta name="description" content={`${data.rows[0].doc.screenName} : ${data.rows[0].doc.title}`} />
           </Helmet>
           {data.rows.map((item) => (
             <Item key={uuid()} item={item.doc} />
