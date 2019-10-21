@@ -7,22 +7,24 @@ import {
 import { Title } from './components/UI';
 
 const Listx = ({ prefix, rows }) => (
-  <List
-    itemLayout="horizontal"
-    dataSource={rows}
-    renderItem={(item) => (
-      <a href={`/${prefix}/${item.key}`}>
-        <Badge
-          count={item.value > 1 ? item.value : 0}
-          style={{
-            backgroundColor: '#95a5a6',
-          }}
-        >
-          <Tag style={{ color: '#252425', cursor: 'pointer', margin: 4 }}>{item.key}</Tag>
-        </Badge>
-      </a>
-    )}
-  />
+  <div style={{ textAlign: 'center' }}>
+    <List
+      itemLayout="horizontal"
+      dataSource={rows}
+      renderItem={(item) => (
+        <a href={`/${prefix}/${item.key}`}>
+          <Badge
+            count={item.value > 1 ? item.value : 0}
+            style={{
+              backgroundColor: '#95a5a6',
+            }}
+          >
+            <Tag style={{ color: '#252425', cursor: 'pointer', margin: 4 }}>{item.key}</Tag>
+          </Badge>
+        </a>
+      )}
+    />
+  </div>
 );
 
 

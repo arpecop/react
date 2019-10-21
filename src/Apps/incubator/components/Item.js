@@ -84,12 +84,12 @@ const Item = ({ item }) => {
   );
   return (
     <Row type="flex" justify="center">
-      <Col xs={24} sm={20} md={18} lg={10} style={{ float: 'left' }}>
+      <Col xs={24} sm={20} md={18} lg={10}>
         <Card
           bordered={false}
           type="inner"
           cover={
-            images ? (<img alt={quote} style={{ width: '100%' }} src={images[0]} />) : null
+            images ? (<img alt="" style={{ width: '100%' }} src={images[0]} />) : null
           }
         >
           {thread}
