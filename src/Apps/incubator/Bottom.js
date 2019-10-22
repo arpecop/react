@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import {
-  List, Tag, Badge, Spin, Row, Col,
+  List, Tag, Spin, Row, Col,
 } from 'antd';
 import { Title } from './components/UI';
 
@@ -13,19 +13,33 @@ const Listx = ({ prefix, rows }) => (
       dataSource={rows}
       renderItem={(item) => (
         <a href={`/${prefix}/${item.key}`}>
+          <span>
+            <Tag
+              style={{
+                backgroundColor: '#231f20',
+                border: 'none',
+                color: '#67d5e4',
+                cursor: 'pointer',
+                margin: 4,
+              }}
+            >
+              {item.key}
+            </Tag>
+            {item.value
+              >= 2 ? (
+                <Tag
+                  style={{
 
-          <Tag
-            style={{
-              backgroundColor: '#231f20',
-              border: 'none',
-              color: '#67d5e4',
-              cursor: 'pointer',
-              margin: 4,
-            }}
-          >
-            {item.key}
-          </Tag>
+                    border: 'none',
 
+                    cursor: 'pointer',
+                    marginLeft: -5,
+                  }}
+                >
+                  {`${item.value}`}
+                </Tag>
+              ) : null}
+          </span>
         </a>
       )}
     />
@@ -36,7 +50,7 @@ const Listx = ({ prefix, rows }) => (
 const Bottom = ({ tag }) => {
   const [data, setData] = useState(null);
   const [data1, setData1] = useState(null);
-
+  const [amazon, setAmazon] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
@@ -62,24 +76,28 @@ const Bottom = ({ tag }) => {
     };
     fetchData();
   }, [tag]);
-
-
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        `https://amazonka.herokuapp.com/${tag}`,
+      );
+      setAmazon(result.data);
+    };
+    fetchData();
+  }, [tag]);
   return (
     <div>
       <Row type="flex" justify="center">
         <Col xs={24} sm={20} md={18} lg={10}>
-
           <Title>Users</Title>
           {data ? <Listx rows={data.rows} prefix="u" /> : <Spin />}
-
-
           <Title>Tags</Title>
-
           {data1 ? <Listx rows={data1.rows} prefix="t" /> : <Spin />}
-
-
+          <Title>Promotions/Market</Title>
+          {amazon[0] ? amazon.map((item) => (<div>{JSON.stringify(item)}</div>)) : null}
         </Col>
       </Row>
+
     </div>
 
   );
