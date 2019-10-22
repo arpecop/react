@@ -19,7 +19,7 @@ const Podcasts = ({ tag, length }) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `https://arpecop.serveo.net/pod/_design/api/_view/podcasts?start_key="${tag}"&reduce=false&include_docs=true&limit=11&update=false&descending=true`,
+        `https://rudixauth.herokuapp.com/test/pod/_design/api/_view/podcasts?start_key="${tag}"&reduce=false&include_docs=true&limit=11&update=false&descending=true`,
       );
       setData(result.data);
     };
