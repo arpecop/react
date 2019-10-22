@@ -29,9 +29,7 @@ const Listx = ({ prefix, rows }) => (
               >= 2 ? (
                 <Tag
                   style={{
-
                     border: 'none',
-
                     cursor: 'pointer',
                     marginLeft: -5,
                   }}
@@ -93,8 +91,7 @@ const Bottom = ({ tag }) => {
           {data ? <Listx rows={data.rows} prefix="u" /> : <Spin />}
           <Title>Tags</Title>
           {data1 ? <Listx rows={data1.rows} prefix="t" /> : <Spin />}
-          <Title>Promotions/Market</Title>
-          {amazon[0] ? amazon.map((item) => (<div>{JSON.stringify(item)}</div>)) : null}
+
         </Col>
       </Row>
 
