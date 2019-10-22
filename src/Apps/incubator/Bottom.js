@@ -13,25 +13,19 @@ const Listx = ({ prefix, rows }) => (
       dataSource={rows}
       renderItem={(item) => (
         <a href={`/${prefix}/${item.key}`}>
-          <Badge
-            count={item.value > 1 ? item.value : 0}
+
+          <Tag
             style={{
-              backgroundColor: '#ffb163',
+              backgroundColor: '#231f20',
               border: 'none',
+              color: '#67d5e4',
+              cursor: 'pointer',
+              margin: 4,
             }}
           >
-            <Tag
-              style={{
-                backgroundColor: '#231f20',
-                border: 'none',
-                color: '#67d5e4',
-                cursor: 'pointer',
-                margin: 4,
-              }}
-            >
-              {item.key}
-            </Tag>
-          </Badge>
+            {item.key}
+          </Tag>
+
         </a>
       )}
     />
