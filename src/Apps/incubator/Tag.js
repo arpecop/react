@@ -47,7 +47,7 @@ const Tag = ({ tag }) => {
           ))}
         </>
       ) : (
-        <Spin />
+        <div style={{ textAlign: 'center' }}><Spin /></div>
       )}
       <Bottom tag={tag} />
     </HelmetProvider>
