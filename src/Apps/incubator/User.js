@@ -10,7 +10,7 @@ import Bottom from './Bottom';
 const uuid = require('uuid/v4');
 
 const User = ({ user }) => {
-  const [data, setData] = useState({ rows: [] });
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,7 +30,7 @@ const User = ({ user }) => {
           {`${user}`}
         </title>
       </Helmet>
-      {data.rows[0] ? (
+      {data && data.rows[0] ? (
         <>
           <Header>
             <img src={`https://avatars.io/twitter/${data.rows[0].doc.screenName}`} size="large" alt="" />

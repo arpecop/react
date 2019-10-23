@@ -9,7 +9,7 @@ import Bottom from './Bottom';
 const uuid = require('uuid/v4');
 
 const Tag = ({ tag }) => {
-  const [data, setData] = useState({ rows: [] });
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,12 +29,8 @@ const Tag = ({ tag }) => {
           {`#${tag}`}
         </h1>
       </Header>
-      <Helmet>
-        <title>
-          {`#${tag}`}
-        </title>
-      </Helmet>
-      {data.rows[0] ? (
+
+      {data && data.rows ? (
         <>
           <Helmet>
             <title>
