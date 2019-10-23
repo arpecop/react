@@ -16,7 +16,7 @@ const Tag = ({ tag }) => {
       const result = await axios(
         `https://rudixauth.herokuapp.com/test/twitter/_design/api/_view/tags?key="${
           tag
-        }"&reduce=false&include_docs=true&limit=200&update=false&descending=true`,
+        }"&reduce=false&include_docs=true&limit=100&descending=true&update=false`,
       );
       setData(result.data);
     };
