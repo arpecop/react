@@ -48,7 +48,7 @@ const Listx = ({ prefix, rows }) => (
 const Bottom = ({ tag }) => {
   const [data, setData] = useState(null);
   const [data1, setData1] = useState(null);
-  const [amazon, setAmazon] = useState([]);
+  const [amazon] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
@@ -74,16 +74,7 @@ const Bottom = ({ tag }) => {
     };
     fetchData();
   }, [tag]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios(
-        `https://amazonka.herokuapp.com/${tag}`,
-      );
 
-      setAmazon(result.data);
-    };
-    fetchData();
-  }, [tag]);
 
   return (
     <div>
