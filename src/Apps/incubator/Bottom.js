@@ -48,7 +48,7 @@ const Listx = ({ prefix, rows }) => (
 const Bottom = ({ tag }) => {
   const [data, setData] = useState(null);
   const [data1, setData1] = useState(null);
-
+  const [amazon, setAmazon] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
@@ -74,6 +74,16 @@ const Bottom = ({ tag }) => {
     };
     fetchData();
   }, [tag]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        `https://amazonka.herokuapp.com/${tag}`,
+      );
+
+      setAmazon(result.data);
+    };
+    fetchData();
+  }, [tag]);
 
   return (
     <div>
@@ -83,7 +93,35 @@ const Bottom = ({ tag }) => {
           {data ? <Listx rows={data.rows} prefix="u" /> : <Spin />}
           <Title>Tags</Title>
           {data1 ? <Listx rows={data1.rows} prefix="t" /> : <Spin />}
+          <Title>Marketplace</Title>
+          {amazon ? (
+            <List
+              size="small"
+             // header={<div>Header</div>}
+             // footer={<div>Footer</div>}
+              bordered={false}
+              dataSource={amazon}
+              renderItem={(item) => {
+                console.log(item);
+                return (
+                  <List.Item>
+                    <a style={{ color: '#FFF' }} href={`https://www.amazon.com/gp/product/B07VGQX3Q3/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=${item.asin}&linkCode=as2&tag=rudix-20`} target="_top" rel="nofollow">
+                      {item.title}
 
+                      {item.discounted ? (
+                        <span>
+                          <Tag style={{ textDecoration: 'line-through' }}>{`${item.before_discount}$`}</Tag>
+                          {' '}
+                          <Tag>{`${item.price}$`}</Tag>
+                        </span>
+                      ) : (<Tag>{`${item.price}$`}</Tag>)}
+                    </a>
+
+                  </List.Item>
+                );
+              }}
+            />
+          ) : null}
         </Col>
       </Row>
 
