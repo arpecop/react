@@ -105,7 +105,7 @@ const Bottom = ({ tag }) => {
                 console.log(item);
                 return (
                   <List.Item>
-                    <a style={{ color: '#FFF' }} href={`https://www.amazon.com/gp/product/B07VGQX3Q3/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=${item.asin}&linkCode=as2&tag=rudix-20`} target="_top" rel="nofollow">
+                    <a style={{ color: '#FFF' }} href={`https://www.amazon.com/gp/product/${item.asin}/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=${item.asin}&linkCode=as2&tag=rudix-20`} target="_top" rel="nofollow">
                       {item.title}
 
                       {item.discounted ? (
