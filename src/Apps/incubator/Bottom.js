@@ -52,7 +52,7 @@ const Bottom = ({ tag }) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `https://rudixauth.herokuapp.com/test/twitter/_design/api/_view/users?reduce=true&group=true&limit=25&skip=25&start_key="${
+        `https://rudixauth.herokuapp.com/twitter/_design/api/_view/users?reduce=true&group=true&limit=25&skip=25&start_key="${
           tag
         }"&update=false`,
       );
@@ -65,7 +65,7 @@ const Bottom = ({ tag }) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `https://rudixauth.herokuapp.com/test/twitter/_design/api/_view/tags?reduce=true&group=true&limit=25&skip=25&start_key="${
+        `https://rudixauth.herokuapp.com/twitter/_design/api/_view/tags?reduce=true&group=true&limit=25&skip=25&start_key="${
           tag
         }"&update=false`,
       );

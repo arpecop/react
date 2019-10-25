@@ -14,7 +14,7 @@ const Tag = ({ tag }) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `https://rudixauth.herokuapp.com/test/twitter/_design/api/_view/tags?key="${
+        `https://rudixauth.herokuapp.com/twitter/_design/api/_view/tags?key="${
           tag
         }"&reduce=false&include_docs=true&limit=100&descending=true&update=false`,
       );

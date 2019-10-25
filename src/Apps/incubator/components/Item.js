@@ -51,7 +51,6 @@ function TextFormat({ text }) {
   return cont;
 }
 const Komentar = ({ item }) => {
-  console.log({ item });
   let title = item.title || item.text;
   const url = item.urls && item.urls[0] ? item.urls[0] : null;
 
@@ -62,19 +61,7 @@ const Komentar = ({ item }) => {
 
     <Comment
 
-      actions={[
-        (<span style={{ color: '#FFF' }}>
-          <Icon type="message" style={{ color: '#FFF' }} />
-          {` ${item.replyCount}`}
-        </span>),
-        (<span style={{ color: '#FFF' }}>
-          <Icon type="redo" style={{ color: '#FFF' }} />
-          {` ${item.retweetCount}`}
-         </span>),
-        (<span style={{ color: '#FFF' }}>
-          <Icon type="heart" style={{ color: '#FFF' }} />
-          {` ${item.favoriteCount}`}
-         </span>)]}
+
       datetime={<TimeAgo date={new Date(parseInt(item.date, 10))} />}
       author={(
         <a href={`/u/${item.screenName}`}>
@@ -86,7 +73,23 @@ const Komentar = ({ item }) => {
         <Avatar src={`https://avatars.io/twitter/${item.screenName}`} size="large" />
 
         )}
-      content={<h3 style={{ fontWeight: 'lighter', color: '#fff' }}><TextFormat text={title} /></h3>}
+      content={(
+        <div>
+          <h3 style={{ fontWeight: 'lighter', color: '#fff' }}><TextFormat text={title} /></h3>
+          <span style={{ color: '#FFF' }}>
+            <Icon type="message" style={{ color: '#FFF' }} />
+            {` ${item.replyCount}    `}
+          </span>
+          <span style={{ color: '#FFF' }}>
+            <Icon type="redo" style={{ color: '#FFF' }} />
+            {` ${item.retweetCount}    `}
+          </span>
+          <span style={{ color: '#FFF' }}>
+            <Icon type="heart" style={{ color: '#FFF' }} />
+            {` ${item.favoriteCount}  `}
+          </span>
+        </div>
+)}
     />
 
   );

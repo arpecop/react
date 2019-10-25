@@ -15,7 +15,7 @@ const User = ({ user }) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `https://rudixauth.herokuapp.com/test/twitter/_design/api/_view/users?key="${user}"&reduce=false&include_docs=true&limit=200&update=false&descending=true`,
+        `https://rudixauth.herokuapp.com/twitter/_design/api/_view/users?key="${user}"&reduce=false&include_docs=true&limit=200&update=false&descending=true`,
       );
       setData(result.data);
     };
