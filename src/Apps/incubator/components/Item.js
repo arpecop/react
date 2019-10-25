@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Avatar, Card, Col, Comment, Row, Tag,
+  Avatar, Card, Col, Comment, Row, Tag, Icon,
 } from 'antd';
 
 
@@ -51,18 +51,30 @@ function TextFormat({ text }) {
   return cont;
 }
 const Komentar = ({ item }) => {
+  console.log({ item });
   let title = item.title || item.text;
   const url = item.urls && item.urls[0] ? item.urls[0] : null;
 
   title = url ? title.replace(url, '') : title;
 
   return (
-  // eslint-disable-next-line react/jsx-filename-extension
 
 
     <Comment
 
-     // actions={[<span>Reply to</span>]}
+      actions={[
+        (<span style={{ color: '#FFF' }}>
+          <Icon type="message" style={{ color: '#FFF' }} />
+          {` ${item.replyCount}`}
+        </span>),
+        (<span style={{ color: '#FFF' }}>
+          <Icon type="redo" style={{ color: '#FFF' }} />
+          {` ${item.retweetCount}`}
+         </span>),
+        (<span style={{ color: '#FFF' }}>
+          <Icon type="heart" style={{ color: '#FFF' }} />
+          {` ${item.favoriteCount}`}
+         </span>)]}
       datetime={<TimeAgo date={new Date(parseInt(item.date, 10))} />}
       author={(
         <a href={`/u/${item.screenName}`}>

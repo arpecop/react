@@ -74,15 +74,17 @@ export default class componentName extends Component {
                 renderItem={(item, i) => (
                   <List.Item>
                     <div style={{ marginRight: 90 }}>
+                      {i === 3 ? (<h2>Ad</h2>) : null}
+
                       {i === 0 ? (
                         <h1 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
                           {item.doc.text}
-                          {' '}
+
                         </h1>
                       ) : (
                         <h2 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
                           {item.doc.text}
-                          {' '}
+
                         </h2>
                       )}
                     </div>
