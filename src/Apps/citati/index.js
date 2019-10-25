@@ -42,7 +42,7 @@ export default class componentName extends Component {
     } = this.state;
 
     return (
-      <FacebookProvider appId="2477940979150999">
+      <FacebookProvider appId="764570724005020">
         {isLoading ? (
           <div style={{ textAlign: 'center' }}>
             <Button type="primary" loading />

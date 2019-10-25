@@ -38,7 +38,7 @@ const User = ({ user }) => {
           </Header>
           <Helmet>
             <title>
-              {`#${user}`}
+              {`${user}`}
             </title>
             <meta name="description" content={`${data.rows[0].doc.screenName} : ${data.rows[0].doc.title}`} />
           </Helmet>
