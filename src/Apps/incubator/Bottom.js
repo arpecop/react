@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
 import {
   List, Tag, Spin, Row, Col,
 } from 'antd';
+import { env } from './env/constants';
+
 import { Title } from './components/UI';
+
+console.log(env);
 
 const Listx = ({ prefix, rows }) => (
   <div style={{ textAlign: 'center' }}>
@@ -84,7 +87,7 @@ const Bottom = ({ tag }) => {
           {data ? <Listx rows={data.rows} prefix="u" /> : <Spin />}
           <Title>Tags</Title>
           {data1 ? <Listx rows={data1.rows} prefix="t" /> : <Spin />}
-
+          {process.env.NODE_ENV}
           {amazon[0] ? (
             <div>
               <Title>Marketplace</Title>
@@ -94,25 +97,22 @@ const Bottom = ({ tag }) => {
              // footer={<div>Footer</div>}
                 bordered={false}
                 dataSource={amazon}
-                renderItem={(item) => {
-                  console.log(item);
-                  return (
-                    <List.Item>
-                      <a style={{ color: '#FFF' }} href={`https://www.amazon.com/gp/product/${item.asin}/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=${item.asin}&linkCode=as2&tag=rudix-20`} target="_top" rel="nofollow">
-                        {item.title}
+                renderItem={(item) => (
+                  <List.Item>
+                    <a style={{ color: '#FFF' }} href={`https://www.amazon.com/gp/product/${item.asin}/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=${item.asin}&linkCode=as2&tag=rudix-20`} target="_top" rel="nofollow">
+                      {item.title}
 
-                        {item.discounted ? (
-                          <span>
-                            <Tag style={{ textDecoration: 'line-through' }}>{`${item.before_discount}$`}</Tag>
-                            {' '}
-                            <Tag>{`${item.price}$`}</Tag>
-                          </span>
-                        ) : (<Tag>{`${item.price}$`}</Tag>)}
-                      </a>
+                      {item.discounted ? (
+                        <span>
+                          <Tag style={{ textDecoration: 'line-through' }}>{`${item.before_discount}$`}</Tag>
+                          {' '}
+                          <Tag>{`${item.price}$`}</Tag>
+                        </span>
+                      ) : (<Tag>{`${item.price}$`}</Tag>)}
+                    </a>
 
-                    </List.Item>
-                  );
-                }}
+                  </List.Item>
+                )}
               />
 
             </div>
