@@ -5,6 +5,7 @@ import { Spin } from 'antd';
 import Item from './components/Item';
 import { Header } from './components/UI';
 import Bottom from './Bottom';
+import { env } from './env/constants';
 
 const uuid = require('uuid/v4');
 
@@ -14,7 +15,7 @@ const Tag = ({ tag }) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `https://rudixauth.herokuapp.com/twitter/_design/api/_view/tags?key="${
+        `${env.api}twitter/_design/api/_view/tags?key="${
           tag
         }"&reduce=false&include_docs=true&limit=100&descending=true&update=false`,
       );

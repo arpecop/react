@@ -5,7 +5,7 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Header } from './components/UI';
 import Item from './components/Item';
 import Bottom from './Bottom';
-
+import { env } from './env/constants';
 
 const uuid = require('uuid/v4');
 
@@ -15,7 +15,7 @@ const User = ({ user }) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `https://rudixauth.herokuapp.com/twitter/_design/api/_view/users?key="${user}"&reduce=false&include_docs=true&limit=200&update=false&descending=true`,
+        `${env.api}twitter/_design/api/_view/users?key="${user}"&reduce=false&include_docs=true&limit=200&update=false&descending=true`,
       );
       setData(result.data);
     };

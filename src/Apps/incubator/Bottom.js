@@ -7,7 +7,6 @@ import { env } from './env/constants';
 
 import { Title } from './components/UI';
 
-console.log(env);
 
 const Listx = ({ prefix, rows }) => (
   <div style={{ textAlign: 'center' }}>
@@ -55,7 +54,7 @@ const Bottom = ({ tag }) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `https://rudixauth.herokuapp.com/twitter/_design/api/_view/users?reduce=true&group=true&limit=25&skip=25&start_key="${
+        `${env.api}twitter/_design/api/_view/users?reduce=true&group=true&limit=25&skip=25&start_key="${
           tag
         }"&update=false`,
       );
@@ -68,7 +67,7 @@ const Bottom = ({ tag }) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `https://rudixauth.herokuapp.com/twitter/_design/api/_view/tags?reduce=true&group=true&limit=25&skip=25&start_key="${
+        `${env.api}_design/api/_view/tags?reduce=true&group=true&limit=25&skip=25&start_key="${
           tag
         }"&update=false`,
       );
@@ -87,7 +86,7 @@ const Bottom = ({ tag }) => {
           {data ? <Listx rows={data.rows} prefix="u" /> : <Spin />}
           <Title>Tags</Title>
           {data1 ? <Listx rows={data1.rows} prefix="t" /> : <Spin />}
-          {process.env.NODE_ENV}
+
           {amazon[0] ? (
             <div>
               <Title>Marketplace</Title>

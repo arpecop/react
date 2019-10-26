@@ -1,8 +1,10 @@
 const env = {
   development: {
-    api: '1',
+    api: 'http://gigi.local:5984/',
+  },
+  production: {
+    api: 'https://rudixauth.herokuapp.com/',
   },
 };
 
-module.exports = { env }
-;
+module.exports = { env: env[process.env.NODE_ENV] };
