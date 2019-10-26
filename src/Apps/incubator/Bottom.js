@@ -67,7 +67,7 @@ const Bottom = ({ tag }) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `${env.api}_design/api/_view/tags?reduce=true&group=true&limit=25&skip=25&start_key="${
+        `${env.api}twitter/_design/api/_view/tags?reduce=true&group=true&limit=25&skip=25&start_key="${
           tag
         }"&update=false`,
       );
