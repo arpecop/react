@@ -65,7 +65,9 @@ const Komentar = ({ item }) => {
       datetime={<TimeAgo date={new Date(parseInt(item.date, 10))} />}
       author={(
         <a href={`/u/${item.screenName}`}>
-          <h2 style={{ fontWeight: 'lighter', color: '#ccc' }}>{item.screenName}</h2>
+          <h2 style={{ fontWeight: 'lighter', color: '#ccc' }}>
+            {item.screenName}
+          </h2>
         </a>
         )}
       avatar={(
@@ -73,9 +75,10 @@ const Komentar = ({ item }) => {
         <Avatar src={`https://avatars.io/twitter/${item.screenName}`} size="large" />
 
         )}
-      content={(
-        <div>
-          <h3 style={{ fontWeight: 'lighter', color: '#fff' }}><TextFormat text={title} /></h3>
+      content={item.replyCount ? (
+        <>
+
+          <span style={{ color: '#fff' }}><TextFormat text={title} /></span>
           <span style={{ color: '#FFF' }}>
             <Icon type="message" style={{ color: '#FFF' }} />
             {` ${item.replyCount}    `}
@@ -88,8 +91,8 @@ const Komentar = ({ item }) => {
             <Icon type="heart" style={{ color: '#FFF' }} />
             {` ${item.favoriteCount}  `}
           </span>
-        </div>
-)}
+        </>
+      ) : (<span style={{ fontWeight: 'lighter', color: '#fff', fontSize: '0.9rem' }}><TextFormat text={title} /></span>)}
     />
 
   );

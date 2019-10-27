@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { FacebookProvider, LoginButton } from 'react-facebook';
 import { useCookies } from 'react-cookie';
 import { Row, Col } from 'antd';
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.css';
 const App = () => {
   const [count, setCount] = useState({});
   const [cookies, setCookie] = useCookies(['profile']);
-  const handleResponse = data => {
+  const handleResponse = (data) => {
     console.log(data);
     setCookie('profile', data, { path: '/' });
     setCount(data);
   };
 
-  const handleError = error => {
+  const handleError = (error) => {
     this.setState({ error });
   };
   return (
@@ -22,11 +22,11 @@ const App = () => {
           <div> </div>
         ) : (
           <div>
-            <Col span={1} style={{ height: 200 }}></Col>
+            <Col span={1} style={{ height: 200 }} />
             <LoginButton scope="email" onCompleted={handleResponse} onError={handleError}>
               <span>Login via Facebook</span>
             </LoginButton>
-            <Col span={1} style={{ height: 200 }}></Col>
+            <Col span={1} style={{ height: 200 }} />
           </div>
         )}
       </FacebookProvider>

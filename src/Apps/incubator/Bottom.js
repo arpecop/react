@@ -50,7 +50,7 @@ const Listx = ({ prefix, rows }) => (
 const Bottom = ({ tag }) => {
   const [data, setData] = useState(null);
   const [data1, setData1] = useState(null);
-  const [amazon, setAmazon] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
@@ -87,35 +87,7 @@ const Bottom = ({ tag }) => {
           <Title>Tags</Title>
           {data1 ? <Listx rows={data1.rows} prefix="t" /> : <Spin />}
 
-          {amazon[0] ? (
-            <div>
-              <Title>Marketplace</Title>
-              <List
-                size="small"
-             // header={<div>Header</div>}
-             // footer={<div>Footer</div>}
-                bordered={false}
-                dataSource={amazon}
-                renderItem={(item) => (
-                  <List.Item>
-                    <a style={{ color: '#FFF' }} href={`https://www.amazon.com/gp/product/${item.asin}/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=${item.asin}&linkCode=as2&tag=rudix-20`} target="_top" rel="nofollow">
-                      {item.title}
 
-                      {item.discounted ? (
-                        <span>
-                          <Tag style={{ textDecoration: 'line-through' }}>{`${item.before_discount}$`}</Tag>
-                          {' '}
-                          <Tag>{`${item.price}$`}</Tag>
-                        </span>
-                      ) : (<Tag>{`${item.price}$`}</Tag>)}
-                    </a>
-
-                  </List.Item>
-                )}
-              />
-
-            </div>
-          ) : null}
         </Col>
       </Row>
 
