@@ -1,5 +1,5 @@
 // izteglisi//
-import Main from './Apps/incubator/index';
+import Main from './Apps/dating/index';
 
 export default Main;
 // test

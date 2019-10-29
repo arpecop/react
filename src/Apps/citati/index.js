@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { List, Button } from 'antd';
+import {
+  List, Button, Row, Col,
+} from 'antd';
 import { Helmet } from 'react-helmet';
 
-import { FacebookProvider, ShareButton } from 'react-facebook';
+import { FacebookProvider, ShareButton, Like } from 'react-facebook';
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 
 const Footer = ({ lastkey }) => <Button type="primary" icon="right" href={`/${lastkey}`} />;
@@ -65,47 +67,63 @@ export default class componentName extends Component {
               <script type="text/javascript" src="//st-n.ads1-adnow.com/js/a.js" />
             </Helmet>
             <div style={{ padding: 10 }}>
-              <List
-                size="large"
-                header={<div>citati.netlify.com </div>}
-                footer={<Footer firstkey={firstkey} lastkey={lastkey} />}
-                bordered
-                dataSource={resultAll.rows}
-                renderItem={(item, i) => (
-                  <List.Item>
-                    <div style={{ marginRight: 90 }}>
-                      {i === 3 ? (<h2>Ad</h2>) : null}
+              <Row type="flex" justify="center" align="top">
+                <Col xs={24} sm={20} md={16} lg={15} xl={12}>
+                  <div
+                    style={{
+                      position: 'fixed',
+                      padding: 10,
+                      backgroundColor: '#FFF',
+                      left: 0,
+                      top: 0,
+                      width: '100%',
+                      zIndex: 100,
+                    }}
+                  >
+                    citati.netlify.com
+                    <Like href="https://www.facebook.com/Цитати-108464153919340/" colorScheme="dark" />
+                  </div>
+                  <List
+                    size="large"
+                    style={{ marginTop: 55 }}
+                    footer={<Footer firstkey={firstkey} lastkey={lastkey} />}
+                    bordered
+                    dataSource={resultAll.rows}
+                    renderItem={(item, i) => (
+                      <List.Item>
+                        <div style={{ marginRight: 90 }}>
+                          {i === 3 ? <h2>Ad</h2> : null}
 
-                      {i === 0 ? (
-                        <h1 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
-                          {item.doc.text}
-
-                        </h1>
-                      ) : (
-                        <h2 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
-                          {item.doc.text}
-
-                        </h2>
-                      )}
-                    </div>
-                    <div id="SC_TBlock_508143" className="SC_TBlock" />
-                    <div style={{ position: 'absolute', right: 10 }}>
-                      <ShareButton
-                        className="ant-btn ant-btn-primary"
-                        href={`https://citati.netlify.com/${item.doc._id}`}
-                      >
-                        Сподели
-                      </ShareButton>
-                    </div>
-                    <div
-                      style={{
-                        marginLeft: -20,
-                        marginBottom: -15,
-                      }}
-                    />
-                  </List.Item>
-                )}
-              />
+                          {i === 0 ? (
+                            <h1 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
+                              {item.doc.text}
+                            </h1>
+                          ) : (
+                            <h2 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
+                              {item.doc.text}
+                            </h2>
+                          )}
+                        </div>
+                        <div id="SC_TBlock_508143" className="SC_TBlock" />
+                        <div style={{ position: 'absolute', right: 10 }}>
+                          <ShareButton
+                            className="ant-btn ant-btn-primary"
+                            href={`https://citati.netlify.com/${item.doc._id}`}
+                          >
+                            Сподели
+                          </ShareButton>
+                        </div>
+                        <div
+                          style={{
+                            marginLeft: -20,
+                            marginBottom: -15,
+                          }}
+                        />
+                      </List.Item>
+                    )}
+                  />
+                </Col>
+              </Row>
             </div>
           </div>
         )}
