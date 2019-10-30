@@ -50,7 +50,7 @@ const Listx = ({ prefix, rows }) => (
 const Bottom = ({ tag }) => {
   const [data, setData] = useState(null);
   const [data1, setData1] = useState(null);
-
+  const [amazon, setAmazon] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
@@ -70,6 +70,17 @@ const Bottom = ({ tag }) => {
         `${env.api}twitter/_design/api/_view/tags?reduce=true&group=true&limit=25&skip=25&start_key="${
           tag
         }"&update=false`,
+      );
+
+      setData1(result.data);
+    };
+    fetchData();
+  }, [tag]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        `https://amazonka.herokuapp.com/${tag}`,
       );
 
       setData1(result.data);

@@ -1,57 +1,69 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {
+  Input, Row, Col, List, Avatar,
+} from 'antd';
 import { env } from './env/constants';
-import { Input, Row, Col, List,Avatar } from 'antd';
+
 const { Search } = Input;
 
-
-
-export default class Top extends Component {
-  state = {
-    value: null,
-    results:{rows:[]}
-  };
-  async setValue(value) {
-    console.log();
-    if (value.length >= 3) {
-      this.setState({ value });
-    const result = await axios(
-        `${env.api}twitter/_design/api/_view/tags?reduce=true&group=true&limit=5&start_key="${
-          value
-        }"&update=false`,
+const Top = () => {
+  const [data, setData] = useState(null);
+  const [query, setQuery] = useState(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        `${env.api}twitter/_design/api/_view/tags?reduce=true&group=true&limit=5&start_key="${query}"&update=false`,
       );
-  
-      
-      this.setState({ value,results:result.data });
+      setData(result.data);
+    };
+    if (query && query.length >= 3) {
+      fetchData();
     } else {
-        this.setState({ value:null});
+      setData(null);
     }
-  }
+  }, [query]);
 
-  render() {
-    const { value,results } = this.state;
-    return (
-      <Row type="flex" justify="center">
-    
-        <Col xs={24} sm={20} md={18} lg={10}>
-          <Search placeholder="search for users or tags" onChange={e => this.setValue(e.target.value)} style={{color:'#FFF'}} />
-             {value ? (
-                 <List
-    itemLayout="horizontal"
-    dataSource={results.rows}
-    renderItem={item => (
-      <List.Item>
-        <List.Item.Meta
-          avatar={  <Avatar src={`https://avatars.io/twitter/${item.key}`} size="large" />}
-          title={<a href={"/u/"+item.key} style={{color:'#FFF'}}>{item.key}</a>}
-         
+  return (
+    <Row type="flex" justify="center">
+
+      <Col xs={24} sm={20} md={18} lg={10}>
+
+        <Search
+          placeholder="search for users or tags"
+          onChange={(e) => setQuery(e.target.value)}
+          style={{ color: '#FFF' }}
         />
-      </List.Item>
-    )}
-  />
-             ):null } 
-        </Col>
-      </Row>
-    );
-  }
-}
+        {data ? (
+          <List
+            itemLayout="horizontal"
+            dataSource={data.rows}
+            renderItem={(item) => (
+              <List.Item>
+                <List.Item.Meta
+                  avatar={(
+                    <Avatar
+                      src={`https://avatars.io/twitter/${item.key}`}
+                      size="large"
+                    />
+)}
+                  title={(
+                    <a
+                      href={`/u/${item.key}`}
+                      style={{
+											  color: '#FFF',
+                      }}
+                    >
+                      {item.key}
+                    </a>
+        )}
+                />
+              </List.Item>
+            )}
+          />
+        ) : null}
+      </Col>
+    </Row>
+  );
+};
+export default Top;

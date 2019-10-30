@@ -3,7 +3,7 @@ const env = {
     api: 'http://gigi.local:5984/',
   },
   production: {
-    api: 'https://arpecop.serveo.net/',
+    api: 'https://rudixauth.herokuapp.com/test/',
   },
 };
 
