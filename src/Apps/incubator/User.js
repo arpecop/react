@@ -31,13 +31,14 @@ const User = ({ user }) => {
           {`${user}`}
         </title>
       </Helmet>
-      <Top />
+
       {data && data.rows[0] ? (
         <>
           <Header>
             <img src={`https://avatars.io/twitter/${data.rows[0].doc.screenName}`} size="large" alt="" />
             <h1>{data.rows[0].doc.screenName}</h1>
           </Header>
+          <Top />
           <Helmet>
             <title>
               {`${user}`}
