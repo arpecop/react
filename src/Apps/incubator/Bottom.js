@@ -50,7 +50,7 @@ const Listx = ({ prefix, rows }) => (
 const Bottom = ({ tag }) => {
   const [data, setData] = useState(null);
   const [data1, setData1] = useState(null);
-  const [amazon, setAmazon] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
