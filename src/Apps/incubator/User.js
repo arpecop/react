@@ -6,6 +6,7 @@ import { Header } from './components/UI';
 import Item from './components/Item';
 import Bottom from './Bottom';
 import { env } from './env/constants';
+import Top from './Top';
 
 const uuid = require('uuid/v4');
 
@@ -30,6 +31,7 @@ const User = ({ user }) => {
           {`${user}`}
         </title>
       </Helmet>
+      <Top />
       {data && data.rows[0] ? (
         <>
           <Header>

@@ -5,6 +5,7 @@ import { Spin } from 'antd';
 import Item from './components/Item';
 import { Header } from './components/UI';
 import Bottom from './Bottom';
+import Top from './Top';
 import { env } from './env/constants';
 
 const uuid = require('uuid/v4');
@@ -30,7 +31,7 @@ const Tag = ({ tag }) => {
           {`#${tag}`}
         </h1>
       </Header>
-
+      <Top />
       {data && data.rows ? (
         <>
           <Helmet>
