@@ -75,7 +75,7 @@ const Bottom = ({ tag }) => {
       setData1(result.data);
     };
     fetchData();
-  }, [tag]);
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -86,7 +86,7 @@ const Bottom = ({ tag }) => {
       setData1(result.data);
     };
     fetchData();
-  }, [tag]);
+  }, []);
 
 
   return (

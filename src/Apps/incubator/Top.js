@@ -27,7 +27,7 @@ const Top = () => {
   return (
     <Row type="flex" justify="center">
 
-      <Col xs={24} sm={20} md={18} lg={10}>
+      <Col xs={24} sm={20} md={18} lg={10} style={{ marginBottom: 20 }}>
         <Search
           placeholder="search for users or tags"
           onChange={(e) => setQuery(e.target.value)}
