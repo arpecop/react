@@ -94,9 +94,9 @@ const Bottom = ({ tag }) => {
       <Row type="flex" justify="center">
         <Col xs={24} sm={20} md={18} lg={10}>
           <Title>Users</Title>
-          {data && data1 ? <Listx rows={data.rows} prefix="u" /> : <Spin />}
+          {data && data1 ? <Listx rows={data.rows} prefix="u" /> : null}
           <Title>Tags</Title>
-          {data && data1 ? <Listx rows={data1.rows} prefix="t" /> : <Spin />}
+          {data && data1 ? <Listx rows={data1.rows} prefix="t" /> : null}
 
 
         </Col>
