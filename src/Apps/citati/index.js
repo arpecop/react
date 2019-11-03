@@ -68,7 +68,7 @@ export default class componentName extends Component {
             </Helmet>
             <div style={{ padding: 10 }}>
               <Row type="flex" justify="center" align="top">
-                <Col xs={24} sm={20} md={16} lg={15} xl={12}>
+                <Col xs={23} sm={20} md={16} lg={15} xl={12}>
                   <div
                     style={{
                       position: 'fixed',

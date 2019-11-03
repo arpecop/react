@@ -110,7 +110,7 @@ const Item = ({ item }) => {
   );
   return (
     <Row type="flex" justify="center">
-      <Col xs={24} sm={20} md={18} lg={10}>
+      <Col xs={23} sm={20} md={18} lg={10}>
         <Card
           style={{ marginBottom: 5, backgroundColor: '#231f20' }}
           bordered={false}
