@@ -28,7 +28,7 @@ const banners = [
   },
   {
     url: 'https://www.amazon.com/dp/B074TJCK8Y/ref=twister_B06XDGTPDP?tag=rudix-20&linkCode=ur1&_encoding=UTF8&psc=1',
-    img: 'https://www.amazon.com/dp/B074TJCK8Y/ref=twister_B06XDGTPDP?tag=rudix-20&linkCode=ur1&_encoding=UTF8&psc=1',
+    img: 'https://images-na.ssl-images-amazon.com/images/G/01/145155916X/Affiliate_Desktop_300x600._CB1572463427_.jpg',
   },
 ];
 const WrapperBanner = () => {
