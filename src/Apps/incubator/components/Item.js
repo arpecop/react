@@ -2,9 +2,9 @@ import React from 'react';
 import {
   Avatar, Card, Col, Comment, Row, Tag, Icon,
 } from 'antd';
-
-
 import TimeAgo from 'react-timeago';
+import WrapperBanner from './banners';
+
 
 const uuid = require('uuid/v4');
 
@@ -58,43 +58,44 @@ const Komentar = ({ item }) => {
 
   return (
 
+    <div>
+      <Comment
 
-    <Comment
 
-
-      datetime={<TimeAgo date={new Date(parseInt(item.date, 10))} />}
-      author={(
-        <a href={`/u/${item.screenName}`}>
-          <h2 style={{ fontWeight: 'lighter', color: '#ccc' }}>
-            {item.screenName}
-          </h2>
-        </a>
+        datetime={<TimeAgo date={new Date(parseInt(item.date, 10))} />}
+        author={(
+          <a href={`/u/${item.screenName}`}>
+            <h2 style={{ fontWeight: 'lighter', color: '#ccc' }}>
+              {item.screenName}
+            </h2>
+          </a>
         )}
-      avatar={(
+        avatar={(
 
-        <Avatar src={`https://avatars.io/twitter/${item.screenName}`} size="large" />
+          <Avatar src={`https://avatars.io/twitter/${item.screenName}`} size="large" />
 
         )}
-      content={item.replyCount ? (
-        <>
+        content={item.replyCount ? (
+          <>
 
-          <span style={{ color: '#fff' }}><TextFormat text={title} /></span>
-          <span style={{ color: '#FFF' }}>
-            <Icon type="message" style={{ color: '#FFF' }} />
-            {` ${item.replyCount}    `}
-          </span>
-          <span style={{ color: '#FFF' }}>
-            <Icon type="redo" style={{ color: '#FFF' }} />
-            {` ${item.retweetCount}    `}
-          </span>
-          <span style={{ color: '#FFF' }}>
-            <Icon type="heart" style={{ color: '#FFF' }} />
-            {` ${item.favoriteCount}  `}
-          </span>
-        </>
-      ) : (<span style={{ fontWeight: 'lighter', color: '#fff', fontSize: '0.9rem' }}><TextFormat text={title} /></span>)}
-    />
-
+            <span style={{ color: '#fff' }}><TextFormat text={title} /></span>
+            <span style={{ color: '#FFF' }}>
+              <Icon type="message" style={{ color: '#FFF' }} />
+              {` ${item.replyCount}    `}
+            </span>
+            <span style={{ color: '#FFF' }}>
+              <Icon type="redo" style={{ color: '#FFF' }} />
+              {` ${item.retweetCount}    `}
+            </span>
+            <span style={{ color: '#FFF' }}>
+              <Icon type="heart" style={{ color: '#FFF' }} />
+              {` ${item.favoriteCount}  `}
+            </span>
+          </>
+        ) : (<span style={{ fontWeight: 'lighter', color: '#fff', fontSize: '0.9rem' }}><TextFormat text={title} /></span>)}
+      />
+      <WrapperBanner />
+    </div>
   );
 };
 const Item = ({ item }) => {
