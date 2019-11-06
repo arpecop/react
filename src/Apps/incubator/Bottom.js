@@ -62,8 +62,7 @@ const Bottom = ({ tag }) => {
       setData(result.data);
     };
     fetchData();
-  }, [tag]);
-
+  }, []);
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
@@ -75,20 +74,7 @@ const Bottom = ({ tag }) => {
       setData1(result.data);
     };
     fetchData();
-  }, [tag]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios(
-        `https://amazonka.herokuapp.com/${tag}`,
-      );
-
-      setData1(result.data);
-    };
-    fetchData();
-  }, [tag]);
-
-
+  }, []);
   return (
     <div>
       <Row type="flex" justify="center">
