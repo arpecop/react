@@ -30,13 +30,24 @@ const banners = [
     url: 'https://www.amazon.com/dp/B074TJCK8Y/ref=twister_B06XDGTPDP?tag=rudix-20&linkCode=ur1&_encoding=UTF8&psc=1',
     img: 'https://images-na.ssl-images-amazon.com/images/G/01/145155916X/Affiliate_Desktop_300x600._CB1572463427_.jpg',
   },
+  {
+    url: 'https://www.amazon.com/s/node=3063530011&hidden-keywords=Animated&suppress-ve=true&ie=UTF8/ref=as_acph_gc_animb_77_on?tag=rudix-20&linkCode=ur1',
+    img: 'https://images-na.ssl-images-amazon.com/images/G/01/gift-certificates/consumer/2013/anim/merch/assoc/gc_anim_assoc-728x90.png',
+  },
+  {
+    img: 'https://images-na.ssl-images-amazon.com/images/G/01/digital/infinity/associates/associate_banner_728_90_v02._V251152849_.gif',
+    url: 'https://www.amazon.com/b/?tag=rudix-20&linkCode=ur1&node=979455011',
+  },
 ];
 const WrapperBanner = () => {
   const item = shuffle(banners)[0];
   return (
     <div style={{ textAlign: 'center' }}>
+
       <a href={item.url} rel="nofollow" target="_top">
+
         <img src={item.img} style={{ maxWidth: '100%' }} alt="" />
+
       </a>
     </div>
   );
