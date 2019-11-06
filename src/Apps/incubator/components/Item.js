@@ -58,47 +58,47 @@ const Komentar = ({ item }) => {
 
   return (
 
-    <div>
-      <Comment
+
+    <Comment
 
 
-        datetime={<TimeAgo date={new Date(parseInt(item.date, 10))} />}
-        author={(
-          <a href={`/u/${item.screenName}`}>
-            <h2 style={{ fontWeight: 'lighter', color: '#ccc' }}>
-              {item.screenName}
-            </h2>
-          </a>
+      datetime={<TimeAgo date={new Date(parseInt(item.date, 10))} />}
+      author={(
+        <a href={`/u/${item.screenName}`}>
+          <h2 style={{ fontWeight: 'lighter', color: '#ccc' }}>
+            {item.screenName}
+          </h2>
+        </a>
         )}
-        avatar={(
+      avatar={(
 
-          <Avatar src={`https://avatars.io/twitter/${item.screenName}`} size="large" />
+        <Avatar src={`https://avatars.io/twitter/${item.screenName}`} size="large" />
 
         )}
-        content={item.replyCount ? (
-          <>
+      content={item.replyCount ? (
+        <>
 
-            <span style={{ color: '#fff' }}><TextFormat text={title} /></span>
-            <span style={{ color: '#FFF' }}>
-              <Icon type="message" style={{ color: '#FFF' }} />
-              {` ${item.replyCount}    `}
-            </span>
-            <span style={{ color: '#FFF' }}>
-              <Icon type="redo" style={{ color: '#FFF' }} />
-              {` ${item.retweetCount}    `}
-            </span>
-            <span style={{ color: '#FFF' }}>
-              <Icon type="heart" style={{ color: '#FFF' }} />
-              {` ${item.favoriteCount}  `}
-            </span>
-          </>
-        ) : (<span style={{ fontWeight: 'lighter', color: '#fff', fontSize: '0.9rem' }}><TextFormat text={title} /></span>)}
-      />
-      <WrapperBanner />
-    </div>
+          <span style={{ color: '#fff' }}><TextFormat text={title} /></span>
+          <span style={{ color: '#FFF' }}>
+            <Icon type="message" style={{ color: '#FFF' }} />
+            {` ${item.replyCount}    `}
+          </span>
+          <span style={{ color: '#FFF' }}>
+            <Icon type="redo" style={{ color: '#FFF' }} />
+            {` ${item.retweetCount}    `}
+          </span>
+          <span style={{ color: '#FFF' }}>
+            <Icon type="heart" style={{ color: '#FFF' }} />
+            {` ${item.favoriteCount}  `}
+          </span>
+        </>
+      ) : (<span style={{ fontWeight: 'lighter', color: '#fff', fontSize: '0.9rem' }}><TextFormat text={title} /></span>)}
+    />
+
+
   );
 };
-const Item = ({ item }) => {
+const Item = ({ item, i }) => {
   const { screenName, quote, images } = item;
 
   const href = `/u/${screenName}`;
@@ -107,11 +107,16 @@ const Item = ({ item }) => {
       <Komentar item={item} href={href} />
     </Komentar>
   ) : (
+
+
     <Komentar item={item} href={href} />
+
   );
   return (
     <Row type="flex" justify="center">
       <Col xs={23} sm={20} md={18} lg={10}>
+        {i === 1 || i === 3 ? (<WrapperBanner />) : null}
+
         <Card
           style={{ marginBottom: 5, backgroundColor: '#231f20' }}
           bordered={false}

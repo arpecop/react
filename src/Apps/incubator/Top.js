@@ -3,7 +3,6 @@ import axios from 'axios';
 import {
   Input, Row, Col, List, Avatar,
 } from 'antd';
-import WrapperBanner from './components/banners';
 import { env } from './env/constants';
 
 const { Search } = Input;
@@ -34,7 +33,6 @@ const Top = () => {
           onChange={(e) => setQuery(e.target.value)}
           style={{ color: '#FFF' }}
         />
-        <WrapperBanner />
         {data ? (
           <List
             itemLayout="horizontal"
