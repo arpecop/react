@@ -14,33 +14,34 @@ const Listx = ({ prefix, rows }) => (
       itemLayout="horizontal"
       dataSource={rows}
       renderItem={(item) => (
-        <a href={`/${prefix}/${item.key}`}>
-          <span>
+        <span>
+          <a href={`/${prefix}/${item.key}`}>
+
             <Tag
               style={{
-                backgroundColor: '#231f20',
-                border: 'none',
-                color: '#67d5e4',
-                cursor: 'pointer',
-                margin: 4,
+								  backgroundColor: '#231f20',
+ 				  border: 'none',
+								  color: '#67d5e4',
+								  cursor: 'pointer',
+								  margin: 4,
               }}
             >
               {item.key}
             </Tag>
-            {item.value
-              >= 2 ? (
-                <Tag
-                  style={{
-                    border: 'none',
-                    cursor: 'pointer',
-                    marginLeft: -5,
-                  }}
-                >
-                  {`${item.value}`}
-                </Tag>
-              ) : null}
-          </span>
-        </a>
+
+          </a>
+          {item.value >= 2 ? (
+            <Tag
+              style={{
+							  border: 'none',
+
+							  marginLeft: -5,
+              }}
+            >
+              {`${item.value}`}
+            </Tag>
+          ) : null}
+        </span>
       )}
     />
   </div>
