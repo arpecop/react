@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
-  List, Tag, Spin, Row, Col,
+  List, Tag, Row, Col,
 } from 'antd';
 import { env } from './env/constants';
 
@@ -19,11 +19,11 @@ const Listx = ({ prefix, rows }) => (
 
             <Tag
               style={{
-								  backgroundColor: '#231f20',
- 				  border: 'none',
-								  color: '#67d5e4',
-								  cursor: 'pointer',
-								  margin: 4,
+                backgroundColor: '#231f20',
+                border: 'none',
+                color: '#67d5e4',
+                cursor: 'pointer',
+                margin: 4,
               }}
             >
               {item.key}
@@ -33,9 +33,9 @@ const Listx = ({ prefix, rows }) => (
           {item.value >= 2 ? (
             <Tag
               style={{
-							  border: 'none',
+                border: 'none',
 
-							  marginLeft: -5,
+                marginLeft: -5,
               }}
             >
               {`${item.value}`}
@@ -63,7 +63,7 @@ const Bottom = ({ tag }) => {
       setData(result.data);
     };
     fetchData();
-  }, []);
+  }, [tag]);
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
@@ -75,7 +75,7 @@ const Bottom = ({ tag }) => {
       setData1(result.data);
     };
     fetchData();
-  }, []);
+  }, [tag]);
   return (
     <div>
       <Row type="flex" justify="center">
@@ -97,7 +97,7 @@ const Bottom = ({ tag }) => {
       }}
       >
 
-RudixLabs © 2019 : the site is not associated or affiliated with Twitter
+        RudixLabs © 2019 : the site is not associated or affiliated with Twitter
 
       </div>
     </div>
