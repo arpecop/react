@@ -16,9 +16,9 @@ const Tag = ({ tag }) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `${env.api}twitter/_design/api/_view/tags?key="${
+        `${env.api}twitter/_design/api/_view/tags?start_key="${
           tag
-        }"&reduce=false&include_docs=true&limit=100&descending=true&update=false`,
+        }"&reduce=false&include_docs=true&limit=30&descending=true&update=false`,
       );
       setData(result.data);
     };

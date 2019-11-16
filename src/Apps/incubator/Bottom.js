@@ -88,18 +88,7 @@ const Bottom = ({ tag }) => {
 
         </Col>
       </Row>
-      <div style={{
-        position: 'fixed',
-        bottom: 0,
-        width: '100%',
-        textAlign: 'center',
-        color: '#02bac8',
-      }}
-      >
 
-        RudixLabs © 2019 : the site is not associated or affiliated with Twitter
-
-      </div>
     </div>
 
   );
