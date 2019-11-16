@@ -5,6 +5,7 @@ import {
   Spin, Card, Row, Col,
 } from 'antd';
 import Item from './components/Item';
+import TextFormat from './components/TextFormat';
 import { Header } from './components/UI';
 import Bottom from './Bottom';
 import Top from './Top';
@@ -68,10 +69,13 @@ const Tag = ({ tag }) => {
                   style={{ marginBottom: 5, backgroundColor: '#231f20' }}
                   bordered={false}
                   type="inner"
-                  cover={(<img alt="" style={{ width: '100%' }} src={item.thumbnail} />)}
+                  cover={(<img alt={item.text} style={{ width: '100%' }} src={item.thumbnail} />)}
                 >
 
-                  <span style={{ color: '#FFF' }}>{item.text}</span>
+                  <span style={{ color: '#FFF' }}>
+
+                    <TextFormat text={item.text} />
+                  </span>
 
                 </Card>
 
