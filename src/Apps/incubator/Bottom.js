@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+
 import {
   List, Tag, Row, Col,
 } from 'antd';
 import { env } from './env/constants';
 
 import { Title } from './components/UI';
+import { useFetch } from './components/useFetch';
 
 
 const Listx = ({ prefix, rows }) => (
@@ -16,7 +17,6 @@ const Listx = ({ prefix, rows }) => (
       renderItem={(item) => (
         <span>
           <a href={`/${prefix}/${item.key}`}>
-
             <Tag
               style={{
                 backgroundColor: '#231f20',
@@ -28,13 +28,11 @@ const Listx = ({ prefix, rows }) => (
             >
               {item.key}
             </Tag>
-
           </a>
           {item.value >= 2 ? (
             <Tag
               style={{
                 border: 'none',
-
                 marginLeft: -5,
               }}
             >
@@ -49,33 +47,8 @@ const Listx = ({ prefix, rows }) => (
 
 
 const Bottom = ({ tag }) => {
-  const [data, setData] = useState(null);
-  const [data1, setData1] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios(
-        `${env.api}twitter/_design/api/_view/users?reduce=true&group=true&limit=25&skip=25&start_key="${
-          tag
-        }"&update=false`,
-      );
-
-      setData(result.data);
-    };
-    fetchData();
-  }, [tag]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios(
-        `${env.api}twitter/_design/api/_view/tags?reduce=true&group=true&limit=25&skip=25&start_key="${
-          tag
-        }"&update=false`,
-      );
-
-      setData1(result.data);
-    };
-    fetchData();
-  }, [tag]);
+  const data1 = useFetch(`${env.api}twitter/_design/api/_view/tags?reduce=true&group=true&limit=25&skip=25&start_key="${tag}"&update=false`);
+  const data = useFetch(`${env.api}twitter/_design/api/_view/users?reduce=true&group=true&limit=25&skip=25&start_key="${tag}"&update=false`);
   return (
     <div>
       <Row type="flex" justify="center">
@@ -84,11 +57,8 @@ const Bottom = ({ tag }) => {
           {data ? <Listx rows={data.rows} prefix="u" /> : null}
           <Title>Tags</Title>
           {data1 ? <Listx rows={data1.rows} prefix="t" /> : null}
-
-
         </Col>
       </Row>
-
     </div>
 
   );

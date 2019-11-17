@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import {
   Spin, Card, Row, Col,
@@ -10,33 +10,16 @@ import { Header } from './components/UI';
 import Bottom from './Bottom';
 import Top from './Top';
 import { env } from './env/constants';
+import { useFetch } from './components/useFetch';
 
 const uuid = require('uuid/v4');
 
 const Tag = ({ tag }) => {
-  const [data, setData] = useState(null);
-  const [data1, setData1] = useState(null);
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios(
-        `${env.api}twitter/_design/api/_view/tags?key="${
-          tag
-        }"&reduce=false&include_docs=true&limit=30&descending=true&update=false`,
-      );
-      setData(result.data);
-    };
-    fetchData();
-  }, [tag]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios(
-        `https://amazonka.herokuapp.com/insta/${tag}`,
-      );
-      console.log(result.data);
-      setData1(result.data);
-    };
-    fetchData();
-  }, [tag]);
+  const data = useFetch(`${env.api}twitter/_design/api/_view/tags?key="${
+    tag
+  }"&reduce=false&include_docs=true&limit=30&descending=true&update=false`);
+  const data1 = useFetch(`https://amazonka.herokuapp.com/insta/${tag}`);
+
   return (
     <HelmetProvider>
       <Header>
@@ -71,17 +54,11 @@ const Tag = ({ tag }) => {
                   type="inner"
                   cover={(<img alt={item.text} style={{ width: '100%' }} src={item.thumbnail} />)}
                 >
-
                   <span style={{ color: '#FFF' }}>
-
                     <TextFormat text={item.text} />
                   </span>
-
                 </Card>
-
-
               </Col>
-
             </Row>
           ))}
         </>

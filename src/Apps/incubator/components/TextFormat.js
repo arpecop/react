@@ -30,9 +30,7 @@ const TextFormat = ({ text }) => {
               .replace('.', '')}`}
           >
             <Tag style={{
-
               border: 'none',
-
               cursor: 'pointer',
               margin: 4,
             }}
@@ -43,7 +41,7 @@ const TextFormat = ({ text }) => {
           </a>
         );
       }
-      return <React.Fragment key={word.key}>{`${word.word} `}</React.Fragment>;
+      return `${word.word} `;
     });
     return cont;
   }

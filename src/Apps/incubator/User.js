@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+
 import { Spin } from 'antd';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Header } from './components/UI';
@@ -7,22 +7,13 @@ import Item from './components/Item';
 import Bottom from './Bottom';
 import { env } from './env/constants';
 import Top from './Top';
+import { useFetch } from './components/useFetch';
 
 const uuid = require('uuid/v4');
 
 const User = ({ user }) => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useFetch(`${env.api}twitter/_design/api/_view/users?key="${user}"&reduce=false&include_docs=true&limit=200&update=false&descending=true`);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios(
-        `${env.api}twitter/_design/api/_view/users?key="${user}"&reduce=false&include_docs=true&limit=200&update=false&descending=true`,
-      );
-      setData(result.data);
-    };
-    fetchData();
-  }, [user]);
-  // //<Podcasts length={data.rows.length} tag={user} />
   return (
 
     <HelmetProvider>
