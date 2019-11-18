@@ -36,7 +36,6 @@ const TextFormat = ({ text }) => {
             }}
             >
               {word.word.replace('#', '')}
-
             </Tag>
           </a>
         );
