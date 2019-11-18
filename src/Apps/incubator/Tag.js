@@ -10,7 +10,7 @@ import { Header } from './components/UI';
 import Bottom from './Bottom';
 import Top from './Top';
 import { env } from './env/constants';
-import { useFetch } from './components/useFetch';
+import useFetch from './components/useFetch';
 
 const uuid = require('uuid/v4');
 
@@ -28,7 +28,7 @@ const Tag = ({ tag }) => {
         </h1>
       </Header>
       <Top />
-      {data && data.rows ? (
+      {data.rows ? (
         <>
           <Helmet>
             <title>

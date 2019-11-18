@@ -3,13 +3,13 @@ import axios from 'axios';
 
 const useFetch = (url) => {
   const [data, setData] = useState([]);
-  async function fetchUrl() {
-    const response = await axios(url);
-    setData(response.data);
-  }
   useEffect(() => {
+    const fetchUrl = async () => {
+      const response = await axios(url);
+      setData(response.data);
+    };
     fetchUrl();
   }, []);
   return data;
 };
-export { useFetch };
+export default useFetch;

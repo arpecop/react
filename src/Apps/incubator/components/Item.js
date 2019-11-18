@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Avatar, Card, Col, Comment, Row, Tag, Icon,
+  Avatar, Card, Col, Comment, Row, Icon,
 } from 'antd';
 import TimeAgo from 'react-timeago';
 import WrapperBanner from './banners';

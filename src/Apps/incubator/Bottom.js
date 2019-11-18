@@ -6,7 +6,7 @@ import {
 import { env } from './env/constants';
 
 import { Title } from './components/UI';
-import { useFetch } from './components/useFetch';
+import useFetch from './components/useFetch';
 
 
 const Listx = ({ prefix, rows }) => (

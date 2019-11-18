@@ -7,12 +7,12 @@ import Item from './components/Item';
 import Bottom from './Bottom';
 import { env } from './env/constants';
 import Top from './Top';
-import { useFetch } from './components/useFetch';
+import useFetch from './components/useFetch';
 
 const uuid = require('uuid/v4');
 
 const User = ({ user }) => {
-  const [data, setData] = useFetch(`${env.api}twitter/_design/api/_view/users?key="${user}"&reduce=false&include_docs=true&limit=200&update=false&descending=true`);
+  const data = useFetch(`${env.api}twitter/_design/api/_view/users?key="${user}"&reduce=false&include_docs=true&limit=200&update=false&descending=true`);
 
   return (
 
@@ -23,7 +23,7 @@ const User = ({ user }) => {
         </title>
       </Helmet>
 
-      {data && data.rows[0] ? (
+      {data.rows ? (
         <>
           <Header>
             <img src={`https://avatars.io/twitter/${data.rows[0].doc.screenName}`} size="large" alt="" />
