@@ -28,7 +28,7 @@ const Tag = ({ tag }) => {
         </h1>
       </Header>
       <Top />
-      {data.rows ? (
+      { data.rows && data.rows[0] ? (
         <>
           <Helmet>
             <title>
