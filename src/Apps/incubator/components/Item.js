@@ -27,11 +27,7 @@ const Komentar = ({ item }) => {
           </h2>
         </a>
         )}
-      avatar={(
-
-        <Avatar src={`https://avatars.io/twitter/${item.screenName}`} size="large" />
-
-        )}
+      avatar={(<Avatar src={`https://avatars.io/twitter/${item.screenName}`} size="large" />)}
       content={item.replyCount ? (
         <>
 
@@ -51,29 +47,22 @@ const Komentar = ({ item }) => {
         </>
       ) : (<span style={{ fontWeight: 'lighter', color: '#fff', fontSize: '0.9rem' }}><TextFormat text={title} /></span>)}
     />
-
-
   );
 };
 const Item = ({ item, i }) => {
   const { screenName, quote, images } = item;
-
   const href = `/u/${screenName}`;
   const thread = quote ? (
     <Komentar item={quote} href={href}>
       <Komentar item={item} href={href} />
     </Komentar>
   ) : (
-
-
     <Komentar item={item} href={href} />
-
   );
   return (
     <Row type="flex" justify="center">
       <Col xs={23} sm={20} md={18} lg={10}>
         {i === 1 || i === 3 ? (<WrapperBanner />) : null}
-
         <Card
           style={{ marginBottom: 5, backgroundColor: '#231f20' }}
           bordered={false}

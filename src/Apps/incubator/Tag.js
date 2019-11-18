@@ -11,6 +11,7 @@ import Bottom from './Bottom';
 import Top from './Top';
 import { env } from './env/constants';
 import useFetch from './components/useFetch';
+import WrapperBanner from './components/banners';
 
 const uuid = require('uuid/v4');
 
@@ -45,9 +46,10 @@ const Tag = ({ tag }) => {
       )}
       {data1 && data1.medias ? (
         <>
-          {data1.medias.map((item) => (
+          {data1.medias.map((item, i) => (
             <Row type="flex" justify="center" key={item.media_id}>
               <Col xs={23} sm={20} md={18} lg={10}>
+                {i === 6 || i === 3 || i === 5 ? (<WrapperBanner />) : null}
                 <Card
                   style={{ marginBottom: 5, backgroundColor: '#231f20' }}
                   bordered={false}
