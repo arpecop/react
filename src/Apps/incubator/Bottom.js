@@ -48,13 +48,12 @@ const Listx = ({ prefix, rows }) => (
 
 const Bottom = ({ tag }) => {
   const data1 = useFetch(`${env.api}twitter/_design/api/_view/tags?reduce=true&group=true&limit=25&skip=25&start_key="${tag}"&update=false`);
-  const data = useFetch(`${env.api}twitter/_design/api/_view/users?reduce=true&group=true&limit=25&skip=25&start_key="${tag}"&update=false`);
+
   return (
     <div>
       <Row type="flex" justify="center">
         <Col xs={23} sm={20} md={18} lg={10}>
-          <Title>Users</Title>
-          {data ? <Listx rows={data.rows} prefix="u" /> : null}
+
           <Title>Tags</Title>
           {data1 ? <Listx rows={data1.rows} prefix="t" /> : null}
         </Col>

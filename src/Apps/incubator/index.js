@@ -19,9 +19,6 @@ const App = ({ match }) => (
       return <Main />;
     })()}
     <div style={{
-      position: 'fixed',
-      bottom: 0,
-      width: '100%',
       textAlign: 'center',
       color: '#02bac8',
     }}
