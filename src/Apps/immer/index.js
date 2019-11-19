@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useImmer } from 'use-immer';
 import Amplify, { Auth } from 'aws-amplify';
 import { useCookies } from 'react-cookie';
@@ -9,12 +9,10 @@ import {
 import awsconfig from '../../aws-exports';
 import 'antd/dist/antd.css';
 
-const { Panel } = Collapse; // or 'antd/dist/antd.less'
-
 Amplify.configure(awsconfig);
 
 
-const App = () => {
+const App = (props) => {
   const [cookies, setCookie] = useCookies(['username', 'email']);
   const [state, setState] = useImmer({
     username: null,
@@ -24,6 +22,7 @@ const App = () => {
     success: null,
     confirmation: null,
     successVerify: false,
+    currentTab: 1,
   });
 
 
@@ -42,11 +41,23 @@ const App = () => {
       draft.confirmation = name;
     });
   }
+  useEffect(() => {
+    function mount() {
+      if (cookies.username && props.isIndex && cookies.username !== 'loggedout') {
+        window.location.href = '/loggedin';
+      }
+    }
+    mount();
+  }, []);
   function updateEmail(name) {
     setState((draft) => {
       draft.email = name;
     });
     setCookie('email', state.email, { path: '/' });
+  }
+  function SignOut() {
+    setCookie('username', 'loggedout', { path: '/' });
+    window.location.href = '/';
   }
   function SignIn() {
     Auth.signIn({
@@ -54,6 +65,8 @@ const App = () => {
       password: state.password, // Optional, the password
     }).then((data) => {
       setCookie('username', state.username, { path: '/' });
+
+      window.location.href = '/loggedin';
     })
       .catch((err) => setState((draft) => {
         draft.error = err;
@@ -80,85 +93,99 @@ const App = () => {
       forceAliasCreation: true,
     }).then(() => setState((draft) => {
       draft.successVerify = true;
+      draft.currentTab = 2;
     }))
       .catch((err) => setState((draft) => {
         draft.error = err;
       }));
   }
-  const { error, success, successVerify } = state;
+  const {
+    error, success, successVerify, currentTab,
+  } = state;
   return (
     <div className="App" style={{ padding: '10%' }}>
-      <h1>{cookies.username}</h1>
+
       {successVerify ? (<Alert message="Code verified please Login with your details" type="success" closable style={{ marginBottom: 5 }} />) : null}
       {success ? (<Alert message={`Check your email ${success.codeDeliveryDetails.Destination} for confirmation Code`} type="success" closable style={{ marginBottom: 5 }} />) : null}
       {error ? (<Alert message={error.log || error.message} type="error" closable style={{ marginBottom: 5 }} />) : null}
-      <Collapse accordion defaultActiveKey={['1']}>
+      {props.isIndex ? (
+        <Collapse accordion defaultActiveKey={[currentTab]}>
 
-        <Panel header="Sign Up" key="1">
-          {success ? (
-            <div>
-              <Input
-                placeholder="email"
-                onChange={(e) => {
-                  updateConfirmation(e.target.value);
-                }}
-                value={state.confirmation}
-                style={{ marginBottom: 5 }}
-              />
-              <Button onClick={Confirm}>Confirm Code</Button>
-            </div>
-          ) : (
-            <div>
-              <Input
-                placeholder="username"
-                onChange={(e) => {
-                  updateName(e.target.value);
-                }}
-                value={state.username}
-                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                style={{ marginBottom: 5 }}
-              />
-              <Input.Password
-                placeholder="password"
-                onChange={(e) => {
-                  updatePassword(e.target.value);
-                }}
-                value={state.password}
-                style={{ marginBottom: 5 }}
-              />
-              <Input
-                placeholder="email"
-                onChange={(e) => {
-                  updateEmail(e.target.value);
-                }}
-                value={state.email}
-                style={{ marginBottom: 5 }}
-              />
-              <Button onClick={SignUp}>Sign Up</Button>
-            </div>
-          )}
-        </Panel>
-        <Panel header="Log In with existing account" key="2">
-          <Input
-            placeholder="username"
-            onChange={(e) => {
-              updateName(e.target.value);
-            }}
-            value={state.username}
-            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-            style={{ marginBottom: 5 }}
-          />
-          <Input.Password
-            placeholder="password"
-            onChange={(e) => {
-              updatePassword(e.target.value);
-            }}
-            value={state.password}
-            style={{ marginBottom: 5 }}
-          />
-          <Button onClick={SignIn}>Sign In</Button>
-        </Panel>
-      </Collapse>
+          <Collapse.Panel header="Sign Up" key="1">
+            {success ? (
+              <div>
+                <Input
+                  placeholder="Verification Code"
+                  onChange={(e) => {
+                    updateConfirmation(e.target.value);
+                  }}
+                  value={state.confirmation}
+                  style={{ marginBottom: 5 }}
+                />
+                <Button onClick={Confirm}>Confirm Code</Button>
+              </div>
+            ) : (
+              <div>
+                <Input
+                  placeholder="username"
+                  onChange={(e) => {
+                    updateName(e.target.value);
+                  }}
+                  value={state.username}
+                  prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  style={{ marginBottom: 5 }}
+                />
+                <Input.Password
+                  placeholder="password"
+                  onChange={(e) => {
+                    updatePassword(e.target.value);
+                  }}
+                  value={state.password}
+                  style={{ marginBottom: 5 }}
+                />
+                <Input
+                  placeholder="email"
+                  onChange={(e) => {
+                    updateEmail(e.target.value);
+                  }}
+                  value={state.email}
+                  style={{ marginBottom: 5 }}
+                />
+                <Button onClick={SignUp}>Sign Up</Button>
+              </div>
+            )}
+          </Collapse.Panel>
+          <Collapse.Panel header="Log In with existing account" key="2">
+            <Input
+              placeholder="username"
+              onChange={(e) => {
+                updateName(e.target.value);
+              }}
+              value={state.username}
+              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              style={{ marginBottom: 5 }}
+            />
+            <Input.Password
+              placeholder="password"
+              onChange={(e) => {
+                updatePassword(e.target.value);
+              }}
+              value={state.password}
+              style={{ marginBottom: 5 }}
+            />
+            <Button onClick={SignIn}>Sign In</Button>
+          </Collapse.Panel>
+        </Collapse>
+      ) : (
+        <div>
+          <h1>
+            {cookies.username}
+
+          </h1>
+
+          <a href="#" onClick={SignOut}>Log Out</a>
+        </div>
+      )}
 
 
     </div>
