@@ -1,5 +1,5 @@
 // izteglisi//
-import Main from './Apps/incubator/index';
+import Main from './Apps/citati/index';
 
 export default Main;
 // test
