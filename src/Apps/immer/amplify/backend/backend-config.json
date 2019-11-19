@@ -1,0 +1,9 @@
+{
+	"auth": {
+		"immer5da2b8cf": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}

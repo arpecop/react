@@ -5,6 +5,7 @@
   "dependencies": {
     "@react-simply/state": "^1.0.2",
     "antd": "^3.25.2",
+    "aws-amplify-react": "^2.5.4",
     "axios": "^0.19.0",
     "global-state-hook": "^1.1.6",
     "lodash": "^4.17.15",
