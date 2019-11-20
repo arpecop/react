@@ -119,7 +119,7 @@ const App = (props) => {
       }}
     >
       <div style={{ display: 'inline-block' }}>
-        {' '}
+
         {successVerify ? (<Alert message="Code verified please Login with your details" type="success" closable style={{ marginBottom: 5 }} />) : null}
         {success ? (<Alert message={`Check your email ${success.codeDeliveryDetails.Destination} for confirmation Code`} type="success" closable style={{ marginBottom: 5 }} />) : null}
         {error ? (<Alert message={error.log || error.message} type="error" closable style={{ marginBottom: 5 }} />) : null}
@@ -170,7 +170,7 @@ const App = (props) => {
                 </div>
               )}
             </Collapse.Panel>
-            <Collapse.Panel header="Log In with existing account" key="2">
+            <Collapse.Panel header="Log In" key="2">
               <Input
                 placeholder="username"
                 onChange={(e) => {
