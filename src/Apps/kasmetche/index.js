@@ -70,7 +70,7 @@ const App = (props) => {
 
           ) : (
             <div>
-              <img src={cookies.resultImg} alt="" style={{ maxWidth: '100%' }} />
+              <img src={cookies.resultImg || state.resultImg} alt="" style={{ maxWidth: '100%' }} />
               <div style={{ textAlign: 'center' }}>
                 <button className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg">Сподели</button>
               </div>
