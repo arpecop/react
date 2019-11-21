@@ -2,27 +2,16 @@ import React, { useEffect } from 'react';
 import { useImmer } from 'use-immer';
 import 'antd/dist/antd.css';
 import { FacebookProvider, LoginButton } from 'react-facebook';
-import { Stage, Layer, Image } from 'react-konva';
-import useImage from 'use-image';
 import { useCookies } from 'react-cookie';
-import {
-  Button,
-} from 'antd';
+import axios from 'axios';
 
-const Imagex = ({ url }) => {
-  const [image] = useImage(url);
-  return <Image image={image} />;
-};
+
 const App = (props) => {
   const [cookies, setCookie] = useCookies(['name', 'id']);
   const [state, setState] = useImmer({
     name: 'Michel',
   });
-  function updateName(name) {
-    setState((draft) => {
-      draft.name = name;
-    });
-  }
+
   useEffect(() => {
     async function mount() {
       setState((draft) => {
@@ -31,12 +20,21 @@ const App = (props) => {
     }
     mount();
   }, []);
-  const handleResponse = (data) => {
+  const handleResponse = async (data) => {
+    setState((draft) => {
+      draft.loading = true;
+    });
+    const response = await axios('https://grafix.herokuapp.com/?url=http://kasmetche.netlify.com/banica/shot');
     setCookie('name', data.profile.first_name, { path: '/' });
     setCookie('id', data.profile.id, { path: '/' });
+    setCookie('resultImg', response.data.id, { path: '/' });
+    setCookie('resultId', response.data._id, { path: '/' });
     setState((draft) => {
       draft.name = data.profile.first_name;
       draft.id = data.profile.id;
+      draft.resultImg = response.data.id;
+      draft.resultId = response.data._id;
+      draft.loading = false;
     });
   };
 
@@ -56,6 +54,7 @@ const App = (props) => {
     >
       <div style={{ display: 'inline-block' }}>
         <FacebookProvider appId="2839078742783517">
+          {state.loading ? (<div>Loading</div>) : null}
           {!cookies.name ? (
             <div>
 
@@ -71,13 +70,10 @@ const App = (props) => {
 
           ) : (
             <div>
-              <Stage width={window.innerWidth} height={window.innerHeight}>
-                <Layer y={21}>
-                  <Imagex url="https://konvajs.org/assets/lion.png" x={21} />
-                </Layer>
-              </Stage>
-              <button className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg">Сподели</button>
-
+              <img src={cookies.resultImg} alt="" style={{ maxWidth: '100%' }} />
+              <div style={{ textAlign: 'center' }}>
+                <button className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg">Сподели</button>
+              </div>
             </div>
           )}
 
