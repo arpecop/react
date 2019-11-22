@@ -52,7 +52,7 @@ const App = (props) => {
           <meta property="og:url" content={window.location.href} />
           <meta property="og:type" content="article" />
           <meta property="og:title" content="Коледна Баница с късмети" />
-          <meta property="og:image" content="https://grafix.herokuapp.com/" />
+          <meta property="og:image" content={`https://grafix.herokuapp.com/${match.params.id}.png`} />
         </Helmet>
       </HelmetProvider>
       {match && match.params.id2 === 'shot' ? (
