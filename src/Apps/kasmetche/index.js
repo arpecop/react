@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useImmer } from 'use-immer';
 import 'antd/dist/antd.css';
-import { FacebookProvider, LoginButton } from 'react-facebook';
+import { FacebookProvider, LoginButton, ShareButton } from 'react-facebook';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
-
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const App = (props) => {
   const [cookies, setCookie] = useCookies(['name', 'id']);
@@ -42,46 +42,57 @@ const App = (props) => {
     this.setState({ error });
   };
   return (
-    <div
-      className="App"
-      style={{
-        width: '100%',
-        height: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <div style={{ display: 'inline-block' }}>
-        <FacebookProvider appId="2839078742783517">
-          {state.loading ? (<div>Loading</div>) : null}
-          {!cookies.name ? (
-            <div>
+    <HelmetProvider>
+      <Helmet>
 
-              <h1>Коледна баница с късмети</h1>
-              <LoginButton
-                className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg"
-                onCompleted={handleResponse}
-                onError={handleError}
-              >
-                <span>Изтегли си</span>
-              </LoginButton>
-            </div>
+        <meta property="og:url" content={window.location.href} />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="Коледна Баница с късмети" />
+        <meta property="og:image" content="https://grafix.herokuapp.com/" />
+      </Helmet>
+      <div
+        className="App"
+        style={{
+          width: '100%',
+          height: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <div style={{ display: 'inline-block' }}>
+          <FacebookProvider appId="2839078742783517">
+            {state.loading ? (<div>Loading</div>) : null}
+            {!cookies.name ? (
+              <div>
 
-          ) : (
-            <div>
-              <img src={cookies.resultImg || state.resultImg} alt="" style={{ maxWidth: '100%' }} />
-              <div style={{ textAlign: 'center' }}>
-                <button className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg">Сподели</button>
+                <h1>Коледна баница с късмети</h1>
+                <LoginButton
+                  className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg"
+                  onCompleted={handleResponse}
+                  onError={handleError}
+                >
+                  <span>Изтегли си</span>
+                </LoginButton>
               </div>
-            </div>
-          )}
 
-        </FacebookProvider>
+            ) : (
+              <div>
+
+                <img src={cookies.resultImg || state.resultImg} alt="" style={{ maxWidth: '100%' }} />
+                <div style={{ textAlign: 'center' }}>
+
+                  <ShareButton href="http://www.facebook.com" className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg">
+                      Сподели
+                  </ShareButton>
+                </div>
+              </div>
+            )}
+
+          </FacebookProvider>
+        </div>
       </div>
-
-
-    </div>
+    </HelmetProvider>
   );
 };
 export default App;
