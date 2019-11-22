@@ -98,14 +98,14 @@ const App = (props) => {
             ) : (
               <div>
 
-                <img src={cookies.resultImg || state.resultImg} alt="" style={{ maxWidth: '100%' }} />
-                <div style={{ textAlign: 'center' }}>
+                  <img src={cookies.resultImg || state.resultImg} alt="" style={{ maxWidth: '100%' }} />
+                  <div style={{ textAlign: 'center' }}>
 
-                  <ShareButton href={`https://kasmetche.netlify.com/${cookies.resultId || state.resultId}`} className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg">
+                    <ShareButton href={`https://kasmetche.netlify.com/${cookies.resultId || state.resultId}`} className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg">
                       Сподели
-                  </ShareButton>
+                    </ShareButton>
+                  </div>
                 </div>
-              </div>
             )}
 
           </FacebookProvider>
