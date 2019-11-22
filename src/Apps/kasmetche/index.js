@@ -46,7 +46,7 @@ const App = (props) => {
   return (
     <>
       <HelmetProvider>
-
+        {match   ? (
         <Helmet>
 
           <meta property="og:url" content={window.location.href} />
