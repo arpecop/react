@@ -50,7 +50,7 @@ const App = (props) => {
           <meta property="og:url" content={window.location.href} />
           <meta property="og:type" content="article" />
           <meta property="og:title" content="Коледна Баница с късмети" />
-          <meta property="og:image" content={`https://grafix.herokuapp.com/${match.params.id}.png`} />
+          <meta property="og:image" content={`https://grafix.herokuapp.com/${match.params.id}.jpg`} />
           <meta property="og:image:width" content="632" />
           <meta property="og:image:height" content="387" />
         </Helmet>
