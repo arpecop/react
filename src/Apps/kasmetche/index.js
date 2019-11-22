@@ -41,15 +41,26 @@ const App = (props) => {
   const handleError = (error) => {
     this.setState({ error });
   };
-  return (
-    <HelmetProvider>
-      <Helmet>
 
-        <meta property="og:url" content={window.location.href} />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content="Коледна Баница с късмети" />
-        <meta property="og:image" content="https://grafix.herokuapp.com/" />
-      </Helmet>
+  const { match } = props;
+  return (
+    <>
+      <HelmetProvider>
+
+        <Helmet>
+
+          <meta property="og:url" content={window.location.href} />
+          <meta property="og:type" content="article" />
+          <meta property="og:title" content="Коледна Баница с късмети" />
+          <meta property="og:image" content="https://grafix.herokuapp.com/" />
+        </Helmet>
+      </HelmetProvider>
+      {match.params.id2 === 'shot' ? (
+        <div>
+          <img src="/banica/bg.png" />
+
+        </div>
+      ) : null}
       <div
         className="App"
         style={{
@@ -84,7 +95,7 @@ const App = (props) => {
 
                   <ShareButton href={`https://kasmetche.netlify.com/${cookies.resultId || state.resultId}`} className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg">
                       Сподели
-                    </ShareButton>
+                  </ShareButton>
                 </div>
               </div>
             )}
@@ -92,7 +103,8 @@ const App = (props) => {
           </FacebookProvider>
         </div>
       </div>
-    </HelmetProvider>
+
+    </>
   );
 };
 export default App;
