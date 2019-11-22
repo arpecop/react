@@ -55,9 +55,17 @@ const App = (props) => {
           <meta property="og:image" content="https://grafix.herokuapp.com/" />
         </Helmet>
       </HelmetProvider>
-      {match.params.id2 === 'shot' ? (
+      {match && match.params.id2 === 'shot' ? (
         <div>
-          <img src="/banica/bg.png" />
+          <img
+            src={`https://graph.facebook.com/${match.params.start_key}/picture?type=large`}
+            style={{
+              position: 'fixed', maxWidth: 110, left: 262, top: 45,
+            }}
+            alt=""
+          />
+          <img src="/banica/bg.png" style={{ position: 'fixed' }} alt="" />
+          <img src={`/banica/${Math.floor((Math.random() * 30) + 0)}.png`} style={{ position: 'fixed', top: 190 , left: 211 }} alt="" />
 
         </div>
       ) : null}
