@@ -10,6 +10,9 @@ const App = (props) => {
   const [cookies, setCookie] = useCookies(['name', 'id']);
   const [state, setState] = useImmer({
     name: 'Michel',
+    loading: false,
+    resultId: null,
+    resultImg: null,
   });
 
   useEffect(() => {
@@ -37,24 +40,21 @@ const App = (props) => {
       draft.loading = false;
     });
   };
-
-  const handleError = (error) => {
-    this.setState({ error });
-  };
-
   const { match } = props;
   return (
     <>
-      <HelmetProvider>
-        <Helmet>
-          <meta property="og:url" content={window.location.href} />
+      {match ? (
+        <HelmetProvider>
+          <Helmet>
+          <meta property="og:url" content={`https://kasmetche.netlify.com/${match.params.id}`} />
           <meta property="og:type" content="article" />
           <meta property="og:title" content="Коледна Баница с късмети" />
           <meta property="og:image" content={`https://grafix.herokuapp.com/${match.params.id}.jpg`} />
           <meta property="og:image:width" content="632" />
           <meta property="og:image:height" content="387" />
         </Helmet>
-      </HelmetProvider>
+        </HelmetProvider>
+      ) : null}
       {match && match.params.id2 === 'shot' ? (
         <div style={{ height: 599 }}>
           <img
@@ -66,7 +66,6 @@ const App = (props) => {
           />
           <img src="/banica/bg.png" style={{ position: 'fixed' }} alt="" />
           <img src={`/banica/${Math.floor((Math.random() * 30) + 0)}.png`} style={{ position: 'fixed', top: 190, left: 205 }} alt="" />
-
         </div>
       ) : null}
       <div
@@ -83,35 +82,28 @@ const App = (props) => {
           <FacebookProvider appId="2839078742783517">
             {state.loading ? (<div>Loading</div>) : null}
             {!cookies.name ? (
-              <div>
-
-                <h1>Коледна баница с късмети</h1>
+              <div style={{ textAlign: 'center' }}>
+                <h1 style={{ fontWeight: 'lighter' }}>❄️Коледна баница с късмети❄️</h1>
                 <LoginButton
                   className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg"
                   onCompleted={handleResponse}
-                  onError={handleError}
                 >
                   <span>Изтегли си</span>
                 </LoginButton>
               </div>
-
             ) : (
               <div>
-
-                  <img src={cookies.resultImg || state.resultImg} alt="" style={{ maxWidth: '100%' }} />
-                  <div style={{ textAlign: 'center' }}>
-
-                    <ShareButton href={`https://kasmetche.netlify.com/${cookies.resultId || state.resultId}`} className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg">
+                <img src={cookies.resultImg || state.resultImg} alt="" style={{ maxWidth: '100%' }} />
+                <div style={{ textAlign: 'center' }}>
+                  <ShareButton href={`https://kasmetche.netlify.com/${cookies.resultId || state.resultId}`} className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg">
                       Сподели
-                    </ShareButton>
-                  </div>
+                  </ShareButton>
                 </div>
+              </div>
             )}
-
           </FacebookProvider>
         </div>
       </div>
-
     </>
   );
 };
