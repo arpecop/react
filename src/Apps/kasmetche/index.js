@@ -65,7 +65,7 @@ const App = (props) => {
             alt=""
           />
           <img src="/banica/bg.png" style={{ position: 'fixed' }} alt="" />
-          <img src={`/banica/${Math.floor((Math.random() * 30) + 0)}.png`} style={{ position: 'fixed', top: 190, left: 211 }} alt="" />
+          <img src={`/banica/${Math.floor((Math.random() * 30) + 0)}.png`} style={{ position: 'fixed', top: 190, left: 205 }} alt="" />
 
         </div>
       ) : null}
