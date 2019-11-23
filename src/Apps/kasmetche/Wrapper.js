@@ -74,7 +74,7 @@ const Wrapper = ({ props, title, children }) => {
             {!cookies.name ? (
               <div style={{ textAlign: 'center' }}>
                 <h1 style={{ fontWeight: 'lighter' }}>
-                  {`❄️${title}❄️`}
+                  {`${title}`}
                 </h1>
                 <LoginButton
                   className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg"
