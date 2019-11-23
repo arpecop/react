@@ -6,7 +6,9 @@ import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
-const Wrapper = ({ props, title, children }) => {
+const Wrapper = ({
+  app, props, title, children,
+}) => {
   const [cookies, setCookie] = useCookies(['name', 'id']);
   const [state, setState] = useImmer({
 
@@ -46,10 +48,10 @@ const Wrapper = ({ props, title, children }) => {
       {match ? (
         <HelmetProvider>
           <Helmet>
-            <meta property="og:url" content={`https://kasmetche.netlify.com/${props.app}/${match.params.id}`} />
+            <meta property="og:url" content={`https://kasmetche.netlify.com/${match.params.id}/${match.params.id2}`} />
             <meta property="og:type" content="article" />
             <meta property="og:title" content={title} />
-            <meta property="og:image" content={`https://grafix.herokuapp.com/${match.params.id}.jpg`} />
+            <meta property="og:image" content={`https://grafix.herokuapp.com/${match.params.id2}.jpg`} />
             <meta property="og:image:width" content="632" />
             <meta property="og:image:height" content="387" />
           </Helmet>
@@ -57,33 +59,32 @@ const Wrapper = ({ props, title, children }) => {
       ) : null}
       {match && match.params.id2 === 'shot'
         ? children
-        : null}
-
+        : (<span />)}
       <FacebookProvider appId="2839078742783517">
-            {state.loading ? (<div>Loading</div>) : null}
-            {!cookies.name ? (
-              <div style={{ textAlign: 'center' }}>
-                <h1 style={{ fontWeight: 'lighter' }}>
-                  {`${title}`}
-                </h1>
-                <LoginButton
-                  className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg"
-                  onCompleted={handleResponse}
-                >
-                  <span>Изтегли си</span>
-                </LoginButton>
-              </div>
-            ) : (
-              <div>
-                <img src={cookies.resultImg || state.resultImg} alt="" style={{ maxWidth: '100%' }} />
-                <div style={{ textAlign: 'center' }}>
-                  <ShareButton href={`https://kasmetche.netlify.com/${cookies.resultId || state.resultId}`} className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg">
+        {state.loading ? (<div>Loading</div>) : null}
+        {!cookies.name ? (
+          <div style={{ textAlign: 'center' }}>
+            <h1 style={{ fontWeight: 'lighter' }}>
+              {`${title}`}
+            </h1>
+            <LoginButton
+              className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg"
+              onCompleted={handleResponse}
+            >
+              <span>Изтегли си</span>
+            </LoginButton>
+          </div>
+        ) : (
+          <div>
+            <img src={cookies.resultImg || state.resultImg} alt="" style={{ maxWidth: '100%' }} />
+            <div style={{ textAlign: 'center' }}>
+              <ShareButton href={`https://kasmetche.netlify.com/${app}/${cookies.resultId || state.resultId}`} className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg">
                                             Сподели
-                  </ShareButton>
-                </div>
-              </div>
-            )}
-          </FacebookProvider>
+              </ShareButton>
+            </div>
+          </div>
+        )}
+      </FacebookProvider>
 
     </>
   );
