@@ -46,7 +46,7 @@ const Wrapper = ({ props, title, children }) => {
       {match ? (
         <HelmetProvider>
           <Helmet>
-            <meta property="og:url" content={`https://kasmetche.netlify.com/${match.params.id}`} />
+            <meta property="og:url" content={`https://kasmetche.netlify.com/${props.app}/${match.params.id}`} />
             <meta property="og:type" content="article" />
             <meta property="og:title" content={title} />
             <meta property="og:image" content={`https://grafix.herokuapp.com/${match.params.id}.jpg`} />
@@ -55,7 +55,7 @@ const Wrapper = ({ props, title, children }) => {
           </Helmet>
         </HelmetProvider>
       ) : null}
-      {match && match.params.id2 === 'shot' 
+      {match && match.params.id2 === 'shot'
         ? children
         : null}
       <div
