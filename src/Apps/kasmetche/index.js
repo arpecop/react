@@ -4,10 +4,33 @@ import 'antd/dist/antd.css';
 
 import Wrapper from './Wrapper';
 
+const Applist = () => {
+  const apps = [{
+    title: '🎄 Коледна баница с късмети 🎄',
+    slug: 'banica',
+  }, {
+    title: '🎄 Изтегли си цитат-късметче 🎄',
+    slug: 'quote',
+  }];
+
+  return apps.map((item) => (<h2 key={item.slug}><a href={item.slug}>{item.title}</a></h2>));
+};
+
 const App = (props) => {
   const { match } = props;
+
   return (
-    <>
+    <div
+      className="App"
+      style={{
+        width: '100%',
+        height: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <div style={{ display: 'inline-block' }}>
       {(() => {
         if (match && match.params.id === 'banica') {
           return (
@@ -46,10 +69,12 @@ const App = (props) => {
           );
         }
         // if (match && match.params.id === 't') return <Tag tag={match.params.id2} />;
-        return <div />;
+        return <Applist />;
       })()}
 
-    </>
+    </div>
+
+    </div>
   );
 };
 export default App;
