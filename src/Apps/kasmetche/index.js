@@ -27,17 +27,20 @@ const App = (props) => {
           );
         } if (match && match.params.id === 'quote') {
           return (
-            <Wrapper props={props} title="🎄 Изтегли си цитат-късметче 🎄" app="banica">
-              <div style={{ height: 599 }}>
+            <Wrapper props={props} title="🎄 Изтегли си цитат-късметче 🎄" app="quote">
+              <div style={{ height: 599, width: 633, textAlign: 'center' }}>
+                <img src={`/quotes/${Math.floor((Math.random() * 255) + 0)}.png`} style={{ marginTop: 90, zIndex: 100 }} alt="" />
                 <img
                   src={`https://graph.facebook.com/${match ? match.params.start_key : null}/picture?type=large`}
                   style={{
-                    position: 'fixed', maxWidth: 110, left: 262, top: 45,
+                    position: 'fixed',
+                    maxWidth: 110,
+                    left: 262,
+                    top: 25,
+                    borderRadius: '50%',
                   }}
                   alt=""
                 />
-                <img src="/quote/bg.png" style={{ position: 'fixed' }} alt="" />
-                <img src={`/banica/${Math.floor((Math.random() * 30) + 0)}.png`} style={{ position: 'fixed', top: 190, left: 205 }} alt="" />
               </div>
             </Wrapper>
           );
