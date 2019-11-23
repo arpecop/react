@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useImmer } from 'use-immer';
-import 'antd/dist/antd.css';
+
 import { FacebookProvider, LoginButton, ShareButton } from 'react-facebook';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
@@ -9,7 +9,7 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 const Wrapper = ({ props, title, children }) => {
   const [cookies, setCookie] = useCookies(['name', 'id']);
   const [state, setState] = useImmer({
-    name: 'Michel',
+
     loading: false,
     resultId: null,
     resultImg: null,
@@ -55,9 +55,9 @@ const Wrapper = ({ props, title, children }) => {
           </Helmet>
         </HelmetProvider>
       ) : null}
-      {match && match.params.id2 === 'shot' ? (
-        { children }
-      ) : null}
+      {match && match.params.id2 === 'shot' 
+        ? children
+        : null}
       <div
         className="App"
         style={{
