@@ -60,32 +60,44 @@ const Wrapper = ({
       {match && match.params.id2 === 'shot'
         ? children
         : (<span />)}
-      <FacebookProvider appId="2839078742783517">
-        {state.loading ? (<div>Loading</div>) : null}
-        {!cookies.name ? (
-          <div style={{ textAlign: 'center' }}>
-            <h1 style={{ fontWeight: 'lighter' }}>
-              {`${title}`}
-            </h1>
-            <LoginButton
-              className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg"
-              onCompleted={handleResponse}
-            >
-              <span>Изтегли си</span>
-            </LoginButton>
-          </div>
-        ) : (
-          <div>
-            <img src={cookies.resultImg || state.resultImg} alt="" style={{ maxWidth: '100%' }} />
-            <div style={{ textAlign: 'center' }}>
-              <ShareButton href={`https://kasmetche.netlify.com/${app}/${cookies.resultId || state.resultId}`} className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg">
+      <div
+        className="App"
+        style={{
+          width: '100%',
+          height: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <div style={{ display: 'inline-block' }}>
+          <FacebookProvider appId="2839078742783517">
+            {state.loading ? (<div>Loading</div>) : null}
+            {!cookies.name ? (
+              <div style={{ textAlign: 'center' }}>
+                <h1 style={{ fontWeight: 'lighter' }}>
+                  {`${title}`}
+                </h1>
+                <LoginButton
+                  className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg"
+                  onCompleted={handleResponse}
+                >
+                  <span>Изтегли си</span>
+                </LoginButton>
+              </div>
+            ) : (
+              <div>
+                <img src={cookies.resultImg || state.resultImg} alt="" style={{ maxWidth: '100%' }} />
+                <div style={{ textAlign: 'center' }}>
+                  <ShareButton href={`https://kasmetche.netlify.com/${app}/${cookies.resultId || state.resultId}`} className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg">
                                             Сподели
-              </ShareButton>
-            </div>
-          </div>
-        )}
-      </FacebookProvider>
-
+                  </ShareButton>
+                </div>
+              </div>
+            )}
+          </FacebookProvider>
+        </div>
+      </div>
     </>
   );
 };
