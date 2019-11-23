@@ -29,7 +29,7 @@ const Wrapper = ({
     setState((draft) => {
       draft.loading = true;
     });
-    const response = await axios(`https://grafix.herokuapp.com/?url=http://kasmetche.netlify.com/banica/shot/${data.profile.id}`);
+    const response = await axios(`https://grafix.herokuapp.com/?url=http://kasmetche.netlify.com/${app}/shot/${data.profile.id}`);
     setCookie('name', data.profile.first_name, { path: '/' });
     setCookie('id', data.profile.id, { path: '/' });
     setCookie('resultImg', response.data.id, { path: '/' });

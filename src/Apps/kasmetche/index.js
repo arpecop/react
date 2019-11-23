@@ -56,7 +56,7 @@ const App = (props) => {
         </Wrapper>
       );
     }
-    // if (match && match.params.id === 't') return <Tag tag={match.params.id2} />;
+
     return <Applist />;
   })());
 };
