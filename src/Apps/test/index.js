@@ -69,10 +69,7 @@ const TextBox = () => {
     });
   return (
     <div>
-
       <div>
-
-
         <input
           value={state.user.username}
           onChange={(event) => dispatch({ type: 'setUsername', text: event.target.value })}
@@ -85,7 +82,8 @@ const TextBox = () => {
           type="button"
           onClick={() => dispatch({ type: 'decrement' })}
         >
-					-1
+-1
+
         </button>
       </div>
     </div>
