@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import React, { useEffect } from 'react';
 import { useImmer } from 'use-immer';
 import Amplify, { Auth } from 'aws-amplify';

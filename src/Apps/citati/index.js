@@ -25,7 +25,7 @@ function App(props) {
   const { isIndex, match } = props;
   const query = isIndex ? '' : `&key="${match.params.id}"&skip=0`;
   const query1 = isIndex ? '' : `&start_key="${match.params.id}"&skip=1`;
-  console.log(query);
+
   useEffect(() => {
     async function mount() {
       const result = await axios(`https://pouchdb.herokuapp.com/quotes/_all_docs?include_docs=true&${query}`);
