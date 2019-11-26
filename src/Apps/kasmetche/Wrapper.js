@@ -1,39 +1,29 @@
+/* eslint-disable no-param-reassign */
 import React, { useEffect } from 'react';
 import { useImmer } from 'use-immer';
 
 import { FacebookProvider, LoginButton, ShareButton } from 'react-facebook';
-import { useCookies } from 'react-cookie';
+
 import axios from 'axios';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+
 
 const Wrapper = ({
   app, props, title, children,
 }) => {
-  const [cookies, setCookie] = useCookies(['name', 'id']);
   const [state, setState] = useImmer({
-
+    name: null,
     loading: false,
     resultId: null,
     resultImg: null,
   });
 
-  useEffect(() => {
-    async function mount() {
-      setState((draft) => {
-        draft.name = 'Ivan';
-      });
-    }
-    mount();
-  }, []);
   const handleResponse = async (data) => {
     setState((draft) => {
       draft.loading = true;
     });
     const response = await axios(`https://grafix.herokuapp.com/?url=http://kasmetche.netlify.com/${app}/shot/${data.profile.id}`);
-    setCookie('name', data.profile.first_name, { path: '/' });
-    setCookie('id', data.profile.id, { path: '/' });
-    setCookie('resultImg', response.data.id, { path: '/' });
-    setCookie('resultId', response.data._id, { path: '/' });
+
     setState((draft) => {
       draft.name = data.profile.first_name;
       draft.id = data.profile.id;
@@ -73,7 +63,8 @@ const Wrapper = ({
         <div style={{ display: 'inline-block' }}>
           <FacebookProvider appId="2839078742783517">
             {state.loading ? (<div>Loading</div>) : null}
-            {!cookies.name ? (
+            {state.name}
+            {!state.name ? (
               <div style={{ textAlign: 'center' }}>
                 <h1 style={{ fontWeight: 'lighter' }}>
                   {`${title}`}
@@ -87,9 +78,9 @@ const Wrapper = ({
               </div>
             ) : (
               <div>
-                <img src={cookies.resultImg || state.resultImg} alt="" style={{ maxWidth: '100%' }} />
+                <img src={state.resultImg} alt="" style={{ maxWidth: '100%' }} />
                 <div style={{ textAlign: 'center' }}>
-                  <ShareButton href={`https://kasmetche.netlify.com/${app}/${cookies.resultId || state.resultId}`} className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg">
+                  <ShareButton href={`https://kasmetche.netlify.com/${app}/${state.resultId}`} className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg">
                                             Сподели
                   </ShareButton>
                 </div>
