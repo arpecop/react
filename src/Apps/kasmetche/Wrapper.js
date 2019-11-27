@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useImmer } from 'use-immer';
 
 import { FacebookProvider, LoginButton, ShareButton } from 'react-facebook';
@@ -81,9 +81,10 @@ const Wrapper = ({
                 <img src={state.resultImg} alt="" style={{ maxWidth: '100%' }} />
                 <div style={{ textAlign: 'center' }}>
                   <ShareButton href={`https://kasmetche.netlify.com/${app}/${state.resultId}`} className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg">
-                                            Сподели
+                          Сподели
                   </ShareButton>
                 </div>
+                <div id="SC_TBlock_706275" className="SC_TBlock">loading...</div>
               </div>
             )}
           </FacebookProvider>
