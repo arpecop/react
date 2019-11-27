@@ -84,7 +84,7 @@ const Wrapper = ({
                           Сподели
                   </ShareButton>
                 </div>
-                <div id="SC_TBlock_706275" className="SC_TBlock">loading...</div>
+
               </div>
             )}
           </FacebookProvider>
