@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "title": "Коледна Баница с късмети",
+    "descr": "В навечерието на 2019 изтели своя късмет",
+    "items": 30
+  },
+  "main": {
+    "id": 1,
+    "photos": [
+      {
+        "x": 259,
+        "y": 45,
+        "width": 114,
+        "height": 114,
+        "src": "{{user_photo}}"
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "src": "/images/banica/bg.png",
+        "width": 637,
+        "height": 387,
+        "bg": true
+      },
+      {
+        "x": 210,
+        "y": 195,
+        "width": 226,
+        "height": 150,
+        "src": "https://iztegli.netlify.com/images/banica/",
+        "rid": true
+      }
+    ],
+    "texts": [
+      {
+        "x": 316,
+        "y": 180,
+        "size": 24,
+        "text": "{{first_name}}",
+        "align": "center",
+        "color": "#FFF",
+        "font": "Arial",
+        "weight": "light"
+      }
+    ],
+    "context": { "text": "share" }
+  }
+}
