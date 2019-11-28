@@ -8,9 +8,7 @@ const Tag = () => {
       <Button.Group size="small">
         {data.map((item) => (
           <Button type="primary" key={item} href={`/t/${item}`}>
-
             {item.toUpperCase()}
-
           </Button>
         ))}
       </Button.Group>

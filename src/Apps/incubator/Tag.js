@@ -2,24 +2,31 @@ import React from 'react';
 
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import {
-  Spin, Card, Row, Col,
+  Card, Row, Col,
 } from 'antd';
+import useAxios from 'axios-hooks';
 import Item from './components/Item';
 import TextFormat from './components/TextFormat';
 import { Header } from './components/UI';
 import Bottom from './Bottom';
 import Top from './Top';
 import { env } from './env/constants';
-import useFetch from './components/useFetch';
+
 import WrapperBanner from './components/banners';
 
 const uuid = require('uuid/v4');
 
 const Tag = ({ tag }) => {
-  const data = useFetch(`${env.api}twitter/_design/api/_view/tags?key="${
-    tag
-  }"&reduce=false&include_docs=true&limit=30&descending=true&update=false`);
-  const data1 = useFetch(`https://amazonka.herokuapp.com/insta/${tag}`);
+  // const data1 = useFetch(`https://amazonka.herokuapp.com/insta/${tag}`);
+  const [{ data, loading, error }] = useAxios(
+    `${env.api}twitter/_design/api/_view/tags?key="${
+      tag
+    }"&reduce=false&include_docs=true&limit=30&descending=true&update=false`,
+  );
+  const [{ data1, loading1, error1 }] = useAxios(
+    `https://amazonka.herokuapp.com/insta/${tag}`,
+  );
+
 
   return (
     <HelmetProvider>
@@ -29,7 +36,7 @@ const Tag = ({ tag }) => {
         </h1>
       </Header>
       <Top />
-      { data.rows && data.rows[0] ? (
+      { !loading && !error && data ? (
         <>
           <Helmet>
             <title>
@@ -41,10 +48,8 @@ const Tag = ({ tag }) => {
             <Item key={uuid()} item={item.doc} i={i} />
           ))}
         </>
-      ) : (
-        <div style={{ textAlign: 'center' }}><Spin /></div>
-      )}
-      {data1 && data1.medias ? (
+      ) : null}
+      {!loading1 && !error1 && data1 ? (
         <>
           {data1.medias.map((item, i) => (
             <Row type="flex" justify="center" key={item.media_id}>

@@ -2,18 +2,20 @@ import React from 'react';
 
 import { Spin } from 'antd';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import useAxios from 'axios-hooks';
 import { Header } from './components/UI';
 import Item from './components/Item';
 import Bottom from './Bottom';
 import { env } from './env/constants';
 import Top from './Top';
-import useFetch from './components/useFetch';
+
 
 const uuid = require('uuid/v4');
 
 const User = ({ user }) => {
-  const data = useFetch(`${env.api}twitter/_design/api/_view/users?key="${user}"&reduce=false&include_docs=true&limit=200&update=false&descending=true`);
-
+  const [{ data, loading, error }] = useAxios(
+    `${env.api}twitter/_design/api/_view/users?key="${user}"&reduce=false&include_docs=true&limit=200&update=false&descending=true`,
+  );
   return (
 
     <HelmetProvider>
@@ -23,7 +25,7 @@ const User = ({ user }) => {
         </title>
       </Helmet>
 
-      {data.rows ? (
+      {!loading && !error ? (
         <>
           <Header>
             <img src={`https://avatars.io/twitter/${data.rows[0].doc.screenName}`} size="large" alt="" />
