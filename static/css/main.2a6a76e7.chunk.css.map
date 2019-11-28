@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAGA,gBAFC,wBAMD,CAJA,WAEC,UAAW,CACX,qBACD,CACA,gBACC,UACD","file":"main.2a6a76e7.chunk.css","sourcesContent":["body {\n\tbackground-color: #222937;\n}\n.ant-input {\n\tbackground-color: #222937;\n\tcolor: #fff;\n\tborder: 2px solid #fff;\n}\n.anticon-search {\n\tcolor: #fff;\n}\n"]}
