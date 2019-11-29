@@ -1,7 +1,7 @@
 import React from 'react';
-
+import useAxios from 'axios-hooks';
 import {
-  List, Tag, Row, Col,
+  List, Tag, Row, Col, Spin,
 } from 'antd';
 import { env } from './env/constants';
 
@@ -54,9 +54,9 @@ const Bottom = ({ tag }) => {
       <Row type="flex" justify="center">
         <Col xs={23} sm={20} md={18} lg={10}>
           <Title>Users</Title>
-          {data ? <Listx rows={data.rows} prefix="u" /> : null}
+          {data ? <Listx rows={data.rows} prefix="u" /> : <Spin />}
           <Title>Tags</Title>
-          {data1 ? <Listx rows={data1.rows} prefix="t" /> : null}
+          {data1 ? <Listx rows={data1.rows} prefix="t" /> : <Spin />}
         </Col>
       </Row>
     </div>

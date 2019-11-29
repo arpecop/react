@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import {
-  Card, Row, Col,
+  Card, Row, Col, Spin,
 } from 'antd';
 import useAxios from 'axios-hooks';
 import Item from './components/Item';
@@ -17,7 +17,6 @@ import WrapperBanner from './components/banners';
 const uuid = require('uuid/v4');
 
 const Tag = ({ tag }) => {
-  // const data1 = useFetch(`https://amazonka.herokuapp.com/insta/${tag}`);
   const [{ data, loading, error }] = useAxios(
     `${env.api}twitter/_design/api/_view/tags?key="${
       tag
@@ -36,7 +35,7 @@ const Tag = ({ tag }) => {
         </h1>
       </Header>
       <Top />
-      { !loading && !error && data ? (
+      { !loading && !error && data.rows ? (
         <>
           <Helmet>
             <title>
@@ -69,7 +68,9 @@ const Tag = ({ tag }) => {
             </Row>
           ))}
         </>
-      ) : null}
+      ) : (
+        <div style={{ textAlign: 'center', padding: 20 }}><Spin /></div>
+      )}
       <Bottom tag={tag} />
     </HelmetProvider>
   );
