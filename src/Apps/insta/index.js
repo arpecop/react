@@ -5,30 +5,28 @@ import { Row, Col, Collapse } from 'antd';
 import TextFormat from '../incubator/components/TextFormat';
 
 const { Panel } = Collapse;
-const Item = ({ item }) => {
-  console.log(item);
-  return (
-    <Col style={{ width: 320, margin: 5 }}>
+const Item = ({ item }) => (
+  <Col style={{ width: 320, margin: 5 }}>
 
-      <img src={item.thumbnail_resource[2].src} alt="" />
-      <Collapse style={{ marginTop: -3 }}>
-        <Panel
-          header={(
-            <>
-              {`${item.text.substring(0, 30)} ...`}
-            </>
+    <img src={item.thumbnail_resource[2].src} alt="" />
+    <Collapse style={{ border: 'none', backgroundColor: '#FFF' }}>
+      <Panel
+        style={{ border: 'none' }}
+        header={(
+          <>
+            {`${item.text.substring(0, 30)} ...`}
+          </>
 )}
-          key={item.media_id}
-        >
-          <p>
-            <TextFormat text={item.text} />
-          </p>
-        </Panel>
-      </Collapse>
+        key={item.media_id}
+      >
+        <p>
+          <TextFormat text={item.text} />
+        </p>
+      </Panel>
+    </Collapse>
 
-    </Col>
-  );
-};
+  </Col>
+);
 
 const Main = () => {
   const [{ data, loading, error }] = useAxios(
