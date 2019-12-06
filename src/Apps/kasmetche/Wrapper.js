@@ -6,7 +6,7 @@ import { FacebookProvider, LoginButton, ShareButton } from 'react-facebook';
 
 import axios from 'axios';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-
+import Applist from './AppList';
 
 const Wrapper = ({
   app, props, title, children,
@@ -85,6 +85,7 @@ const Wrapper = ({
                   </ShareButton>
                 </div>
                 <div id="SC_TBlock_706275" className="SC_TBlock" />
+                <p><Applist /></p>
               </div>
             )}
           </FacebookProvider>
