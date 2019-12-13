@@ -2,15 +2,16 @@
 
 const awsmobile = {
   aws_project_region: 'eu-west-1',
-  aws_cognito_identity_pool_id: 'eu-west-1:d1ac0bc0-5ffd-4868-a167-82b846065da1',
+  aws_cognito_identity_pool_id:
+    'eu-west-1:d1ac0bc0-5ffd-4868-a167-82b846065da1',
   aws_cognito_region: 'eu-west-1',
   aws_user_pools_id: 'eu-west-1_iaN5fRYOC',
   aws_user_pools_web_client_id: '66scloa51dmfug8ko8aekn180q',
   oauth: {},
   aws_content_delivery_bucket: 'preact-20191119131833-hostingbucket-prod',
   aws_content_delivery_bucket_region: 'eu-west-1',
-  aws_content_delivery_url: 'http://preact-20191119131833-hostingbucket-prod.s3-website-eu-west-1.amazonaws.com',
+  aws_content_delivery_url:
+    'http://preact-20191119131833-hostingbucket-prod.s3-website-eu-west-1.amazonaws.com',
 };
-
 
 export default awsmobile;

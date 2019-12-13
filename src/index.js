@@ -5,14 +5,25 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Main from './App';
 import * as serviceWorker from './serviceWorker';
 
-
 const App = () => (
   <Router>
     <div>
       <Route path="/" exact component={() => <Main isIndex />} />
-      <Route path="/:id/" exact render={(props) => <Main match={props.match} isIndex={false} />} />
-      <Route path="/:id/:id2" exact render={(props) => <Main match={props.match} isIndex={false} />} />
-      <Route path="/:id/:id2/:start_key" exact render={(props) => <Main match={props.match} isIndex={false} />} />
+      <Route
+        path="/:id/"
+        exact
+        render={(props) => <Main match={props.match} isIndex={false} />}
+      />
+      <Route
+        path="/:id/:id2"
+        exact
+        render={(props) => <Main match={props.match} isIndex={false} />}
+      />
+      <Route
+        path="/:id/:id2/:start_key"
+        exact
+        render={(props) => <Main match={props.match} isIndex={false} />}
+      />
     </div>
   </Router>
 );

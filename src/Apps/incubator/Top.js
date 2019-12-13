@@ -26,7 +26,6 @@ const Top = () => {
 
   return (
     <Row type="flex" justify="center">
-
       <Col xs={23} sm={20} md={18} lg={10} style={{ marginBottom: 20 }}>
         <Search
           placeholder="search for users or tags"
@@ -45,17 +44,17 @@ const Top = () => {
                       src={`https://avatars.io/twitter/${item.key}`}
                       size="large"
                     />
-)}
+                  )}
                   title={(
                     <a
                       href={`/u/${item.key}`}
                       style={{
-											  color: '#FFF',
+                        color: '#FFF',
                       }}
                     >
                       {item.key}
                     </a>
-)}
+                  )}
                 />
               </List.Item>
             )}

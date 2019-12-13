@@ -14,18 +14,21 @@ const App = ({ match }) => (
     </div>
 
     {(() => {
-      if (match && match.params.id === 'u') return <User user={match.params.id2} />;
-      if (match && match.params.id === 't') return <Tag tag={match.params.id2} />;
+      if (match && match.params.id === 'u') {
+        return <User user={match.params.id2} />;
+      }
+      if (match && match.params.id === 't') {
+        return <Tag tag={match.params.id2} />;
+      }
       return <Main />;
     })()}
-    <div style={{
-      textAlign: 'center',
-      color: '#02bac8',
-    }}
+    <div
+      style={{
+        textAlign: 'center',
+        color: '#02bac8',
+      }}
     >
-
       RudixLabs © 2019 : the site is not associated or affiliated with Twitter
-
     </div>
   </Body>
 );
