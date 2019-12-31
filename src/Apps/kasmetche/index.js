@@ -12,7 +12,7 @@ const App = (props) => {
   return ((() => {
     if (match && match.params.id === 'banica') {
       return (
-        <Wrapper props={props} title="🎄 Коледна баница с късмети 🎄" app="banica">
+        <Wrapper props={props} title="🎄 Новогодишна баница с късмети 2020 🎄" app="banica">
           <div style={{ height: 599 }}>
             <img
               src={`https://graph.facebook.com/${match ? match.params.start_key : null}/picture?type=large`}
