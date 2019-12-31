@@ -1,0 +1,26 @@
+<head>
+  <script src="instant.js"></script>
+</head>
+<script>
+  window.onload = function() {
+    FBInstant.initializeAsync()
+      .then(function() {
+        function loadScript() {
+          return new Promise(function(resolve, reject) {
+            var s;
+            s = document.createElement("script");
+            s.src = "bundle.js";
+            s.onload = resolve;
+            s.onerror = reject;
+            document.head.appendChild(s);
+          });
+        }
+        loadScript()
+          .then(res => console.log(res))
+          .catch(err => console.log(err));
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+</script>

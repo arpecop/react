@@ -21,6 +21,7 @@
       name="xhamster-site-verification"
       content="df8d33201826ea3d73dbc2a6d4c31df2"
     />
+    <script src="https://connect.facebook.net/en_US/fbinstant.6.3.js"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -38,6 +39,35 @@
       gtag("js", new Date());
 
       gtag("config", "UA-29127191-2");
+    </script>
+
+    <script>
+      window.onload = function() {
+        FBInstant.intializeAsync()
+          .then(() => {
+            // load your game
+            return FBInstant.startGameAsync();
+          })
+          .then(() => {
+            // Once all assets are loaded, tells the SDK
+            // to end loading view and start the game
+            FBInstant.startGameAsync().then(function() {
+              // Retrieving context and player information can only be done
+              // once startGameAsync() resolves
+              var contextId = FBInstant.context.getID();
+              var contextType = FBInstant.context.getType();
+
+              var playerName = FBInstant.player.getName();
+              var playerPic = FBInstant.player.getPhoto();
+              var playerId = FBInstant.player.getID();
+
+              // Once startGameAsync() resolves it also means the loading view has
+              // been removed and the user can see the game viewport
+
+              game.start();
+            });
+          });
+      };
     </script>
   </body>
 </html>
