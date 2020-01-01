@@ -3,9 +3,9 @@ import React from 'react';
 import { useImmer } from 'use-immer';
 
 import { FacebookProvider, LoginButton, ShareButton } from 'react-facebook';
-
 import axios from 'axios';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import FacebookLogin from 'react-facebook-login';
 import Applist from './AppList';
 
 const Wrapper = ({
@@ -22,7 +22,7 @@ const Wrapper = ({
     setState((draft) => {
       draft.loading = true;
     });
-    const response = await axios(`https://grafix.herokuapp.com/?url=http://kasmetche.netlify.com/${app}/shot/${data.profile.id}`);
+    const response = await axios(`//grafix.herokuapp.com/?url=http://kasmetche.netlify.com/${app}/shot/${data.profile.id}`);
 
     setState((draft) => {
       draft.name = data.profile.first_name;
@@ -75,6 +75,14 @@ const Wrapper = ({
                 >
                   <span>Изтегли си</span>
                 </LoginButton>
+                <FacebookLogin
+                  textButton="Изтегли си"
+                  appId="2839078742783517"
+                  autoLoad
+                  fields="name,picture"
+                  // onClick={componentClicked}
+                  callback={handleResponse}
+                />
               </div>
             ) : (
               <div>
