@@ -19,14 +19,16 @@ const Wrapper = ({
   });
 
   const handleResponse = async (data) => {
+    console.log(data);
+
     setState((draft) => {
       draft.loading = true;
     });
-    const response = await axios(`//grafix.herokuapp.com/?url=http://kasmetche.netlify.com/${app}/shot/${data.profile.id}`);
+    const response = await axios(`//grafix.herokuapp.com/?url=http://kasmetche.netlify.com/${app}/shot/${data.id}`);
 
     setState((draft) => {
-      draft.name = data.profile.first_name;
-      draft.id = data.profile.id;
+      draft.name = data.name;
+      draft.id = data.id;
       draft.resultImg = response.data.id;
       draft.resultId = response.data._id;
       draft.loading = false;
@@ -69,13 +71,9 @@ const Wrapper = ({
                 <h1 style={{ fontWeight: 'lighter' }}>
                   {`${title}`}
                 </h1>
-                <LoginButton
-                  className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg"
-                  onCompleted={handleResponse}
-                >
-                  <span>Изтегли си</span>
-                </LoginButton>
+
                 <FacebookLogin
+                  cssClass="ant-btn ant-btn-primary ant-btn-round ant-btn-lg"
                   textButton="Изтегли си"
                   appId="2839078742783517"
                   autoLoad
