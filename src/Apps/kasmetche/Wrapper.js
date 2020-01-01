@@ -2,7 +2,7 @@
 import React from 'react';
 import { useImmer } from 'use-immer';
 
-import { ShareButton } from 'react-facebook';
+import { FacebookProvider, LoginButton, ShareButton } from 'react-facebook';
 import axios from 'axios';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import FacebookLogin from 'react-facebook-login';
@@ -63,37 +63,44 @@ const Wrapper = ({
         }}
       >
         <div style={{ display: 'inline-block' }}>
-
-          {state.loading ? (<div>Loading</div>) : null}
-          {state.name}
-          {!state.name ? (
-            <div style={{ textAlign: 'center' }}>
-              <h1 style={{ fontWeight: 'lighter' }}>
-                {`${title}`}
-              </h1>
-
-              <FacebookLogin
-                textButton="Изтегли си"
-                appId="2839078742783517"
-                autoLoad
-                fields="name,picture"
-                  // onClick={componentClicked}
-                callback={handleResponse}
-              />
-            </div>
-          ) : (
-            <div>
-              <img src={state.resultImg} alt="" style={{ maxWidth: '100%' }} />
+          <FacebookProvider appId="2839078742783517">
+            {state.loading ? (<div>Loading</div>) : null}
+            {state.name}
+            {!state.name ? (
               <div style={{ textAlign: 'center' }}>
-                <ShareButton href={`https://kasmetche.netlify.com/${app}/${state.resultId}`} className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg">
-                          Сподели
-                </ShareButton>
+                <h1 style={{ fontWeight: 'lighter' }}>
+                  {`${title}`}
+                </h1>
+                <div style={{ display: 'none' }}>
+                  <LoginButton
+                    className=""
+                    onCompleted={handleResponse}
+                  >
+                    <span>Изтегли си</span>
+                  </LoginButton>
+                </div>
+                <FacebookLogin
+                  textButton="Изтегли си"
+                  appId="2839078742783517"
+                  autoLoad
+                  fields="name,picture"
+                  // onClick={componentClicked}
+                  callback={handleResponse}
+                />
               </div>
-              <div id="SC_TBlock_706275" className="SC_TBlock" />
-              <p><Applist /></p>
-            </div>
-          )}
-
+            ) : (
+              <div>
+                <img src={state.resultImg} alt="" style={{ maxWidth: '100%' }} />
+                <div style={{ textAlign: 'center' }}>
+                  <ShareButton href={`https://kasmetche.netlify.com/${app}/${state.resultId}`} className="ant-btn ant-btn-primary ant-btn-round ant-btn-lg">
+                          Сподели
+                  </ShareButton>
+                </div>
+                <div id="SC_TBlock_706275" className="SC_TBlock" />
+                <p><Applist /></p>
+              </div>
+            )}
+          </FacebookProvider>
         </div>
       </div>
     </>
