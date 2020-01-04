@@ -108,6 +108,7 @@ const App = (props) => {
   const {
     error, success, successVerify, currentTab,
   } = state;
+  const { isIndex } = props;
   return (
     <div
       className="App"
@@ -124,7 +125,7 @@ const App = (props) => {
         {successVerify ? (<Alert message="Code verified please Login with your details" type="success" closable style={{ marginBottom: 5 }} />) : null}
         {success ? (<Alert message={`Check your email ${success.codeDeliveryDetails.Destination} for confirmation Code`} type="success" closable style={{ marginBottom: 5 }} />) : null}
         {error ? (<Alert message={error.log || error.message} type="error" closable style={{ marginBottom: 5 }} />) : null}
-        {props.isIndex ? (
+        { isIndex ? (
           <Collapse accordion defaultActiveKey={[currentTab]}>
 
             <Collapse.Panel header="Sign Up" key="1">
@@ -200,7 +201,7 @@ const App = (props) => {
 
             </h1>
 
-            <a href="#" onClick={SignOut}>Log Out</a>
+            <a onClick={SignOut}>Log Out</a>
           </div>
         )}
 
