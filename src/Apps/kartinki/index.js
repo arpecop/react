@@ -38,7 +38,7 @@ function App(props) {
             <img
               alt=""
               src={`https://s3.eu-west-1.amazonaws.com/imgserve.fbook.space/${item.value.md5}.jpg`}
-              style={{ maxWidth: '%' }}
+              style={{ maxWidth: '100%' }}
             />
           </a>
           <div>
