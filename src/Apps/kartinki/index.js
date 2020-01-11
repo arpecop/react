@@ -44,7 +44,7 @@ function App(props) {
           <div>
             <a
               className="ant-btn ant-btn-primary"
-              href={`https://www.facebook.com/sharer/sharer.php?u=https://citati.netlify.com/${item.key}`}
+              href={`https://www.facebook.com/sharer/sharer.php?u=https://kartinki.netlify.com/${item.key}`}
             >
                             Сподели
             </a>
