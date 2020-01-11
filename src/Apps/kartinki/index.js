@@ -6,7 +6,7 @@ import 'antd/dist/antd.css';
 function App(props) {
   const { isIndex, match } = props;
   const [{ data, loading, error }] = useAxios(
-    `https://db.arpecop.xyz/kartinki/_design/api/_view/md5?limit=20&descending=true${isIndex ? '' : `&start_key="${match.id}"`}`,
+    `https://db.arpecop.xyz/kartinki/_design/api/_view/md5?limit=20&descending=true${isIndex ? '' : `&start_key="${match.params.id}"`}`,
   );
 
   if (loading) return <p>Loading...</p>;
@@ -18,7 +18,7 @@ function App(props) {
         <title>kartinki</title>
         <meta
           property="og:url"
-          content={`https://citati.netlify.com/${data.rows[0].key}`}
+          content={`https://kartinki.netlify.com/${data.rows[0].key}`}
         />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="kartinki" />
