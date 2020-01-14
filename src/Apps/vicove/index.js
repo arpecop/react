@@ -28,8 +28,8 @@ function App(props) {
 
   useEffect(() => {
     async function mount() {
-      const result = await axios(`https://pouchdb.herokuapp.com/quotes/_all_docs?include_docs=true&${query}`);
-      const resultAll = await axios(`https://pouchdb.herokuapp.com/quotes/_all_docs?include_docs=true&limit=20${query1}`);
+      const result = await axios(`https://pouchdb.herokuapp.com/jokes/_design/api/_view/Разни?limit=20&reduce=false&${query}`);
+      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_design/api/_view/Разни?limit=20&reduce=false${query1}`);
       updatePerson((draft) => {
         draft.firstkey = resultAll.data.rows[0].key;
         draft.lastkey = resultAll.data.rows.reverse()[0].key;
@@ -51,20 +51,19 @@ function App(props) {
         </div>
       ) : (
         <div>
+
           <Helmet>
-            <title>{result.rows[0].doc.text}</title>
-            <meta property="og:url" content={`https://citati.netlify.com/${result.rows[0].key}`} />
+            <title>Виц</title>
+            <meta property="og:url" content={`https://citati.netlify.com/${match.params.id}`} />
             <meta property="og:type" content="article" />
-            <meta property="og:title" content={result.rows[0].doc.text} />
+            <meta property="og:title" content="Виц" />
 
             <meta
               property="og:image"
-              content={`https://grafix.herokuapp.com/tw/?db=quotes&id=${result.rows[0].doc._id}`}
+              content={`https://grafix.herokuapp.com/tw/?text=${result.joke}`}
             />
-            <meta property="og:image:width" content="617" />
-            <meta property="og:image:height" content="324" />
-            <meta property="fb:app_id" content="770341770061627" />
-            <script type="text/javascript" src="//st-n.ads1-adnow.com/js/a.js" />
+
+
           </Helmet>
           <div style={{ padding: 10 }}>
             <Row type="flex" justify="center" align="top">
@@ -80,8 +79,7 @@ function App(props) {
                     zIndex: 100,
                   }}
                 >
-                    citati.netlify.com
-
+                    vicove.netlify.com
                 </div>
                 <List
                   size="large"
@@ -96,11 +94,17 @@ function App(props) {
 
                         {i === 0 ? (
                           <h1 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
-                            {item.doc.text}
+                            {item.value.joke}
                           </h1>
                         ) : (
                           <h2 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
-                            {item.doc.text}
+
+                            {item.value.joke.split('\n').map((item, key) => (
+                              <span key={key}>
+                                {item}
+                                <br />
+                              </span>
+                            ))}
                           </h2>
                         )}
                       </div>
@@ -108,7 +112,7 @@ function App(props) {
                       <div style={{ position: 'absolute', right: 10 }}>
                         <a
                           className="ant-btn ant-btn-primary"
-                          href={`https://www.facebook.com/sharer/sharer.php?u=https://citati.netlify.com/${item.doc._id}`}
+                          href={`https://www.facebook.com/sharer/sharer.php?u=https://vicove.netlify.com/${item.key}`}
                         >
                             Сподели
                         </a>
