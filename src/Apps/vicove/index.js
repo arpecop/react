@@ -60,7 +60,7 @@ function App(props) {
 
             <meta
               property="og:image"
-              content={`https://grafix.herokuapp.com/tw/?text=${result.joke}`}
+              content={`https://grafix.herokuapp.com/?text=${result.joke}`}
             />
 
 
