@@ -51,20 +51,19 @@ function App(props) {
         </div>
       ) : (
         <div>
+          {!isIndex ? (
+            <Helmet>
+              <title>Виц</title>
+              <meta property="og:url" content={`https://vicove.netlify.com/${match.params.id}`} />
+              <meta property="og:type" content="article" />
+              <meta property="og:title" content="Виц" />
+              <meta
+                property="og:image"
+                content={`https://grafix.herokuapp.com/?text=${result.joke}`}
+              />
+            </Helmet>
+          ) : (<div />)}
 
-          <Helmet>
-            <title>Виц</title>
-            <meta property="og:url" content={`https://citati.netlify.com/${match.params.id}`} />
-            <meta property="og:type" content="article" />
-            <meta property="og:title" content="Виц" />
-
-            <meta
-              property="og:image"
-              content={`https://grafix.herokuapp.com/?text=${result.joke}`}
-            />
-
-
-          </Helmet>
           <div style={{ padding: 10 }}>
             <Row type="flex" justify="center" align="top">
               <Col xs={23} sm={20} md={16} lg={15} xl={12}>
