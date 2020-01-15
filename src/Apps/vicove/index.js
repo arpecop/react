@@ -32,7 +32,7 @@ const App = (props) => {
 
       setState((draft) => {
         draft.firstkey = resultAll.data.rows[0].key;
-        draft.lastkey = resultAll.data.rows.reverse()[0].key;
+        draft.lastkey = resultAll.data.rows[resultAll.data.rows.length - 1].key;
         draft.resultAll = resultAll.data;
         draft.measures = measures.data;
         draft.isLoading = false;
