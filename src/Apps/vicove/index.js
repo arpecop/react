@@ -55,6 +55,7 @@ function App(props) {
           {!isIndex ? (
             <Helmet>
               <title>Виц</title>
+
               <meta property="og:url" content={`https://vicove.netlify.com/${match.params.id}`} />
               <meta property="od:description" content="" />
               <meta property="og:type" content="article" />
