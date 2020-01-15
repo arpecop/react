@@ -21,7 +21,7 @@ const App = (props) => {
   });
   const { isIndex, match } = props;
   const query = isIndex ? '' : `&key="${match.params.id}"&skip=0`;
-  const query1 = isIndex ? '' : `&start_key="${match.params.id}"&skip=1`;
+  const query1 = isIndex ? '' : `&start_key="${match.params.id}"`;
 
   useEffect(() => {
     async function mount() {
