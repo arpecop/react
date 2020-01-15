@@ -26,10 +26,10 @@ const App = (props) => {
   useEffect(() => {
     async function mount() {
       const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_design/api/_view/Разни?limit=20&reduce=false${query1}`);
-      console.log(resultAll);
 
-      const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : resultAll.data.rows[0].value.joke.replace(/\n/g, 'br')}`);
-      console.log(measures);
+
+      const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : resultAll.data.rows.reverse()[0].value.joke.replace(/\n/g, 'br')}`);
+
       setState((draft) => {
         draft.firstkey = resultAll.data.rows[0].key;
         draft.lastkey = resultAll.data.rows.reverse()[0].key;
