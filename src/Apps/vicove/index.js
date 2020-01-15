@@ -28,7 +28,7 @@ function App(props) {
 
   useEffect(() => {
     async function mount() {
-      const result = await axios(`https://pouchdb.herokuapp.com/jokes/_design/api/_view/Разни?limit=20&reduce=false&${query}`);
+      const result = await axios(`https://pouchdb.herokuapp.com/jokes/_design/api/_view/Разни?limit=1&reduce=false&${query}`);
       const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_design/api/_view/Разни?limit=20&reduce=false${query1}`);
       updatePerson((draft) => {
         draft.firstkey = resultAll.data.rows[0].key;
@@ -51,15 +51,19 @@ function App(props) {
         </div>
       ) : (
         <div>
+
           {!isIndex ? (
             <Helmet>
+
+
               <title>Виц</title>
               <meta property="og:url" content={`https://vicove.netlify.com/${match.params.id}`} />
+              <meta property="od:description" content="" />
               <meta property="og:type" content="article" />
               <meta property="og:title" content="Виц" />
               <meta
                 property="og:image"
-                content={`https://grafix.herokuapp.com/?text=${result.joke}`}
+                content={`https://grafix.herokuapp.com/?text=${result.rows[0].value.joke.replace('\n', 'br')}`}
               />
             </Helmet>
           ) : (<div />)}
@@ -69,7 +73,7 @@ function App(props) {
               <Col xs={23} sm={20} md={16} lg={15} xl={12}>
                 <div
                   style={{
-                    position: 'fixed',
+
                     padding: 10,
                     backgroundColor: '#FFF',
                     left: 0,
