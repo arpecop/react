@@ -61,7 +61,7 @@ function App(props) {
               <meta property="og:title" content="Виц" />
               <meta
                 property="og:image"
-                content={`https://grafix.herokuapp.com/?text=${result.rows[0].value.joke.replace('\n', 'br')}`}
+                content={`https://grafix.herokuapp.com/?text=${result.rows[0].value.joke.replace(/\n/g, 'br')}`}
               />
               <meta property="og:image:width" content="400" />
             </Helmet>
