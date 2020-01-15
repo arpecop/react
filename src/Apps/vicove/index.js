@@ -28,7 +28,7 @@ const App = (props) => {
       const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_design/api/_view/Разни?limit=20&reduce=false${query1}`);
 
 
-      const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : resultAll.data.rows.reverse()[0].value.joke.replace(/\n/g, 'br')}`);
+      const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : resultAll.data.rows[resultAll.data.rows.length - 1].value.joke.replace(/\n/g, 'br')}`);
 
       setState((draft) => {
         draft.firstkey = resultAll.data.rows[0].key;
