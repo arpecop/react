@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import React, { useEffect } from 'react';
 
 import { useImmer } from 'use-immer';
@@ -6,16 +7,12 @@ import {
   List, Button, Row, Col,
 } from 'antd';
 import { Helmet } from 'react-helmet';
-
-
-import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
-
+import 'antd/dist/antd.css';
 
 const Footer = ({ lastkey }) => <Button type="primary" icon="right" href={`/${lastkey}`} />;
 
-
-function App(props) {
-  const [person, updatePerson] = useImmer({
+const App = (props) => {
+  const [state, setState] = useImmer({
     firstkey: 0,
     lastkey: 0,
     isLoading: true,
@@ -30,7 +27,7 @@ function App(props) {
     async function mount() {
       const result = await axios(`https://pouchdb.herokuapp.com/jokes/_design/api/_view/Разни?limit=1&reduce=false&${query}`);
       const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_design/api/_view/Разни?limit=20&reduce=false${query1}`);
-      updatePerson((draft) => {
+      setState((draft) => {
         draft.firstkey = resultAll.data.rows[0].key;
         draft.lastkey = resultAll.data.rows.reverse()[0].key;
         draft.resultAll = { rows: [result.data.rows[0], ...resultAll.data.rows] };
@@ -42,7 +39,7 @@ function App(props) {
   }, []);
   const {
     isLoading, result, resultAll, firstkey, lastkey,
-  } = person;
+  } = state;
   return (
     <>
       {isLoading ? (
@@ -51,11 +48,9 @@ function App(props) {
         </div>
       ) : (
         <div>
-
           {!isIndex ? (
             <Helmet>
               <title>Виц</title>
-
               <meta property="og:url" content={`https://vicove.netlify.com/${match.params.id}`} />
               <meta property="od:description" content="" />
               <meta property="og:type" content="article" />
@@ -65,6 +60,7 @@ function App(props) {
                 content={`https://grafix.herokuapp.com/?text=${result.rows[0].value.joke.replace(/\n/g, 'br')}`}
               />
               <meta property="og:image:width" content="400" />
+              <meta property="og:image:height" content="400" />
             </Helmet>
           ) : (<div />)}
 
@@ -141,6 +137,6 @@ function App(props) {
       )}
     </>
   );
-}
+};
 
 export default App;
