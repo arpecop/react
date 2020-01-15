@@ -27,6 +27,8 @@ const App = (props) => {
     async function mount() {
       const result = await axios(`https://pouchdb.herokuapp.com/jokes/_design/api/_view/Разни?limit=1&reduce=false&${query}`);
       const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_design/api/_view/Разни?limit=20&reduce=false${query1}`);
+      const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : result.rows[0].value.joke.replace(/\n/g, 'br')}`);
+      console.log(measures);
       setState((draft) => {
         draft.firstkey = resultAll.data.rows[0].key;
         draft.lastkey = resultAll.data.rows.reverse()[0].key;
