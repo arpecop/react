@@ -54,8 +54,6 @@ function App(props) {
 
           {!isIndex ? (
             <Helmet>
-
-
               <title>Виц</title>
               <meta property="og:url" content={`https://vicove.netlify.com/${match.params.id}`} />
               <meta property="od:description" content="" />
@@ -65,6 +63,7 @@ function App(props) {
                 property="og:image"
                 content={`https://grafix.herokuapp.com/?text=${result.rows[0].value.joke.replace('\n', 'br')}`}
               />
+              <meta property="og:image:width" content="400" />
             </Helmet>
           ) : (<div />)}
 
@@ -73,7 +72,6 @@ function App(props) {
               <Col xs={23} sm={20} md={16} lg={15} xl={12}>
                 <div
                   style={{
-
                     padding: 10,
                     backgroundColor: '#FFF',
                     left: 0,
@@ -97,7 +95,12 @@ function App(props) {
 
                         {i === 0 ? (
                           <h1 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
-                            {item.value.joke}
+                            {item.value.joke.split('\n').map((item, key) => (
+                              <span key={key}>
+                                {item}
+                                <br />
+                              </span>
+                            ))}
                           </h1>
                         ) : (
                           <h2 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
