@@ -90,7 +90,7 @@ const App = (props) => {
                   dataSource={resultAll.rows}
                   renderItem={(item, i) => (
                     <List.Item>
-                      <div style={{ marginRight: 90 }}>
+                      <div>
                         {i === 3 ? <h2>Ad</h2> : null}
 
                         {i === 0 ? (
