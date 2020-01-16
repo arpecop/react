@@ -114,10 +114,10 @@ const App = (props) => {
                           </h2>
                         )}
                       </div>
-                      <div id="SC_TBlock_508143" className="SC_TBlock" />
-                      <div style={{ position: 'absolute', right: 10 }}>
+
+                      <div style={{ right: 10 }}>
                         <a
-                          className="ant-btn ant-btn-primary"
+                          className="ant-btn ant-btn-primary ant-btn-round ant-btn-sm"
                           href={`https://www.facebook.com/sharer/sharer.php?u=https://zabavno.netlify.com/${item.key}`}
                         >
                             Сподели
