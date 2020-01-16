@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+
 import React, { useEffect } from 'react';
 
 import { useImmer } from 'use-immer';
@@ -54,7 +55,7 @@ const App = (props) => {
             <Helmet>
               <title>Виц</title>
               <meta property="og:url" content={`https://vicove.netlify.com/${match.params.id}`} />
-              <meta property="od:description" content="" />
+              <meta property="od:description" content={measures.text} />
               <meta property="og:type" content="article" />
               <meta property="og:title" content="Виц" />
               <meta
