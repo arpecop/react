@@ -54,7 +54,7 @@ const App = (props) => {
           {!isIndex ? (
             <Helmet>
               <title>Виц</title>
-              <meta property="og:url" content={`https://zabavno.netlify.com/${match.params.id}`} />
+              <meta property="og:url" content={`https://arpecop.xyz/${match.params.id}`} />
               <meta property="od:description" content={measures.text} />
               <meta property="og:type" content="article" />
               <meta property="og:title" content="Виц" />
@@ -80,7 +80,7 @@ const App = (props) => {
                     zIndex: 100,
                   }}
                 >
-                    zabavno.netlify.com
+                    arpecop.xyz
                 </div>
                 <List
                   size="large"
@@ -118,7 +118,7 @@ const App = (props) => {
                       <div style={{ right: 10 }}>
                         <a
                           className="ant-btn ant-btn-primary ant-btn-round ant-btn-sm"
-                          href={`https://www.facebook.com/sharer/sharer.php?u=https://zabavno.netlify.com/${item.key}`}
+                          href={`https://www.facebook.com/sharer/sharer.php?u=https://arpecop.xyz/${item.key}`}
                         >
                             Сподели
                         </a>
