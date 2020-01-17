@@ -70,18 +70,6 @@ const App = (props) => {
           <div style={{ padding: 10 }}>
             <Row type="flex" justify="center" align="top">
               <Col xs={23} sm={20} md={16} lg={15} xl={12}>
-                <div
-                  style={{
-                    padding: 10,
-                    backgroundColor: '#FFF',
-                    left: 0,
-                    top: 0,
-                    width: '100%',
-                    zIndex: 100,
-                  }}
-                >
-                    arpecop.xyz
-                </div>
                 <List
                   size="large"
                   style={{ marginTop: 55 }}
