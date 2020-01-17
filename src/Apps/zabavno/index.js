@@ -57,7 +57,7 @@ const App = (props) => {
               <meta property="og:url" content={`https://arpecop.xyz/${match.params.id}`} />
               <meta property="od:description" content={measures.text} />
               <meta property="og:type" content="article" />
-              <meta property="og:title" content="Виц" />
+              <meta property="og:title" content="🤣 Още Вицове ➡️" />
               <meta
                 property="og:image"
                 content={`https://grafix.herokuapp.com/${measures.id}.png`}
@@ -117,7 +117,7 @@ const App = (props) => {
 
                       <div style={{ right: 10 }}>
                         <a
-                          className="ant-btn ant-btn-primary ant-btn-round ant-btn-sm"
+                          className="ant-btn ant-btn-primary ant-btn-round"
                           href={`https://www.facebook.com/sharer/sharer.php?u=https://arpecop.xyz/${item.key}`}
                         >
                             Сподели
