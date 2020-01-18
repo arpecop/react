@@ -27,7 +27,7 @@ const App = (props) => {
   useEffect(() => {
     async function mount() {
       const result = await axios(`https://pouchdb.herokuapp.com/jokes/${query}`);
-      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_design/api/_view/Разни?limit=20&reduce=false${query1}`);
+      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_design/api/_view/Разни?limit=20&reduce=false${query1}&skip=1`);
       const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : result.data.joke.replace(/\n/g, 'br')}`);
       setState((draft) => {
         draft.firstkey = resultAll.data.rows[0].key;
@@ -79,7 +79,7 @@ const App = (props) => {
                   renderItem={(item, i) => (
                     <List.Item>
                       <div>
-                        {i === 3 ? <h2>Ad</h2> : null}
+                        {i === 3 ? <div><h2>Ad </h2></div> : null}
 
                         {i === 0 ? (
                           <h1 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
@@ -112,12 +112,7 @@ const App = (props) => {
                         </a>
 
                       </div>
-                      <div
-                        style={{
-                          marginLeft: -20,
-                          marginBottom: -15,
-                        }}
-                      />
+
                     </List.Item>
                   )}
                 />
