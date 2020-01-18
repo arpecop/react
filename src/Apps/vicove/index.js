@@ -50,7 +50,7 @@ const App = (props) => {
           <Button type="primary" loading />
         </div>
       ) : (
-        <div style={{ marginBottom: 120 }}>
+        <div>
           {!isIndex ? (
             <Helmet>
               <title>Виц</title>
@@ -118,6 +118,7 @@ const App = (props) => {
                 />
               </Col>
             </Row>
+            <div style={{ height: 120 }} />
             <div style={{
               position: 'fixed', bottom: 0, backgroundColor: '#8e44ad', left: 0,
             }}
