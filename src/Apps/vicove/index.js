@@ -50,7 +50,7 @@ const App = (props) => {
           <Button type="primary" loading />
         </div>
       ) : (
-        <div>
+        <div style={{ marginBottom: 120 }}>
           {!isIndex ? (
             <Helmet>
               <title>Виц</title>
@@ -79,7 +79,7 @@ const App = (props) => {
                   renderItem={(item, i) => (
                     <List.Item>
                       <div>
-                        {i === 3 ? <div><h2>Ad </h2></div> : null}
+
 
                         {i === 0 ? (
                           <h1 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
@@ -118,6 +118,17 @@ const App = (props) => {
                 />
               </Col>
             </Row>
+            <div style={{
+              position: 'fixed', bottom: 0, backgroundColor: '#8e44ad', left: 0,
+            }}
+            >
+
+              <a href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2&hl=en_US">
+                <img src="./vicove.png" style={{ float: 'left', width: 100 }} alt="" />
+                <h2 style={{ color: '#FFF' }}> Изтегли  Вицове и за Андроид  от Гугъл Плей , над 30000 вица в категории</h2>
+              </a>
+
+            </div>
           </div>
         </div>
       )}
