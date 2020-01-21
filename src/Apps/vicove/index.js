@@ -105,7 +105,7 @@ const App = (props) => {
   useEffect(() => {
     async function mount() {
       const result = await axios(`https://pouchdb.herokuapp.com/jokes/${query}`);
-      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_design/api/_view/${match && match.params.id ? match.params.id : 'Разни'}?limit=20&reduce=false${query1}`);
+      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_design/api/_view/${match && match.params.id ? match.params.id : 'Разни'}?limit=21&reduce=false${query1}`);
       const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : result.data.joke.replace(/\n/g, 'br')}`);
       setState((draft) => {
         draft.firstkey = resultAll.data.rows[0].key;
