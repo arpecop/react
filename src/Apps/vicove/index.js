@@ -123,6 +123,9 @@ const App = (props) => {
   } = state;
   return (
     <>
+      <div style={{ textAlign: 'center' }}>
+        <h1 style={{ fontWeight: 'lighter' }}>🤣 Facebook Вицове 😃</h1>
+      </div>
       {isLoading ? (
         <div style={{ textAlign: 'center' }}>
           <Button type="primary" loading />
@@ -150,7 +153,7 @@ const App = (props) => {
               <Col xs={23} sm={20} md={16} lg={15} xl={12}>
                 <List
                   size="large"
-                  style={{ marginTop: 55 }}
+
                   footer={<Footer firstkey={firstkey} lastkey={lastkey} />}
                   bordered
                   dataSource={resultAll.rows}
