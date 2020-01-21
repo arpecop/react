@@ -5,29 +5,107 @@ import React, { useEffect } from 'react';
 import { useImmer } from 'use-immer';
 import axios from 'axios';
 import {
-  List, Button, Row, Col,
+  List, Button, Row, Col, Tag,
 } from 'antd';
 import { Helmet } from 'react-helmet';
+import Chunk from 'lodash/chunk';
+import uuid from 'react-uuid';
 import 'antd/dist/antd.css';
+
+
+const cats = [
+  // { value: 11107, key: 'Разни' },
+  { value: 179, key: 'Адвокати' },
+  { value: 104, key: 'Бай Ганьо' },
+  { value: 8393, key: 'Бисери' },
+  { value: 1692, key: 'Блондинки' },
+  { value: 493, key: 'Борци' },
+  { value: 326, key: 'Военни' },
+  { value: 274, key: 'Гадории' },
+  { value: 1763, key: 'Животни' },
+  { value: 1542, key: 'Иванчо' },
+  { value: 1052, key: 'Лекари' },
+  { value: 2586, key: 'Любими Герои' },
+  { value: 3412, key: 'Мръсни' },
+  { value: 1513, key: 'Пиянски' },
+  { value: 2083, key: 'Политически' },
+  { value: 441, key: 'Полицаи' },
+  { value: 1878, key: 'Програмисти' },
+  { value: 416, key: 'Проститутки' },
+  { value: 3098, key: 'Професионални' },
+  { value: 440, key: 'Радио Ереван' },
+  { value: 8741, key: 'Семейни' },
+  { value: 838, key: 'Спортни' },
+  { value: 829, key: 'Студентски' },
+  { value: 330, key: 'Тъпизми' },
+  { value: 548, key: 'Ученически' },
+  { value: 2138, key: 'Черен хумор' },
+];
+console.log();
+const JokeBr = ({ joke }) => joke.split('\n').map((item2) => (
+  <span key={uuid()}>
+    {item2}
+    <br />
+  </span>
+));
+
+const Content = ({ i, item }) => {
+  if (i === 0) {
+    return (
+      <h1 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
+        <JokeBr joke={item.value.joke} />
+        <a
+          className="ant-btn ant-btn-primary ant-btn-round"
+          href={`https://www.facebook.com/sharer/sharer.php?u=https://arpecop.xyz/${item.key}`}
+        >
+                            Сподели
+        </a>
+      </h1>
+    );
+  }
+  if (i === 1) {
+    return Chunk(cats, 7).map((chunk) => (
+      <div style={{ width: '25%', float: 'left', textAlign: 'center' }}>
+        {chunk.map((item) => (<a key={uuid()} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta">{item.key}</Tag></a>))}
+
+      </div>
+    ));
+  }
+  return (
+    <h2 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
+
+      <JokeBr joke={item.value.joke} />
+      <a
+        className="ant-btn ant-btn-primary ant-btn-round"
+        href={`https://www.facebook.com/sharer/sharer.php?u=https://arpecop.xyz/${item.key}`}
+      >
+                            Сподели
+      </a>
+    </h2>
+  );
+};
 
 const Footer = ({ lastkey }) => <Button type="primary" icon="right" href={`/${lastkey}`} />;
 
 const App = (props) => {
+  console.log(props);
   const [state, setState] = useImmer({
     firstkey: 0,
     lastkey: 0,
     isLoading: true,
+    collapsed: true,
     result: { rows: [] },
     resultAll: { rows: [] },
   });
   const { isIndex, match } = props;
   const query = isIndex ? '' : match.params.id;
   const query1 = isIndex ? '' : `&start_key="${match.params.id}"`;
+  console.log(query);
 
   useEffect(() => {
     async function mount() {
       const result = await axios(`https://pouchdb.herokuapp.com/jokes/${query}`);
-      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_design/api/_view/Разни?limit=20&reduce=false${query1}`);
+      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_design/api/_view/${match && match.params.id ? match.params.id : 'Разни'}?limit=20&reduce=false${query1}`);
       const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : result.data.joke.replace(/\n/g, 'br')}`);
       setState((draft) => {
         draft.firstkey = resultAll.data.rows[0].key;
@@ -78,54 +156,15 @@ const App = (props) => {
                   dataSource={resultAll.rows}
                   renderItem={(item, i) => (
                     <List.Item>
-                      <div>
-                        {i === 0 ? (
-                          <h1 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
-                            {item.value.joke.split('\n').map((item, key) => (
-                              <span key={key}>
-                                {item}
-                                <br />
-                              </span>
-                            ))}
-                          </h1>
-                        ) : (
-                          <h2 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
 
-                            {item.value.joke.split('\n').map((item, key) => (
-                              <span key={key}>
-                                {item}
-                                <br />
-                              </span>
-                            ))}
-                          </h2>
-                        )}
-                      </div>
+                      <Content i={i} item={item} />
 
-                      <div style={{ right: 10 }}>
-                        <a
-                          className="ant-btn ant-btn-primary ant-btn-round"
-                          href={`https://www.facebook.com/sharer/sharer.php?u=https://arpecop.xyz/${item.key}`}
-                        >
-                            Сподели
-                        </a>
-                      </div>
+
                     </List.Item>
                   )}
                 />
               </Col>
             </Row>
-            <div style={{ height: 120 }} />
-            <div style={{
-              position: 'fixed', bottom: 0, backgroundColor: '#8e44ad', left: 0,
-            }}
-            >
-
-              <a href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2&hl=en_US">
-                <img src="./vicove.png" style={{ float: 'left', width: 100 }} alt="" />
-                <h3 style={{ color: '#FFF', fontWeight: 100 }}> Изтегли  Вицове и за Андроид  от Гугъл Плей , над 30000 вица в категории</h3>
-              </a>
-
-            </div>
           </div>
         </div>
       )}
