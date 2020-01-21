@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 /* eslint-disable no-param-reassign */
 
 import React, { useEffect } from 'react';
@@ -52,7 +53,7 @@ const JokeBr = ({ joke }) => joke.split('\n').map((item2) => (
 const Content = ({ i, item }) => {
   if (i === 0) {
     return (
-      <h1 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
+      <h2 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
         <JokeBr joke={item.value.joke} />
         <a
           className="ant-btn ant-btn-primary ant-btn-round"
@@ -60,7 +61,7 @@ const Content = ({ i, item }) => {
         >
                             Сподели
         </a>
-      </h1>
+      </h2>
     );
   }
   if (i === 1) {
