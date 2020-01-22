@@ -58,7 +58,7 @@ const Content = ({ i, item }) => {
         fontWeight: 100, padding: 0, margin: 0, color: '#FFF',
       }}
       >
-        <JokeBr joke={item.value.joke} />
+        <JokeBr joke={item.doc.joke} />
         <a
           className="ant-btn ant-btn-primary ant-btn-round"
           href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.key}`}
@@ -72,8 +72,9 @@ const Content = ({ i, item }) => {
 
   return (
     <h2 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
+      <a style={{ float: 'right' }} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta" style={{ margin: 5 }}>{item.doc.cat}</Tag></a>
+      <JokeBr joke={item.doc.joke} />
 
-      <JokeBr joke={item.value.joke} />
       <a
         className="ant-btn ant-btn-primary ant-btn-round"
         href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.key}`}
@@ -103,7 +104,7 @@ const App = (props) => {
   useEffect(() => {
     async function mount() {
       const result = await axios(`https://pouchdb.herokuapp.com/jokes/${query}`);
-      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_design/api/_view/Разни?limit=21&reduce=false${query1}`);
+      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=30${query1}`);
       const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : result.data.joke.replace(/\n/g, 'br')}`);
       setState((draft) => {
         draft.firstkey = resultAll.data.rows[0].key;
