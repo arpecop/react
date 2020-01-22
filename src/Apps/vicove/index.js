@@ -124,7 +124,7 @@ const App = (props) => {
     <>
       <div style={{ textAlign: 'center' }}>
         <h1 style={{ fontWeight: 'lighter' }}>🤣 Facebook Вицове 😃</h1>
-        {cats.map((item1) => (<a key={uuid()} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta" style={{ margin: 5 }}>{item1.key}</Tag></a>))}
+
       </div>
 
       {isLoading ? (
@@ -166,6 +166,9 @@ const App = (props) => {
                 />
               </Col>
             </Row>
+          </div>
+          <div style={{ textAlign: 'center' }}>
+            {cats.map((item1) => (<a key={uuid()} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta" style={{ margin: 5 }}>{item1.key}</Tag></a>))}
           </div>
         </div>
       )}
