@@ -9,10 +9,10 @@ import {
   List, Button, Row, Col, Tag,
 } from 'antd';
 import { Helmet } from 'react-helmet';
-import Chunk from 'lodash/chunk';
+// import Chunk from 'lodash/chunk';
 import uuid from 'react-uuid';
 import 'antd/dist/antd.css';
-
+import './style.css';
 
 const cats = [
   // { value: 11107, key: 'Разни' },
@@ -53,7 +53,11 @@ const JokeBr = ({ joke }) => joke.split('\n').map((item2) => (
 const Content = ({ i, item }) => {
   if (i === 0) {
     return (
-      <h2 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
+
+      <h2 style={{
+        fontWeight: 100, padding: 0, margin: 0, color: '#FFF',
+      }}
+      >
         <JokeBr joke={item.value.joke} />
         <a
           className="ant-btn ant-btn-primary ant-btn-round"
@@ -62,15 +66,11 @@ const Content = ({ i, item }) => {
                             Сподели
         </a>
       </h2>
+
     );
   }
   if (i === 1) {
-    return Chunk(cats, 7).map((chunk) => (
-      <div style={{ width: '25%', float: 'left', textAlign: 'center' }}>
-        {chunk.map((item1) => (<a key={uuid()} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta">{item1.key}</Tag></a>))}
-
-      </div>
-    ));
+    return cats.map((item1) => (<a key={uuid()} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta" style={{ margin: 5 }}>{item1.key}</Tag></a>));
   }
   return (
     <h2 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
