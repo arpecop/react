@@ -42,7 +42,7 @@ const cats = [
   { value: 548, key: 'Ученически' },
   { value: 2138, key: 'Черен хумор' },
 ];
-console.log();
+
 const JokeBr = ({ joke }) => joke.split('\n').map((item2) => (
   <span key={uuid()}>
     {item2}
@@ -57,7 +57,7 @@ const Content = ({ i, item }) => {
         <JokeBr joke={item.value.joke} />
         <a
           className="ant-btn ant-btn-primary ant-btn-round"
-          href={`https://www.facebook.com/sharer/sharer.php?u=https://arpecop.xyz/${item.key}`}
+          href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.key}`}
         >
                             Сподели
         </a>
@@ -67,7 +67,7 @@ const Content = ({ i, item }) => {
   if (i === 1) {
     return Chunk(cats, 7).map((chunk) => (
       <div style={{ width: '25%', float: 'left', textAlign: 'center' }}>
-        {chunk.map((item) => (<a key={uuid()} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta">{item.key}</Tag></a>))}
+        {chunk.map((item1) => (<a key={uuid()} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta">{item1.key}</Tag></a>))}
 
       </div>
     ));
@@ -78,7 +78,7 @@ const Content = ({ i, item }) => {
       <JokeBr joke={item.value.joke} />
       <a
         className="ant-btn ant-btn-primary ant-btn-round"
-        href={`https://www.facebook.com/sharer/sharer.php?u=https://arpecop.xyz/${item.key}`}
+        href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.key}`}
       >
                             Сподели
       </a>
@@ -136,7 +136,7 @@ const App = (props) => {
           {!isIndex ? (
             <Helmet>
               <title>Виц</title>
-              <meta property="og:url" content={`https://arpecop.xyz/${match.params.id}`} />
+              <meta property="og:url" content={`https://${window.location.hostname}/${match.params.id}`} />
               <meta property="od:description" content={measures.text} />
               <meta property="og:type" content="article" />
               <meta property="og:title" content="🤣 Още Вицове ➡️" />
