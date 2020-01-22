@@ -69,9 +69,7 @@ const Content = ({ i, item }) => {
 
     );
   }
-  if (i === 1) {
-    return cats.map((item1) => (<a key={uuid()} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta" style={{ margin: 5 }}>{item1.key}</Tag></a>));
-  }
+
   return (
     <h2 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
 
@@ -89,7 +87,6 @@ const Content = ({ i, item }) => {
 const Footer = ({ lastkey }) => <Button type="primary" icon="right" href={`/${lastkey}`} />;
 
 const App = (props) => {
-  console.log(props);
   const [state, setState] = useImmer({
     firstkey: 0,
     lastkey: 0,
@@ -101,7 +98,7 @@ const App = (props) => {
   const { isIndex, match } = props;
   const query = isIndex ? '' : match.params.id;
   const query1 = isIndex ? '' : `&start_key="${match.params.id}"`;
-  console.log(query);
+
 
   useEffect(() => {
     async function mount() {
@@ -126,7 +123,9 @@ const App = (props) => {
     <>
       <div style={{ textAlign: 'center' }}>
         <h1 style={{ fontWeight: 'lighter' }}>🤣 Facebook Вицове 😃</h1>
+        {cats.map((item1) => (<a key={uuid()} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta" style={{ margin: 5 }}>{item1.key}</Tag></a>))}
       </div>
+
       {isLoading ? (
         <div style={{ textAlign: 'center' }}>
           <Button type="primary" loading />
@@ -160,10 +159,7 @@ const App = (props) => {
                   dataSource={resultAll.rows}
                   renderItem={(item, i) => (
                     <List.Item>
-
                       <Content i={i} item={item} />
-
-
                     </List.Item>
                   )}
                 />
