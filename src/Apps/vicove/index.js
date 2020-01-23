@@ -62,8 +62,9 @@ const Content = ({ i, item }) => {
         <a
           className="ant-btn ant-btn-primary ant-btn-round"
           href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.key}`}
+          style={{ backgroundColor: '#3b5998' }}
         >
-                            Сподели
+                            Сподели във Facebook
         </a>
       </h2>
 
@@ -76,10 +77,11 @@ const Content = ({ i, item }) => {
       <JokeBr joke={item.doc.joke} />
 
       <a
+        style={{ backgroundColor: '#3b5998', border: 'none' }}
         className="ant-btn ant-btn-primary ant-btn-round"
         href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.key}`}
       >
-                            Сподели
+                            Сподели във Facebook
       </a>
     </h2>
   );
@@ -122,8 +124,8 @@ const App = (props) => {
   } = state;
   return (
     <>
-      <div style={{ textAlign: 'center' }}>
-        <h1 style={{ fontWeight: 'lighter' }}>🤣 Facebook Вицове 😃</h1>
+      <div style={{ textAlign: 'center', backgroundColor: '#3b5998' }}>
+        <h1 style={{ fontWeight: 'lighter', color: '#FFF' }}>🤣 Facebook Вицове 😃</h1>
 
       </div>
 
@@ -132,7 +134,7 @@ const App = (props) => {
           <Button type="primary" loading />
         </div>
       ) : (
-        <div>
+        <div style={{ backgroundColor: '#F7F7F7', marginTop: -15 }}>
           {!isIndex ? (
             <Helmet>
               <title>Виц</title>
