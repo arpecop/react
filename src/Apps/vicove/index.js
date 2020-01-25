@@ -6,13 +6,15 @@ import React, { useEffect } from 'react';
 import { useImmer } from 'use-immer';
 import axios from 'axios';
 import {
-  List, Button, Row, Col, Tag, Icon,
+  List, Button, Row, Col, Tag, Icon, Collapse,
 } from 'antd';
 import { Helmet } from 'react-helmet';
 // import Chunk from 'lodash/chunk';
 import uuid from 'react-uuid';
 import 'antd/dist/antd.css';
 import './style.css';
+
+const { Panel } = Collapse;
 
 const cats = [
   // { value: 11107, key: 'Разни' },
@@ -50,46 +52,22 @@ const JokeBr = ({ joke }) => joke.split('\n').map((item2) => (
   </span>
 ));
 
-const Content = ({ i, item }) => {
-  if (i === 0) {
-    return (
+const Content = ({ item }) => (
+  <h2 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
+    <a style={{ float: 'right' }} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta" style={{ margin: 5 }}>{item.doc.cat}</Tag></a>
+    <JokeBr joke={item.doc.joke} />
 
-      <h2 style={{
-        fontWeight: 100, padding: 0, margin: 0, color: '#FFF',
-      }}
-      >
-        <JokeBr joke={item.doc.joke} />
-        <a
-          className="ant-btn ant-btn-primary ant-btn-round"
-          href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.key}`}
-          style={{ backgroundColor: '#3b5998' }}
-        >
-          <Icon type="facebook" />
-          {' '}
-Сподели
-        </a>
-      </h2>
-
-    );
-  }
-
-  return (
-    <h2 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
-      <a style={{ float: 'right' }} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta" style={{ margin: 5 }}>{item.doc.cat}</Tag></a>
-      <JokeBr joke={item.doc.joke} />
-
-      <a
-        style={{ backgroundColor: '#3b5998', border: 'none' }}
-        className="ant-btn ant-btn-primary ant-btn-round"
-        href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.key}`}
-      >
-        <Icon type="facebook" />
+    <a
+      style={{ backgroundColor: '#3b5998', border: 'none' }}
+      className="ant-btn ant-btn-primary ant-btn-round"
+      href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.key}`}
+    >
+      <Icon type="facebook" />
 
 Сподели
-      </a>
-    </h2>
-  );
-};
+    </a>
+  </h2>
+);
 
 const Footer = ({ lastkey }) => <Button type="primary" icon="right" href={`/${lastkey}`} />;
 
@@ -104,13 +82,13 @@ const App = (props) => {
   });
   const { isIndex, match } = props;
   const query = isIndex ? '' : match.params.id;
-  const query1 = isIndex ? '' : `&start_key="${match.params.id}"`;
+  const query1 = isIndex ? '' : `&skip=${Math.floor(Math.random() * 59979)}`;
 
 
   useEffect(() => {
     async function mount() {
       const result = await axios(`https://pouchdb.herokuapp.com/jokes/${query}`);
-      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=30${query1}`);
+      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=10${query1}`);
       const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : result.data.joke.replace(/\n/g, 'br')}`);
       setState((draft) => {
         draft.firstkey = resultAll.data.rows[0].key;
@@ -124,7 +102,7 @@ const App = (props) => {
     mount();
   }, []);
   const {
-    isLoading, resultAll, firstkey, lastkey, measures,
+    isLoading, resultAll, firstkey, lastkey, measures, result,
   } = state;
   return (
     <>
@@ -138,7 +116,7 @@ const App = (props) => {
           <Button type="primary" loading />
         </div>
       ) : (
-        <div style={{ backgroundColor: '#F7F7F7', marginTop: -15 }}>
+        <div>
           {!isIndex ? (
             <Helmet>
               <title>Виц</title>
@@ -155,25 +133,35 @@ const App = (props) => {
             </Helmet>
           ) : (<div />)}
 
-          <div style={{ padding: 10 }}>
-            <Row type="flex" justify="center" align="top">
-              <Col xs={23} sm={20} md={16} lg={15} xl={12}>
 
-                <List
-                  size="large"
+          <Row type="flex" justify="center" align="top">
+            <Col xs={23} sm={20} md={16} lg={15} xl={12}>
+              <Collapse defaultActiveKey={['1']}>
+                <Panel header="Виц на деня" key="1">
 
-                  footer={<Footer firstkey={firstkey} lastkey={lastkey} />}
-                  bordered
-                  dataSource={resultAll.rows}
-                  renderItem={(item, i) => (
-                    <List.Item>
-                      <Content i={i} item={item} />
-                    </List.Item>
-                  )}
-                />
-              </Col>
-            </Row>
-          </div>
+                  <Content item={{ doc: result }} />
+                </Panel>
+                <Panel header="Още Вицове" key="2">
+                  <List
+                    size="large"
+
+                    // footer={<Footer firstkey={firstkey} lastkey={lastkey} />}
+                    bordered
+                    dataSource={resultAll.rows}
+                    renderItem={(item) => (
+                      <List.Item>
+                        <Content item={item} />
+                      </List.Item>
+                    )}
+                  />
+                </Panel>
+
+              </Collapse>
+
+
+            </Col>
+          </Row>
+
           <div style={{ textAlign: 'center' }}>
             {cats.map((item1) => (<a key={uuid()} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta" style={{ margin: 5 }}>{item1.key}</Tag></a>))}
           </div>
