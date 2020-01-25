@@ -133,11 +133,10 @@ const App = (props) => {
           <Row type="flex" justify="center" align="top" style={{ padding: 10 }}>
             <Col xs={23} sm={20} md={16} lg={15} xl={12}>
               <Collapse defaultActiveKey={['1']}>
-                <Panel header="Виц на деня" key="1">
-
+                <Panel header="😃 Виц на деня" key="1">
                   <Content item={{ doc: result }} />
                 </Panel>
-                <Panel header="Още Вицове" key="2">
+                <Panel header="🤣 Още Вицове" key="2">
                   <List
                     size="large"
 
@@ -157,10 +156,7 @@ const App = (props) => {
 
             </Col>
           </Row>
-          <div style={{ textAlign: 'center' }}>
-            <h1 style={{ fontWeight: 'lighter' }}>🤣   Вицове 😃</h1>
 
-          </div>
           <div style={{ textAlign: 'center' }}>
             {cats.map((item1) => (<a key={uuid()} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta" style={{ margin: 5 }}>{item1.key}</Tag></a>))}
           </div>
