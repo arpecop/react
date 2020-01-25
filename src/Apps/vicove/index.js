@@ -135,23 +135,14 @@ const App = (props) => {
           <Row type="flex" justify="center" align="top" style={{ padding: 10 }}>
             <Col xs={23} sm={20} md={16} lg={15} xl={12}>
               <Collapse defaultActiveKey={['1']}>
-                <Panel header="😃 Виц на деня" key="1">
-                  {result.joke ? (<Content item={{ doc: result }} />) : <Content item={{ doc: resultAll.rows[0].doc }} />}
-
-                </Panel>
+                <Panel header="😃 Виц на деня" key="1" />
                 <Panel header="🤣 Още Вицове" key="2">
-
-                  <List
-                    size="large"
-
-
-                    dataSource={data.rows}
-                    renderItem={(item) => (
-                      <List.Item>
-                        <Content item={item} />
-                      </List.Item>
-                    )}
-                  />
+                  {!loading ? data.rows.map((item) => (
+                    <div key={item.key}>
+                      <Content item={item} />
+                      <hr />
+                    </div>
+                  )) : null}
                 </Panel>
 
               </Collapse>
