@@ -90,21 +90,25 @@ const App = (props) => {
   useEffect(() => {
     async function mount() {
       const result = await axios(`https://pouchdb.herokuapp.com/jokes/${query}`);
-      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=10${query1}`);
+
       const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : result.data.joke.replace(/\n/g, 'br')}`);
       setState((draft) => {
-        draft.firstkey = resultAll.data.rows[0].key;
-        draft.lastkey = resultAll.data.rows[resultAll.data.rows.length - 1].key;
-        draft.resultAll = resultAll.data;
         draft.result = result.data;
         draft.measures = measures.data;
         draft.isLoading = false;
       });
     }
+    async function mount2() {
+      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=10${query1}`);
+      setState((draft) => {
+        draft.resultAll = resultAll.data;
+      });
+    }
     mount();
+    mount2();
   }, []);
   const {
-    isLoading, resultAll, firstkey, lastkey, measures, result,
+    isLoading, resultAll, measures, result,
   } = state;
   return (
     <>
