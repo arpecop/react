@@ -12,6 +12,7 @@ import { Helmet } from 'react-helmet';
 // import Chunk from 'lodash/chunk';
 import uuid from 'react-uuid';
 import 'antd/dist/antd.css';
+
 import './style.css';
 
 const { Panel } = Collapse;
@@ -55,8 +56,9 @@ const JokeBr = ({ joke }) => joke.split('\n').map((item2) => (
 const Content = ({ item }) => (
   <h2 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
     <a style={{ float: 'right' }} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta" style={{ margin: 5 }}>{item.doc.cat}</Tag></a>
-    <JokeBr joke={item.doc.joke} />
-
+    <a href={`/${item.key}`}>
+      <JokeBr joke={item.doc.joke} />
+    </a>
     <a
       style={{ backgroundColor: '#3b5998', border: 'none' }}
       className="ant-btn ant-btn-primary ant-btn-round"
@@ -134,7 +136,8 @@ const App = (props) => {
             <Col xs={23} sm={20} md={16} lg={15} xl={12}>
               <Collapse defaultActiveKey={['1']}>
                 <Panel header="😃 Виц на деня" key="1">
-                  <Content item={{ doc: result }} />
+                  {result.joke ? (<Content item={{ doc: result }} />) : <Content item={{ doc: resultAll.rows[0].doc }} />}
+
                 </Panel>
                 <Panel header="🤣 Още Вицове" key="2">
                   <List

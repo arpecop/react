@@ -1,3 +1,9 @@
+.ant-list-item {
+    border: none;
+}
 .ant-list-item:nth-child(odd) {
     background-color: #ffffff;
+}
+a {
+    color: black;
 }
