@@ -106,8 +106,8 @@ const App = (props) => {
   } = state;
   return (
     <>
-      <div style={{ textAlign: 'center', backgroundColor: '#3b5998' }}>
-        <h1 style={{ fontWeight: 'lighter', color: '#FFF' }}>🤣 Facebook Вицове 😃</h1>
+      <div style={{ textAlign: 'center' }}>
+        <h1 style={{ fontWeight: 'lighter' }}>🤣   Вицове 😃</h1>
 
       </div>
 
