@@ -6,7 +6,7 @@ import React, { useEffect } from 'react';
 import { useImmer } from 'use-immer';
 import axios from 'axios';
 import {
-  List, Button, Row, Col, Tag,
+  List, Button, Row, Col, Tag, Icon,
 } from 'antd';
 import { Helmet } from 'react-helmet';
 // import Chunk from 'lodash/chunk';
@@ -64,7 +64,9 @@ const Content = ({ i, item }) => {
           href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.key}`}
           style={{ backgroundColor: '#3b5998' }}
         >
-                            Сподели във Facebook
+          <Icon type="facebook" />
+          {' '}
+Сподели
         </a>
       </h2>
 
@@ -81,7 +83,9 @@ const Content = ({ i, item }) => {
         className="ant-btn ant-btn-primary ant-btn-round"
         href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.key}`}
       >
-                            Сподели във Facebook
+        <Icon type="facebook" />
+
+Сподели
       </a>
     </h2>
   );
@@ -154,6 +158,7 @@ const App = (props) => {
           <div style={{ padding: 10 }}>
             <Row type="flex" justify="center" align="top">
               <Col xs={23} sm={20} md={16} lg={15} xl={12}>
+
                 <List
                   size="large"
 
