@@ -11,7 +11,6 @@ import {
 import { Helmet } from 'react-helmet';
 // import Chunk from 'lodash/chunk';
 import uuid from 'react-uuid';
-import { useGetData } from 'use-axios-react';
 import 'antd/dist/antd.css';
 
 import './style.css';
@@ -91,10 +90,12 @@ const App = (props) => {
   useEffect(() => {
     async function mount() {
       const result = await axios(`https://pouchdb.herokuapp.com/jokes/${query}`);
-      const data = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=10${query1}`);
+      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=10${query1}`);
       const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : result.data.joke.replace(/\n/g, 'br')}`);
-
       setState((draft) => {
+        draft.firstkey = resultAll.data.rows[0].key;
+        draft.lastkey = resultAll.data.rows[resultAll.data.rows.length - 1].key;
+        draft.resultAll = resultAll.data;
         draft.result = result.data;
         draft.measures = measures.data;
         draft.isLoading = false;
@@ -103,9 +104,8 @@ const App = (props) => {
     mount();
   }, []);
   const {
-    isLoading, data, measures, result,
+    isLoading, resultAll, firstkey, lastkey, measures, result,
   } = state;
-
   return (
     <>
 
@@ -136,16 +136,14 @@ const App = (props) => {
             <Col xs={23} sm={20} md={16} lg={15} xl={12}>
               <Collapse defaultActiveKey={['1']}>
                 <Panel header="😃 Виц на деня" key="1">
-                  <Content item={{ doc: result }} />
+                  {result.joke ? (<Content item={{ doc: result }} />) : <Content item={{ doc: resultAll.rows[0].doc }} />}
 
                 </Panel>
                 <Panel header="🤣 Още Вицове" key="2">
                   <List
                     size="large"
 
-                    // footer={<Footer firstkey={firstkey} lastkey={lastkey} />}
-                    bordered
-                    dataSource={data.rows}
+                    dataSource={resultAll.rows}
                     renderItem={(item) => (
                       <List.Item>
                         <Content item={item} />
