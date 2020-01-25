@@ -11,6 +11,7 @@ import {
 import { Helmet } from 'react-helmet';
 // import Chunk from 'lodash/chunk';
 import uuid from 'react-uuid';
+import { useGetData } from 'use-axios-react';
 import 'antd/dist/antd.css';
 
 import './style.css';
@@ -83,19 +84,17 @@ const App = (props) => {
     resultAll: { rows: [] },
   });
   const { isIndex, match } = props;
-  const query = isIndex ? '' : match.params.id;
+  const query = isIndex ? '0074c3b87586c1d385a4e33cdd89a4d7' : match.params.id;
   const query1 = isIndex ? '' : `&skip=${Math.floor(Math.random() * 59979)}`;
 
 
   useEffect(() => {
     async function mount() {
       const result = await axios(`https://pouchdb.herokuapp.com/jokes/${query}`);
-      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=10${query1}`);
+      // const resultAll = await axios();
       const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : result.data.joke.replace(/\n/g, 'br')}`);
+
       setState((draft) => {
-        draft.firstkey = resultAll.data.rows[0].key;
-        draft.lastkey = resultAll.data.rows[resultAll.data.rows.length - 1].key;
-        draft.resultAll = resultAll.data;
         draft.result = result.data;
         draft.measures = measures.data;
         draft.isLoading = false;
@@ -106,6 +105,7 @@ const App = (props) => {
   const {
     isLoading, resultAll, firstkey, lastkey, measures, result,
   } = state;
+  const [data, loading] = useGetData(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=10${query1}`);
   return (
     <>
 
@@ -140,12 +140,12 @@ const App = (props) => {
 
                 </Panel>
                 <Panel header="🤣 Още Вицове" key="2">
+
                   <List
                     size="large"
 
-                    // footer={<Footer firstkey={firstkey} lastkey={lastkey} />}
-                    bordered
-                    dataSource={resultAll.rows}
+
+                    dataSource={data.rows}
                     renderItem={(item) => (
                       <List.Item>
                         <Content item={item} />
