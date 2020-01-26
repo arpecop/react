@@ -145,7 +145,6 @@ const App = (props) => {
           <Row type="flex" justify="center" align="top" style={{ padding: 10 }}>
 
             <Col xs={23} sm={20} md={16} lg={15} xl={12}>
-              <div className="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="button" data-action="like" data-size="large" data-share="false" />
               <Collapse defaultActiveKey={['1']}>
                 <Panel header="😃 Виц на деня" key="1">
                   {result.joke ? (<Content item={{ doc: result }} />) : <Content item={{ doc: resultAll.rows[0].doc }} />}
