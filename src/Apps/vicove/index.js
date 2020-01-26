@@ -6,7 +6,7 @@ import React, { useEffect } from 'react';
 import { useImmer } from 'use-immer';
 import axios from 'axios';
 import {
-  List, Button, Row, Col, Tag, Icon, Collapse,
+  List, Button, Row, Col, Tag, Icon, Collapse, Badge,
 } from 'antd';
 import { Helmet } from 'react-helmet';
 import uuid from 'react-uuid';
@@ -146,10 +146,10 @@ const App = (props) => {
 
             <Col xs={23} sm={20} md={16} lg={15} xl={12}>
               <Collapse defaultActiveKey={['1']}>
-                <Panel header="😃 Виц на деня" key="1">
+                <Panel header="😃 ВИЦ НА ДЕНЯ" key="1">
                   {result.joke ? (<Content item={{ doc: result }} />) : <Content item={{ doc: resultAll.rows[0].doc }} />}
                 </Panel>
-                <Panel header="🤣 Още Вицове" key="2">
+                <Panel header={<div>🤣 ОТ ДНЕС <Badge count={11}/></div>} key="2">
                   <List
                     size="large"
                     dataSource={resultAll.rows}
