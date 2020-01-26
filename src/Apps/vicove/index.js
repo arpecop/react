@@ -9,7 +9,6 @@ import {
   List, Button, Row, Col, Tag, Icon, Collapse,
 } from 'antd';
 import { Helmet } from 'react-helmet';
-// import Chunk from 'lodash/chunk';
 import uuid from 'react-uuid';
 import 'antd/dist/antd.css';
 
@@ -18,7 +17,7 @@ import './style.css';
 const { Panel } = Collapse;
 
 const cats = [
-  // { value: 11107, key: 'Разни' },
+  { value: 11107, key: 'Разни' },
   { value: 179, key: 'Адвокати' },
   { value: 104, key: 'Бай Ганьо' },
   { value: 8393, key: 'Бисери' },
@@ -62,7 +61,7 @@ const Content = ({ item }) => (
     <a
       style={{ backgroundColor: '#3b5998', border: 'none' }}
       className="ant-btn ant-btn-primary ant-btn-round"
-      href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.key}`}
+      href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.doc._id}`}
     >
       <Icon type="facebook" />
 
@@ -71,7 +70,6 @@ const Content = ({ item }) => (
   </h2>
 );
 
-const Footer = ({ lastkey }) => <Button type="primary" icon="right" href={`/${lastkey}`} />;
 
 const App = (props) => {
   const [state, setState] = useImmer({
@@ -85,12 +83,9 @@ const App = (props) => {
   const { isIndex, match } = props;
   const query = isIndex ? '' : match.params.id;
   const query1 = isIndex ? '' : `&skip=${Math.floor(Math.random() * 59979)}`;
-
-
   useEffect(() => {
     async function mount() {
       const result = await axios(`https://pouchdb.herokuapp.com/jokes/${query}`);
-
       const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : result.data.joke.replace(/\n/g, 'br')}`);
       setState((draft) => {
         draft.result = result.data;
@@ -112,8 +107,6 @@ const App = (props) => {
   } = state;
   return (
     <>
-
-
       {isLoading ? (
         <div style={{ textAlign: 'center' }}>
           <Button type="primary" loading />
@@ -141,12 +134,10 @@ const App = (props) => {
               <Collapse defaultActiveKey={['1']}>
                 <Panel header="😃 Виц на деня" key="1">
                   {result.joke ? (<Content item={{ doc: result }} />) : <Content item={{ doc: resultAll.rows[0].doc }} />}
-
                 </Panel>
                 <Panel header="🤣 Още Вицове" key="2">
                   <List
                     size="large"
-
                     dataSource={resultAll.rows}
                     renderItem={(item) => (
                       <List.Item>
