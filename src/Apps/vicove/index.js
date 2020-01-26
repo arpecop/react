@@ -55,7 +55,7 @@ const JokeBr = ({ joke }) => joke.split('\n').map((item2) => (
 
 const Content = ({ item }) => (
   <p style={{
-    fontWeight: 100, padding: 0, margin: 0,
+    padding: 0, margin: 0,
   }}
   >
     <a style={{ float: 'right' }} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta" style={{ margin: 5 }}>{item.doc.cat}</Tag></a>
