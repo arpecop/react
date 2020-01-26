@@ -54,9 +54,12 @@ const JokeBr = ({ joke }) => joke.split('\n').map((item2) => (
 ));
 
 const Content = ({ item }) => (
-  <h2 style={{ fontWeight: 100, padding: 0, margin: 0 }}>
+  <p style={{
+    fontWeight: 100, padding: 0, margin: 0, fontSize: '1rem',
+  }}
+  >
     <a style={{ float: 'right' }} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta" style={{ margin: 5 }}>{item.doc.cat}</Tag></a>
-    <a href={`/${item.key}`}>
+    <a href={`/${item.doc._id}`}>
       <JokeBr joke={item.doc.joke} />
     </a>
     <a
@@ -76,7 +79,7 @@ const Content = ({ item }) => (
       <Icon type="facebook" />
       {' Харесва ми'}
     </a>
-  </h2>
+  </p>
 );
 
 
