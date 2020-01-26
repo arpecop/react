@@ -55,13 +55,14 @@ const JokeBr = ({ joke }) => joke.split('\n').map((item2) => (
 
 const Content = ({ item }) => (
   <p style={{
-    fontWeight: 100, padding: 0, margin: 0, fontSize: '1rem',
+    fontWeight: 100, padding: 0, margin: 0,
   }}
   >
     <a style={{ float: 'right' }} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta" style={{ margin: 5 }}>{item.doc.cat}</Tag></a>
     <a href={`/${item.doc._id}`}>
       <JokeBr joke={item.doc.joke} />
     </a>
+    <p />
     <a
       style={{ backgroundColor: '#3b5998', border: 'none' }}
       className="ant-btn ant-btn-primary ant-btn-round"

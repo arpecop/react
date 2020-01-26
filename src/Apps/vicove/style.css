@@ -5,5 +5,8 @@
     background-color: #ffffff;
 }
 a {
-    color: black;
+    color: #2d3436;
+}
+a:hover {
+    color: #2d3436;
 }
