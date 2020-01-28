@@ -106,7 +106,7 @@ const App = (props) => {
     }
     async function mount2() {
       const query2 = isIndex ? '' : `&skip=${Math.floor(Math.random() * 59979)}`;
-      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=10${query2}`);
+      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=11${query2}`);
       setState((draft) => {
         draft.resultAll = resultAll.data;
       });
