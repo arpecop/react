@@ -17,7 +17,7 @@ import './style.css';
 const { Panel } = Collapse;
 
 const cats = [
-  { value: 11107, key: 'Разни' },
+//  { value: 11107, key: 'Разни' },
   { value: 179, key: 'Адвокати' },
   { value: 104, key: 'Бай Ганьо' },
   { value: 8393, key: 'Бисери' },
@@ -146,7 +146,7 @@ const App = (props) => {
 
             <Col xs={23} sm={20} md={16} lg={15} xl={12}>
 
-              <Collapse defaultActiveKey={['1']}>
+              <Collapse defaultActiveKey={['1', '2']}>
                 <Panel header="😃 ВИЦ НА ДЕНЯ" key="1">
                   {result.joke ? (<Content item={{ doc: result }} />) : <Content item={{ doc: resultAll.rows[0].doc }} />}
                 </Panel>
