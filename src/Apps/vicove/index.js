@@ -2,7 +2,6 @@
 /* eslint-disable no-param-reassign */
 
 import React, { useEffect } from 'react';
-
 import { useImmer } from 'use-immer';
 import axios from 'axios';
 import {
@@ -54,7 +53,7 @@ const JokeBr = ({ joke }) => joke.split('\n').map((item2) => (
 ));
 
 const Content = ({ item }) => (
-  <p style={{
+  <div style={{
     padding: 0, margin: 0,
   }}
   >
@@ -62,7 +61,7 @@ const Content = ({ item }) => (
     <a href={`/${item.doc._id}`}>
       <JokeBr joke={item.doc.joke} />
     </a>
-    <p />
+    <p> </p>
     <a
       style={{ backgroundColor: '#3b5998', border: 'none' }}
       className="ant-btn ant-btn-primary ant-btn-round"
@@ -80,7 +79,7 @@ const Content = ({ item }) => (
       <Icon type="facebook" />
       {' Харесва ми'}
     </a>
-  </p>
+  </div>
 );
 
 
@@ -94,11 +93,10 @@ const App = (props) => {
     resultAll: { rows: [] },
   });
   const { isIndex, match } = props;
-  const query = isIndex ? '' : match.params.id;
-  const query1 = isIndex ? '' : `&skip=${Math.floor(Math.random() * 59979)}`;
   useEffect(() => {
     async function mount() {
-      const result = await axios(`https://pouchdb.herokuapp.com/jokes/${query}`);
+      const query1 = isIndex ? '' : match.params.id;
+      const result = await axios(`https://pouchdb.herokuapp.com/jokes/${query1}`);
       const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : result.data.joke.replace(/\n/g, 'br')}`);
       setState((draft) => {
         draft.result = result.data;
@@ -107,7 +105,8 @@ const App = (props) => {
       });
     }
     async function mount2() {
-      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=10${query1}`);
+      const query2 = isIndex ? '' : `&skip=${Math.floor(Math.random() * 59979)}`;
+      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=10${query2}`);
       setState((draft) => {
         draft.resultAll = resultAll.data;
       });
@@ -126,6 +125,7 @@ const App = (props) => {
         </div>
       ) : (
         <div>
+          <img src="./vicbg.jpg" alt="" style={{ maxWidth: '100%' }} />
           {!isIndex ? (
             <Helmet>
               <title>Виц</title>
@@ -145,11 +145,20 @@ const App = (props) => {
           <Row type="flex" justify="center" align="top" style={{ padding: 10 }}>
 
             <Col xs={23} sm={20} md={16} lg={15} xl={12}>
+
               <Collapse defaultActiveKey={['1']}>
                 <Panel header="😃 ВИЦ НА ДЕНЯ" key="1">
                   {result.joke ? (<Content item={{ doc: result }} />) : <Content item={{ doc: resultAll.rows[0].doc }} />}
                 </Panel>
-                <Panel header={<div>🤣 ОТ ДНЕС <Badge count={11}/></div>} key="2">
+                <Panel
+                  header={(
+                    <div>
+🤣 ОТ ДНЕС
+                      <Badge count={11} />
+                    </div>
+)}
+                  key="2"
+                >
                   <List
                     size="large"
                     dataSource={resultAll.rows}
@@ -160,10 +169,7 @@ const App = (props) => {
                     )}
                   />
                 </Panel>
-
               </Collapse>
-
-
             </Col>
           </Row>
 
