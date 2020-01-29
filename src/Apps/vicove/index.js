@@ -125,7 +125,7 @@ const App = (props) => {
         </div>
       ) : (
         <div>
-          <img src="./vicbg.jpg" alt="" style={{ maxWidth: '100%' }} />
+
           {!isIndex ? (
             <Helmet>
               <title>Виц</title>
@@ -148,15 +148,11 @@ const App = (props) => {
 
               <Collapse defaultActiveKey={['1', '2']}>
                 <Panel header="😃 ВИЦ НА ДЕНЯ" key="1">
-                  {result.joke ? (<Content item={{ doc: result }} />) : <Content item={{ doc: resultAll.rows[0].doc }} />}
+                  {result.joke ? (<Content item={{ doc: result }} />)
+                    : <Content item={{ doc: resultAll.rows[0].doc }} />}
                 </Panel>
                 <Panel
-                  header={(
-                    <div>
-🤣 ОТ ДНЕС
-                      <Badge count={11} />
-                    </div>
-)}
+                  header="🤣 ОТ ДНЕС"
                   key="2"
                 >
                   <List
