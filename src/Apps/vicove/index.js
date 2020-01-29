@@ -106,10 +106,10 @@ const App = (props) => {
     async function mount() {
       const query1 = isIndex ? '' : match.params.id;
       const result = await axios(`https://pouchdb.herokuapp.com/jokes/${query1}`);
-      const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : result.data.joke.replace(/\n/g, 'br')}`);
+      // const measures = await axios();
       setState((draft) => {
         draft.result = result.data;
-        draft.measures = measures.data;
+        // draft.measures = measures.data;
         draft.isLoading = false;
       });
     }
@@ -124,7 +124,7 @@ const App = (props) => {
     mount2();
   }, []);
   const {
-    isLoading, resultAll, measures, result,
+    isLoading, resultAll, result,
   } = state;
   return (
     <>
@@ -134,19 +134,19 @@ const App = (props) => {
         </div>
       ) : (
         <div>
-          {!isIndex ? (
+          {!isIndex && result ? (
             <Helmet>
               <title>Виц</title>
               <meta property="og:url" content={`https://${window.location.hostname}/${match.params.id}`} />
-              <meta property="od:description" content={measures.text} />
+              <meta property="od:description" content="" />
               <meta property="og:type" content="article" />
               <meta property="og:title" content="🤣 Още Вицове ➡️" />
               <meta
                 property="og:image"
-                content={`https://grafix.herokuapp.com/${measures.id}.png`}
+                content={`https://grafix.herokuapp.com/?text=${result.joke.replace(/\n/g, 'br')}`}
               />
-              <meta property="og:image:width" content={measures.width} />
-              <meta property="og:image:height" content={measures.height} />
+              <meta property="og:image:width" content="900" />
+              <meta property="og:image:height" content="560" />
             </Helmet>
           ) : (<div />)}
 
