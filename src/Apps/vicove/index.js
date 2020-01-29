@@ -71,14 +71,23 @@ const Content = ({ item }) => (
       {' Сподели'}
     </a>
     {' '}
-    <a
-      style={{ backgroundColor: '#3b5998', border: 'none' }}
-      className="ant-btn ant-btn-primary ant-btn-round"
-      href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.doc._id}`}
+    <Badge
+      count={Math.floor(Math.random() * 10) + 1}
+      style={{ backgroundColor: '#fff', color: '#999', boxShadow: '0 0 0 1px #d9d9d9 inset' }}
     >
-      <Icon type="facebook" />
-      {' Харесва ми'}
-    </a>
+      <a
+        style={{ backgroundColor: '#3b5998', border: 'none' }}
+        className="ant-btn ant-btn-primary ant-btn-round"
+        href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.doc._id}`}
+      >
+        <Icon type="facebook" />
+        {' Харесва ми'}
+
+      </a>
+
+    </Badge>
+
+
   </div>
 );
 
@@ -106,7 +115,7 @@ const App = (props) => {
     }
     async function mount2() {
       const query2 = isIndex ? '' : `&skip=${Math.floor(Math.random() * 59979)}`;
-      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=11${query2}`);
+      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=20${query2}`);
       setState((draft) => {
         draft.resultAll = resultAll.data;
       });
@@ -125,7 +134,6 @@ const App = (props) => {
         </div>
       ) : (
         <div>
-
           {!isIndex ? (
             <Helmet>
               <title>Виц</title>
@@ -148,7 +156,8 @@ const App = (props) => {
 
               <Collapse defaultActiveKey={['1', '2']}>
                 <Panel header="😃 ВИЦ НА ДЕНЯ" key="1">
-                  {result.joke ? (<Content item={{ doc: result }} />)
+                  {result.joke
+                    ? <Content item={{ doc: result }} />
                     : <Content item={{ doc: resultAll.rows[0].doc }} />}
                 </Panel>
                 <Panel
