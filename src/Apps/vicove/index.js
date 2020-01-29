@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 import { useImmer } from 'use-immer';
 import axios from 'axios';
 import {
-  List, Button, Row, Col, Tag, Icon, Collapse, Badge,
+  List, Button, Row, Col, Tag, Icon, Collapse,
 } from 'antd';
 import { Helmet } from 'react-helmet';
 import uuid from 'react-uuid';
@@ -70,23 +70,6 @@ const Content = ({ item }) => (
       <Icon type="facebook" />
       {' Сподели'}
     </a>
-    {' '}
-    <Badge
-      count={Math.floor(Math.random() * 10) + 1}
-      style={{ backgroundColor: '#fff', color: '#999', boxShadow: '0 0 0 1px #d9d9d9 inset' }}
-    >
-      <a
-        style={{ backgroundColor: '#3b5998', border: 'none' }}
-        className="ant-btn ant-btn-primary ant-btn-round"
-        href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.doc._id}`}
-      >
-        <Icon type="facebook" />
-        {' Харесва ми'}
-
-      </a>
-
-    </Badge>
-
 
   </div>
 );
@@ -106,10 +89,10 @@ const App = (props) => {
     async function mount() {
       const query1 = isIndex ? '' : match.params.id;
       const result = await axios(`https://pouchdb.herokuapp.com/jokes/${query1}`);
-      // const measures = await axios();
+      const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : result.data.joke.replace(/\n/g, 'br')}`);
       setState((draft) => {
         draft.result = result.data;
-        // draft.measures = measures.data;
+        draft.measures = measures.data;
         draft.isLoading = false;
       });
     }
@@ -124,7 +107,7 @@ const App = (props) => {
     mount2();
   }, []);
   const {
-    isLoading, resultAll, result,
+    isLoading, resultAll, measures, result,
   } = state;
   return (
     <>
@@ -134,19 +117,19 @@ const App = (props) => {
         </div>
       ) : (
         <div>
-          {!isIndex && result ? (
+          {!isIndex ? (
             <Helmet>
               <title>Виц</title>
               <meta property="og:url" content={`https://${window.location.hostname}/${match.params.id}`} />
-              <meta property="od:description" content="" />
+              <meta property="od:description" content={measures.text} />
               <meta property="og:type" content="article" />
               <meta property="og:title" content="🤣 Още Вицове ➡️" />
               <meta
                 property="og:image"
-                content={`https://grafix.herokuapp.com/?text=${result.joke.replace(/\n/g, 'br')}`}
+                content={`https://grafix.herokuapp.com/${measures.id}.png`}
               />
-              <meta property="og:image:width" content="900" />
-              <meta property="og:image:height" content="560" />
+              <meta property="og:image:width" content={measures.width} />
+              <meta property="og:image:height" content={measures.height} />
             </Helmet>
           ) : (<div />)}
 
