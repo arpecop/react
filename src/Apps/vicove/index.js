@@ -99,23 +99,25 @@ const App = (props) => {
   useEffect(() => {
     async function mount() {
       const query1 = isIndex ? '' : match.params.id;
+      const query2 = isIndex ? '' : `&skip=${Math.floor(Math.random() * 59979)}`;
+
       const result = await axios(`https://pouchdb.herokuapp.com/jokes/${query1}`);
       const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : result.data.joke.replace(/\n/g, 'br')}`);
+      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=20${query2}`);
       setState((draft) => {
         draft.result = result.data;
         draft.measures = measures.data;
         draft.isLoading = false;
-      });
-    }
-    async function mount2() {
-      const query2 = isIndex ? '' : `&skip=${Math.floor(Math.random() * 59979)}`;
-      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=20${query2}`);
-      setState((draft) => {
         draft.resultAll = resultAll.data;
       });
     }
+    async function mount2() {
+      setState((draft) => {
+
+      });
+    }
     mount();
-    mount2();
+
     openNotification();
   }, []);
   const {
