@@ -1,11 +1,7 @@
 import React from 'react';
 
-export default class Iframe extends React.Component {
-  render() {
-    return (
-      <div>
-        <iframe src={this.props.src} height={this.props.height} width={this.props.width} className="fullheight" scrolling="no" frameBorder="0" allowTransparency="true" allow="encrypted-media" />
-      </div>
-    );
-  }
-}
+const Iframe = ({ src, height, width }) => (
+  <iframe src={src} height={height} width={width} className="fullheight" scrolling="no" frameBorder="0" allowTransparency="true" title="dsd" allow="encrypted-media" />
+
+);
+export default Iframe;
