@@ -45,17 +45,7 @@ const cats = [
   { value: 548, key: 'Ученически' },
   { value: 2138, key: 'Черен хумор' },
 ];
-const openNotification = () => {
-  notification.open({
-    message: 'Харесай Ни!',
-    duration: 20,
-    description:
-  <Iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F%D0%92%D0%B8%D1%86%D0%BE%D0%B2%D0%B5-106939550867609%2F&tabs=timeline&width=340&height=127&small_header=true&adapt_container_width=false&hide_cover=true&show_facepile=false&appId" width="340" height="70" style="border:none;overflow:hidden" />,
-    onClick: () => {
-      console.log('Notification Clicked!');
-    },
-  });
-};
+
 const JokeBr = ({ joke }) => joke.split('\n').map((item2) => (
   <span key={uuid()}>
     {item2}
@@ -84,7 +74,17 @@ const Content = ({ item }) => (
 
   </div>
 );
-
+const openNotification = () => {
+  notification.open({
+    message: 'Харесай Ни!',
+    duration: 20,
+    description:
+  <Iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F%D0%92%D0%B8%D1%86%D0%BE%D0%B2%D0%B5-106939550867609%2F&tabs=timeline&width=340&height=127&small_header=true&adapt_container_width=false&hide_cover=true&show_facepile=false&appId" width="300" height="70" />,
+    onClick: () => {
+      console.log('Notification Clicked!');
+    },
+  });
+};
 
 const App = (props) => {
   const [state, setState] = useImmer({
@@ -100,7 +100,6 @@ const App = (props) => {
     async function mount() {
       const query1 = isIndex ? '' : match.params.id;
       const query2 = isIndex ? '' : `&skip=${Math.floor(Math.random() * 59979)}`;
-
       const result = await axios(`https://pouchdb.herokuapp.com/jokes/${query1}`);
       const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : result.data.joke.replace(/\n/g, 'br')}`);
       const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=20${query2}`);
@@ -146,11 +145,8 @@ const App = (props) => {
               <meta property="og:image:height" content={measures.height} />
             </Helmet>
           ) : (<div />)}
-
           <Row type="flex" justify="center" align="top" style={{ padding: 10 }}>
-
             <Col xs={23} sm={20} md={16} lg={15} xl={12}>
-
               <Collapse defaultActiveKey={['1', '2']}>
                 <Panel header="😃 ВИЦ НА ДЕНЯ" key="1">
                   {result.joke
