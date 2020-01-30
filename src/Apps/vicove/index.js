@@ -5,11 +5,11 @@ import React, { useEffect } from 'react';
 import { useImmer } from 'use-immer';
 import axios from 'axios';
 import {
-  List, Button, Row, Col, Tag, Icon, Collapse,
+  List, Button, Row, Col, Tag, Icon, Collapse, Badge,
 } from 'antd';
 import { Helmet } from 'react-helmet';
 import uuid from 'react-uuid';
-
+import Iframe from './Iframe';
 import 'antd/dist/antd.css';
 
 import './style.css';
@@ -136,7 +136,7 @@ const App = (props) => {
           <Row type="flex" justify="center" align="top" style={{ padding: 10 }}>
 
             <Col xs={23} sm={20} md={16} lg={15} xl={12}>
-
+              <Iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F%D0%92%D0%B8%D1%86%D0%BE%D0%B2%D0%B5-106939550867609%2F&tabs=timeline&width=340&height=127&small_header=true&adapt_container_width=false&hide_cover=true&show_facepile=false&appId" width="340" height="127" style="border:none;overflow:hidden" />
               <Collapse defaultActiveKey={['1', '2']}>
                 <Panel header="😃 ВИЦ НА ДЕНЯ" key="1">
                   {result.joke
