@@ -98,9 +98,9 @@ const App = (props) => {
     async function mount() {
       const query1 = isIndex ? '' : match.params.id;
       const query2 = isIndex ? '' : `&skip=${Math.floor(Math.random() * 59979)}`;
-      const result = await axios(`https://pouchdb.herokuapp.com/jokes/${query1}`);
+      const result = await axios(`https://db.arpecop.xyz/jokes/${query1}`);
       const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : result.data.joke.replace(/\n/g, 'br')}`);
-      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=20${query2}`);
+      const resultAll = await axios(`https://db.arpecop.xyz/jokes/_all_docs?include_docs=true&limit=20${query2}`);
       setState((draft) => {
         draft.result = result.data;
         draft.measures = measures.data;
