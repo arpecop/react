@@ -80,9 +80,7 @@ const openNotification = () => {
     duration: 20,
     description:
   <Iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F%D0%92%D0%B8%D1%86%D0%BE%D0%B2%D0%B5-106939550867609%2F&tabs=timeline&width=340&height=127&small_header=true&adapt_container_width=false&hide_cover=true&show_facepile=false&appId" width="300" height="70" />,
-    onClick: () => {
-      console.log('Notification Clicked!');
-    },
+
   });
 };
 
@@ -110,11 +108,7 @@ const App = (props) => {
         draft.resultAll = resultAll.data;
       });
     }
-    async function mount2() {
-      setState((draft) => {
 
-      });
-    }
     mount();
 
     openNotification();
@@ -125,7 +119,8 @@ const App = (props) => {
   return (
     <>
       {isLoading ? (
-        <div style={{ textAlign: 'center' }}>
+        <div style={{ textAlign: 'center', marginTop: '49%' }}>
+          <h2 style={{ fontWeight: 'lighter' }}>Вицове</h2>
           <Button type="primary" loading />
         </div>
       ) : (

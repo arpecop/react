@@ -65,7 +65,7 @@ const App1 = (props) => {
     Auth.signIn({
       username: state.username, // Required, the username
       password: state.password, // Optional, the password
-    }).then((data) => {
+    }).then(() => {
       setCookie('username', state.username, { path: '/' });
 
       window.location.href = '/loggedin';
