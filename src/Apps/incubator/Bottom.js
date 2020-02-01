@@ -48,7 +48,7 @@ const Listx = ({ prefix, rows }) => (
 
 const Bottom = ({ tag }) => {
   const data1 = useFetch(`${env.api}twitter/_design/api/_view/tags?reduce=true&group=true&limit=25&skip=25&start_key="${tag}"&update=false`);
-
+  const data = useFetch(`${env.api}twitter/_design/api/_view/users?reduce=true&group=true&limit=25&skip=25&start_key="${tag}"&update=false`);
   return (
     <div>
       <Row type="flex" justify="center">

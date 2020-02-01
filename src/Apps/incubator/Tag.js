@@ -1,18 +1,15 @@
 import React from 'react';
 
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import {
-  Card, Row, Col, Spin,
-} from 'antd';
+
 import useAxios from 'axios-hooks';
 import Item from './components/Item';
-import TextFormat from './components/TextFormat';
+
 import { Header } from './components/UI';
 import Bottom from './Bottom';
 import Top from './Top';
 import { env } from './env/constants';
 
-import WrapperBanner from './components/banners';
 
 const uuid = require('uuid/v4');
 
