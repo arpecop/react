@@ -111,7 +111,7 @@ const App = (props) => {
 
     mount();
 
-    openNotification();
+    // openNotification();
   }, []);
   const {
     isLoading, resultAll, measures, result,
@@ -166,15 +166,15 @@ const App = (props) => {
             </Col>
 
           </Row>
-          <Waypoint onEnter={openNotification}>
+          <>
             <div style={{ textAlign: 'center' }}>
               {cats.map((item1) => (<a key={uuid()} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta" style={{ margin: 5 }}>{item1.key}</Tag></a>))}
             </div>
-          </Waypoint>
+          </>
         </div>
       )}
     </>
   );
 };
-
+// Waypoint onEnter={openNotification}
 export default App;
