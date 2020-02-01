@@ -1,9 +1,9 @@
 const env = {
   development: {
-    api: 'https://rudixauth.herokuapp.com/test/',
+    api: 'https://db.arpecop.xyz/',
   },
   production: {
-    api: 'https://rudixauth.herokuapp.com/test/',
+    api: 'https://db.arpecop.xyz/',
   },
 };
 

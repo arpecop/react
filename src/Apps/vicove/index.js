@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 /* eslint-disable no-param-reassign */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, Component } from 'react';
 import { useImmer } from 'use-immer';
 import axios from 'axios';
 import {
@@ -12,7 +12,7 @@ import uuid from 'react-uuid';
 import { Waypoint } from 'react-waypoint';
 import Iframe from './Iframe';
 import 'antd/dist/antd.css';
-
+import App1 from './login';
 import './style.css';
 
 const { Panel } = Collapse;
@@ -78,9 +78,7 @@ const openNotification = () => {
   notification.open({
     message: 'Харесай Ни!',
     duration: 20,
-    description:
-  <Iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F%D0%92%D0%B8%D1%86%D0%BE%D0%B2%D0%B5-106939550867609%2F&tabs=timeline&width=340&height=127&small_header=true&adapt_container_width=false&hide_cover=true&show_facepile=false&appId" width="300" height="70" />,
-
+    description: <Iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F%D0%92%D0%B8%D1%86%D0%BE%D0%B2%D0%B5-106939550867609%2F&tabs=timeline&width=340&height=127&small_header=true&adapt_container_width=false&hide_cover=true&show_facepile=false&appId" width="300" height="70" />,
   });
 };
 
@@ -141,6 +139,7 @@ const App = (props) => {
             </Helmet>
           ) : (<div />)}
           <Row type="flex" justify="center" align="top" style={{ padding: 10 }}>
+            <App1 />
             <Col xs={23} sm={20} md={16} lg={15} xl={12}>
               <Collapse defaultActiveKey={['1', '2']}>
                 <Panel header="😃 ВИЦ НА ДЕНЯ" key="1">
