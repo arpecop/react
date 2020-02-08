@@ -9,10 +9,10 @@ import {
 } from 'antd';
 import { Helmet } from 'react-helmet';
 import uuid from 'react-uuid';
-import { Waypoint } from 'react-waypoint';
+
 import Iframe from './Iframe';
 import 'antd/dist/antd.css';
-import App1 from './login';
+
 import './style.css';
 
 const { Panel } = Collapse;
@@ -136,10 +136,13 @@ const App = (props) => {
               />
               <meta property="og:image:width" content={measures.width} />
               <meta property="og:image:height" content={measures.height} />
+              <meta name="twitter:card" content="summary" />
+              <meta name="twitter:creator" content="@Rudi11963642" />
+
             </Helmet>
           ) : (<div />)}
           <Row type="flex" justify="center" align="top" style={{ padding: 10 }}>
-            <App1 />
+
             <Col xs={23} sm={20} md={16} lg={15} xl={12}>
               <Collapse defaultActiveKey={['1', '2']}>
                 <Panel header="😃 ВИЦ НА ДЕНЯ" key="1">
