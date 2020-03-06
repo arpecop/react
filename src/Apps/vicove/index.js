@@ -5,7 +5,7 @@ import React, { useEffect, Component } from 'react';
 import { useImmer } from 'use-immer';
 import axios from 'axios';
 import {
-  List, Button, Row, Col, Tag, Icon, Collapse, notification,
+  List, Button, Row, Col, Tag, Collapse, notification,
 } from 'antd';
 import { Helmet } from 'react-helmet';
 import uuid from 'react-uuid';
@@ -68,7 +68,7 @@ const Content = ({ item }) => (
       className="ant-btn ant-btn-primary ant-btn-round"
       href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.doc._id}`}
     >
-      <Icon type="facebook" />
+
       {' Сподели'}
     </a>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Avatar, Card, Col, Comment, Row, Icon,
+  Avatar, Card, Col, Comment, Row,
 } from 'antd';
 import TimeAgo from 'react-timeago';
 import WrapperBanner from './banners';
@@ -33,15 +33,15 @@ const Komentar = ({ item }) => {
 
           <span style={{ color: '#fff' }}><TextFormat text={title} /></span>
           <span style={{ color: '#FFF' }}>
-            <Icon type="message" style={{ color: '#FFF' }} />
+
             {` ${item.replyCount}    `}
           </span>
           <span style={{ color: '#FFF' }}>
-            <Icon type="redo" style={{ color: '#FFF' }} />
+
             {` ${item.retweetCount}    `}
           </span>
           <span style={{ color: '#FFF' }}>
-            <Icon type="heart" style={{ color: '#FFF' }} />
+
             {` ${item.favoriteCount}  `}
           </span>
         </>
