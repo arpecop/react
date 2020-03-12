@@ -6,7 +6,7 @@ import 'antd/dist/antd.css';
 function App(props) {
   const { isIndex, match } = props;
   const [{ data, loading, error }] = useAxios(
-    `https://db.arpecop.xyz/kartinki/_design/api/_view/md5?limit=20&descending=true${isIndex ? '' : `&start_key="${match.params.id}"`}`,
+    `//db.arpecop.xyz/porn/_all_docs?limit=25${isIndex ? '' : `&start_key="${match.params.id}"`}`,
   );
 
   if (loading) return <p>Loading...</p>;
