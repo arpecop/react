@@ -7,6 +7,7 @@ import axios from 'axios';
 import {
   List, Button, Row, Col, Tag, Collapse, notification,
 } from 'antd';
+import { Waypoint } from 'react-waypoint';
 import { Helmet } from 'react-helmet';
 import uuid from 'react-uuid';
 
@@ -106,9 +107,7 @@ const App = (props) => {
         draft.resultAll = resultAll.data;
       });
     }
-
     mount();
-
     openNotification();
   }, []);
   const {
@@ -117,7 +116,7 @@ const App = (props) => {
   return (
     <>
       {isLoading ? (
-        <div style={{ textAlign: 'center', marginTop: '49%' }}>
+        <div style={{ textAlign: 'center' }}>
           <h2 style={{ fontWeight: 'lighter' }}>Вицове</h2>
           <Button type="primary" loading />
         </div>
@@ -169,6 +168,7 @@ const App = (props) => {
 
           </Row>
           <>
+            <Waypoint onEnter={openNotification} />
             <div style={{ textAlign: 'center' }}>
               {cats.map((item1) => (<a key={uuid()} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta" style={{ margin: 5 }}>{item1.key}</Tag></a>))}
             </div>
@@ -178,5 +178,5 @@ const App = (props) => {
     </>
   );
 };
-// Waypoint onEnter={openNotification}
+//
 export default App;
