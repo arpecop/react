@@ -1,5 +1,5 @@
 // izteglisi//
-import Main from './Apps/porn/index';
+import Main from './Apps/vicove/index';
 
 export default Main;
 // test

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 /* eslint-disable no-param-reassign */
 
-import React, { useEffect, Component } from 'react';
+import React, { useEffect } from 'react';
 import { useImmer } from 'use-immer';
 import axios from 'axios';
 import {
@@ -54,27 +54,30 @@ const JokeBr = ({ joke }) => joke.split('\n').map((item2) => (
   </span>
 ));
 
-const Content = ({ item }) => (
-  <div style={{
-    padding: 0, margin: 0,
-  }}
-  >
-    <a style={{ float: 'right' }} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta" style={{ margin: 5 }}>{item.doc.cat}</Tag></a>
-    <a href={`/${item.doc._id}`}>
-      <JokeBr joke={item.doc.joke} />
-    </a>
-    <p> </p>
-    <a
-      style={{ backgroundColor: '#3b5998', border: 'none' }}
-      className="ant-btn ant-btn-primary ant-btn-round"
-      href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.doc._id}`}
+const Content = ({ item }) => {
+  console.log(item);
+  return (
+    <div style={{
+      padding: 0, margin: 0,
+    }}
     >
+      <a style={{ float: 'right' }} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta" style={{ margin: 5 }}>{item.doc.cat}</Tag></a>
+      <a href={`/${item.doc._id}`}>
+        <JokeBr joke={item.doc.joke} />
+      </a>
+      <p> </p>
+      <a
+        style={{ backgroundColor: '#3b5998', border: 'none' }}
+        className="ant-btn ant-btn-primary ant-btn-round"
+        href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.doc._id}`}
+      >
 
-      {' Сподели'}
-    </a>
+        {' Сподели'}
+      </a>
 
-  </div>
-);
+    </div>
+  );
+};
 const openNotification = () => {
   notification.open({
     message: 'Харесай Ни!',
@@ -89,29 +92,54 @@ const App = (props) => {
     lastkey: 0,
     isLoading: true,
     collapsed: true,
+    isCat: false,
+    isItem: false,
     result: { rows: [] },
-    resultAll: { rows: [] },
+    items: { rows: [] },
   });
   const { isIndex, match } = props;
   useEffect(() => {
     async function mount() {
-      const query1 = isIndex ? '' : match.params.id;
-      const query2 = isIndex ? '' : `&skip=${Math.floor(Math.random() * 59979)}`;
-      const result = await axios(`https://pouchdb.herokuapp.com/jokes/${query1}`);
-      const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : result.data.joke.replace(/\n/g, 'br')}`);
-      const resultAll = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=20${query2}`);
-      setState((draft) => {
-        draft.result = result.data;
-        draft.measures = measures.data;
-        draft.isLoading = false;
-        draft.resultAll = resultAll.data;
-      });
+      if (isIndex) {
+        const query2 = isIndex ? '' : `&skip=${Math.floor(Math.random() * 59979)}`;
+
+        const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : result.data.joke.replace(/\n/g, 'br')}`);
+        const items = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=20${query2}`);
+        setState((draft) => {
+          draft.measures = measures.data;
+          draft.isLoading = false;
+          draft.items = items.data;
+        });
+      } else if (match.params.id === 'cat') {
+        const items = await axios(`https://pouchdb.herokuapp.com/jokes/_design/api/_view/${match.params.id2}?limit=20`);
+
+        setState((draft) => {
+          draft.isCat = true;
+          draft.isLoading = false;
+          draft.items = {
+            rows: items.data.rows.map((item) => ({
+              doc: {
+                item, ...item.value, cat: match.params.id2, _id: item.key,
+              },
+            })),
+          };
+        });
+      } else {
+        const items = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=20&start_key=${match.params.id}`);
+
+        const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : items.data.rows[0].doc.joke.replace(/\n/g, 'br')}`);
+        setState((draft) => {
+          draft.measures = measures.data;
+          draft.isLoading = false;
+          draft.items = { rows: items.data.rows };
+        });
+      }
     }
     mount();
     openNotification();
   }, []);
   const {
-    isLoading, resultAll, measures, result,
+    isLoading, items, measures, result, isCat,
   } = state;
   return (
     <>
@@ -122,7 +150,7 @@ const App = (props) => {
         </div>
       ) : (
         <div>
-          {!isIndex ? (
+          {!isIndex && !isCat ? (
             <Helmet>
               <title>Виц</title>
               <meta property="og:url" content={`https://${window.location.hostname}/${match.params.id}`} />
@@ -139,39 +167,33 @@ const App = (props) => {
               <meta name="twitter:creator" content="@Rudi11963642" />
 
             </Helmet>
-          ) : (<div />)}
+          ) : null}
+
           <Row type="flex" justify="center" align="top" style={{ padding: 10 }}>
 
             <Col xs={23} sm={20} md={16} lg={15} xl={12}>
-              <Collapse defaultActiveKey={['1', '2']}>
-                <Panel header="😃 ВИЦ НА ДЕНЯ" key="1">
-                  {result.joke
-                    ? <Content item={{ doc: result }} />
-                    : <Content item={{ doc: resultAll.rows[0].doc }} />}
-                </Panel>
-                <Panel
-                  header="🤣 ОТ ДНЕС"
-                  key="2"
-                >
-                  <List
-                    size="large"
-                    dataSource={resultAll.rows}
-                    renderItem={(item) => (
-                      <List.Item>
-                        <Content item={item} />
-                      </List.Item>
-                    )}
-                  />
-                </Panel>
-              </Collapse>
+              <div style={{ textAlign: 'center' }}>
+                {cats.map((item1) => (<a key={uuid()} href={`/cat/${item1.key}`}><Tag color="magenta" style={{ margin: 5 }}>{item1.key}</Tag></a>))}
+              </div>
+
+
+              <List
+                size="large"
+                dataSource={items.rows}
+                renderItem={(item) => (
+                  <List.Item>
+
+                    <Content item={item} />
+                  </List.Item>
+                )}
+              />
+
             </Col>
 
           </Row>
           <>
             <Waypoint onEnter={openNotification} />
-            <div style={{ textAlign: 'center' }}>
-              {cats.map((item1) => (<a key={uuid()} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta" style={{ margin: 5 }}>{item1.key}</Tag></a>))}
-            </div>
+
           </>
         </div>
       )}
