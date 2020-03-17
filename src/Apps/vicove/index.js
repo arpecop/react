@@ -172,7 +172,7 @@ const App = (props) => {
 
             <Col xs={23} sm={20} md={16} lg={15} xl={12}>
               <div style={{ textAlign: 'center' }}>
-                {cats.map((item1) => (<a key={uuid()} href={`/cat/${item1.key}`}><Tag color="magenta" style={{ margin: 5 }}>{item1.key}</Tag></a>))}
+                {cats.map((item1) => (<a key={uuid()} href={`/cat/${item1.key}`}><Tag color="magenta" style={{ margin: 5, cursor: 'pointer' }}>{item1.key}</Tag></a>))}
               </div>
 
 
@@ -188,7 +188,9 @@ const App = (props) => {
               />
 
             </Col>
-
+            <div style={{ textAlign: 'center' }}>
+              {cats.map((item1) => (<a key={uuid()} href={`/cat/${item1.key}`}><Tag color="magenta" style={{ margin: 5, cursor: 'pointer' }}>{item1.key}</Tag></a>))}
+            </div>
           </Row>
           <>
             <Waypoint onEnter={openNotification} />
