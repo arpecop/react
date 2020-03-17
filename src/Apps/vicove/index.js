@@ -28,7 +28,7 @@ const cats = [
   { value: 326, key: 'Военни' },
   { value: 274, key: 'Гадории' },
   { value: 1763, key: 'Животни' },
-  { value: 1542, key: 'Иванчо' },
+  { value: 1542, key: 'Иванчо и Марийка' },
   { value: 1052, key: 'Лекари' },
   { value: 2586, key: 'Любими Герои' },
   { value: 3412, key: 'Мръсни' },
@@ -171,9 +171,6 @@ const App = (props) => {
           <Row type="flex" justify="center" align="top" style={{ padding: 10 }}>
 
             <Col xs={23} sm={20} md={16} lg={15} xl={12}>
-              <div style={{ textAlign: 'center' }}>
-                {cats.map((item1) => (<a key={uuid()} href={`/cat/${item1.key}`}><Tag color="magenta" style={{ margin: 5, cursor: 'pointer' }}>{item1.key}</Tag></a>))}
-              </div>
 
 
               <List
@@ -190,6 +187,9 @@ const App = (props) => {
             </Col>
             <div style={{ textAlign: 'center' }}>
               {cats.map((item1) => (<a key={uuid()} href={`/cat/${item1.key}`}><Tag color="magenta" style={{ margin: 5, cursor: 'pointer' }}>{item1.key}</Tag></a>))}
+              <a href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2">
+                <img src="/vicbg.png" style={{ maxWidth: '100%' }} />
+              </a>
             </div>
           </Row>
           <>
