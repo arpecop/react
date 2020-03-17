@@ -145,7 +145,7 @@ const App = (props) => {
     <>
       {isLoading ? (
         <div style={{ textAlign: 'center' }}>
-          <h2 style={{ fontWeight: 'lighter' }}>Вицове</h2>
+          <h2 style={{ fontWeight: 'lighter' }}> Вицове </h2>
           <Button type="primary" loading />
         </div>
       ) : (
@@ -165,7 +165,6 @@ const App = (props) => {
               <meta property="og:image:height" content={measures.height} />
               <meta name="twitter:card" content="summary" />
               <meta name="twitter:creator" content="@Rudi11963642" />
-
             </Helmet>
           ) : null}
 
