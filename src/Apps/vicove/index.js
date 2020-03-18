@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 import { useImmer } from 'use-immer';
 import axios from 'axios';
 import {
-  List, Button, Row, Col, Tag, Collapse, notification,
+  List, Button, Row, Col, Tag, notification,
 } from 'antd';
 import { Waypoint } from 'react-waypoint';
 import { Helmet } from 'react-helmet';
@@ -16,7 +16,6 @@ import 'antd/dist/antd.css';
 
 import './style.css';
 
-const { Panel } = Collapse;
 
 const cats = [
 //  { value: 11107, key: 'Разни' },
@@ -61,7 +60,7 @@ const Content = ({ item }) => {
       padding: 0, margin: 0,
     }}
     >
-      <a style={{ float: 'right' }} href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2"><Tag color="magenta" style={{ margin: 5 }}>{item.doc.cat}</Tag></a>
+      <a style={{ float: 'right' }} href={`/cat/${item.doc.cat}`}><Tag color="magenta" style={{ margin: 5 }}>{item.doc.cat}</Tag></a>
       <a href={`/${item.doc._id}`}>
         <JokeBr joke={item.doc.joke} />
       </a>
@@ -187,9 +186,11 @@ const App = (props) => {
             </Col>
             <div style={{ textAlign: 'center' }}>
               {cats.map((item1) => (<a key={uuid()} href={`/cat/${item1.key}`}><Tag color="magenta" style={{ margin: 5, cursor: 'pointer' }}>{item1.key}</Tag></a>))}
-              <a href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2">
-                <img src="/vicbg.png" style={{ maxWidth: '100%' }} />
-              </a>
+              <div>
+                <a href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2">
+                  <img src="/vicbg.png" style={{ maxWidth: '100%' }} alt="" />
+                </a>
+              </div>
             </div>
           </Row>
           <>
