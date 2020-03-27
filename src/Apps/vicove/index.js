@@ -53,30 +53,38 @@ const JokeBr = ({ joke }) => joke.split('\n').map((item2) => (
   </span>
 ));
 
-const Content = ({ item }) => {
-  console.log(item);
-  return (
-    <div style={{
-      padding: 0, margin: 0,
-    }}
-    >
-      <a style={{ float: 'right' }} href={`/cat/${item.doc.cat}`}><Tag color="magenta" style={{ margin: 5 }}>{item.doc.cat}</Tag></a>
-      <a href={`/${item.doc._id}`}>
+const Content = ({ item, i }) => (
+  <div style={{
+    padding: 0, margin: 0,
+  }}
+  >
+
+
+    {i === 0 ? (
+      <div>
+        <a style={{ float: 'right' }} href={`/cat/${item.doc.cat}`}><Tag color="magenta" style={{ margin: 5 }}>{item.doc.cat}</Tag></a>
         <JokeBr joke={item.doc.joke} />
-      </a>
-      <p> </p>
-      <a
-        style={{ backgroundColor: '#3b5998', border: 'none' }}
-        className="ant-btn ant-btn-primary ant-btn-round"
-        href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.doc._id}`}
-      >
+        <p> </p>
+        <a
+          style={{ backgroundColor: '#3b5998', border: 'none' }}
+          className="ant-btn ant-btn-primary ant-btn-round"
+          href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.doc._id}`}
+        >
 
-        {' Сподели'}
-      </a>
+          {' Сподели'}
+        </a>
+      </div>
+    ) : (
+      <div>
+        {`${item.doc.joke.substring(0, 100)}... `}
 
-    </div>
-  );
-};
+        <a style={{ float: 'right' }} href={`/${item.doc._id}`}><Tag color="magenta" style={{ margin: 5 }}> Прочети  </Tag></a>
+      </div>
+    )}
+
+
+  </div>
+);
 const openNotification = () => {
   notification.open({
     message: 'Харесай Ни!',
@@ -93,7 +101,6 @@ const App = (props) => {
     collapsed: true,
     isCat: false,
     isItem: false,
-    result: { rows: [] },
     items: { rows: [] },
   });
   const { isIndex, match } = props;
@@ -101,11 +108,8 @@ const App = (props) => {
     async function mount() {
       if (isIndex) {
         const query2 = isIndex ? '' : `&skip=${Math.floor(Math.random() * 59979)}`;
-
-        const measures = await axios(`https://grafix.herokuapp.com/?text=${isIndex ? 'x' : result.data.joke.replace(/\n/g, 'br')}`);
         const items = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=20${query2}`);
         setState((draft) => {
-          draft.measures = measures.data;
           draft.isLoading = false;
           draft.items = items.data;
         });
@@ -135,10 +139,10 @@ const App = (props) => {
       }
     }
     mount();
-    openNotification();
+    // openNotification();
   }, []);
   const {
-    isLoading, items, measures, result, isCat,
+    isLoading, items, measures, isCat,
   } = state;
   return (
     <>
@@ -168,21 +172,16 @@ const App = (props) => {
           ) : null}
 
           <Row type="flex" justify="center" align="top" style={{ padding: 10 }}>
-
             <Col xs={23} sm={20} md={16} lg={15} xl={12}>
-
-
               <List
                 size="large"
                 dataSource={items.rows}
-                renderItem={(item) => (
+                renderItem={(item, i) => (
                   <List.Item>
-
-                    <Content item={item} />
+                    <Content item={item} i={i} />
                   </List.Item>
                 )}
               />
-
             </Col>
             <div style={{ textAlign: 'center' }}>
               {cats.map((item1) => (<a key={uuid()} href={`/cat/${item1.key}`}><Tag color="magenta" style={{ margin: 5, cursor: 'pointer' }}>{item1.key}</Tag></a>))}
