@@ -11,7 +11,6 @@ import { Waypoint } from 'react-waypoint';
 import { Helmet } from 'react-helmet';
 import uuid from 'react-uuid';
 
-import { FacebookProvider, ShareButton } from 'react-facebook';
 
 import Iframe from './Iframe';
 import 'antd/dist/antd.css';
@@ -66,33 +65,22 @@ const Content = ({ item, i }) => (
     padding: 0, margin: 0,
   }}
   >
-    {i === 0 ? (
-      <div>
 
-        <a style={{ float: 'right' }} href={`/cat/${item.doc.cat}`}><Tag color="magenta" style={{ margin: 5 }}>{item.doc.cat}</Tag></a>
-        <JokeBr joke={item.doc.joke} />
-        <p> </p>
-        <a
-          style={{ backgroundColor: '#3b5998', border: 'none' }}
-          className="ant-btn ant-btn-primary ant-btn-round"
-          href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.doc._id}`}
-        >
+    <div>
 
-          {' Сподели'}
-        </a>
-        <FacebookProvider appId="123456789">
-          <ShareButton href="http://www.facebook.com">
-            Сподели
-          </ShareButton>
-        </FacebookProvider>
-      </div>
-    ) : (
-      <div>
-        {`${item.doc.joke.substring(0, 100)}... `}
-        {item.doc.joke.length >= 100 ? (<a style={{ float: 'right' }} href={`/${item.doc._id}`}><Tag color="magenta" style={{ margin: 5 }}> Прочети  </Tag></a>) : null}
+      <a style={{ float: 'right' }} href={`/cat/${item.doc.cat}`}><Tag color="magenta" style={{ margin: 5 }}>{item.doc.cat}</Tag></a>
+      <JokeBr joke={item.doc.joke} />
+      <p> </p>
+      <a
+        style={{ backgroundColor: '#3b5998', border: 'none' }}
+        className="ant-btn ant-btn-primary ant-btn-round"
+        href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.doc._id}`}
+      >
 
-      </div>
-    )}
+        {' Сподели'}
+      </a>
+
+    </div>
 
 
   </div>
