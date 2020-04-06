@@ -11,11 +11,12 @@ import { Waypoint } from 'react-waypoint';
 import { Helmet } from 'react-helmet';
 import uuid from 'react-uuid';
 
+import { FacebookProvider, ShareButton } from 'react-facebook';
+
 import Iframe from './Iframe';
 import 'antd/dist/antd.css';
 
 import './style.css';
-
 
 const cats = [
 //  { value: 11107, key: 'Разни' },
@@ -52,16 +53,22 @@ const JokeBr = ({ joke }) => joke.split('\n').map((item2) => (
     <br />
   </span>
 ));
+const responseFacebook = (response) => {
+  console.log(response);
+};
+
+const componentClicked = () => {
+  console.log('Clicked!');
+};
 
 const Content = ({ item, i }) => (
   <div style={{
     padding: 0, margin: 0,
   }}
   >
-
-
     {i === 0 ? (
       <div>
+
         <a style={{ float: 'right' }} href={`/cat/${item.doc.cat}`}><Tag color="magenta" style={{ margin: 5 }}>{item.doc.cat}</Tag></a>
         <JokeBr joke={item.doc.joke} />
         <p> </p>
@@ -73,12 +80,17 @@ const Content = ({ item, i }) => (
 
           {' Сподели'}
         </a>
+        <FacebookProvider appId="123456789">
+          <ShareButton href="http://www.facebook.com">
+            Сподели
+          </ShareButton>
+        </FacebookProvider>
       </div>
     ) : (
       <div>
         {`${item.doc.joke.substring(0, 100)}... `}
+        {item.doc.joke.length >= 100 ? (<a style={{ float: 'right' }} href={`/${item.doc._id}`}><Tag color="magenta" style={{ margin: 5 }}> Прочети  </Tag></a>) : null}
 
-        <a style={{ float: 'right' }} href={`/${item.doc._id}`}><Tag color="magenta" style={{ margin: 5 }}> Прочети  </Tag></a>
       </div>
     )}
 
@@ -107,8 +119,7 @@ const App = (props) => {
   useEffect(() => {
     async function mount() {
       if (isIndex) {
-        const query2 = isIndex ? '' : `&skip=${Math.floor(Math.random() * 59979)}`;
-        const items = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=20${query2}`);
+        const items = await axios(`https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=20&skip=${Math.floor(Math.random() * 59979)}`);
         setState((draft) => {
           draft.isLoading = false;
           draft.items = items.data;
@@ -183,19 +194,18 @@ const App = (props) => {
                 )}
               />
             </Col>
+
             <div style={{ textAlign: 'center' }}>
               {cats.map((item1) => (<a key={uuid()} href={`/cat/${item1.key}`}><Tag color="magenta" style={{ margin: 5, cursor: 'pointer' }}>{item1.key}</Tag></a>))}
               <div>
+                <Waypoint onEnter={openNotification} />
                 <a href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2">
                   <img src="/vicbg.png" style={{ maxWidth: '100%' }} alt="" />
                 </a>
               </div>
             </div>
           </Row>
-          <>
-            <Waypoint onEnter={openNotification} />
 
-          </>
         </div>
       )}
     </>
