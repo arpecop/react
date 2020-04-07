@@ -6,6 +6,12 @@ import TimeAgo from 'react-timeago';
 import WrapperBanner from './banners';
 import TextFormat from './TextFormat';
 
+const test = 'A large two bedroom flat set over the top two floors of a period conversion in Barnsbury #KFHproperty #propertyforsale #forsale #estateagent #realestate #interiordesign #interiors #house #home #islington #highbury #finsburypark #holloway #n1 #n5 #n4 #n7 #northlondon';
+function removeUrls(string) {
+  const x = string.split(' ').filter((item) => item.includes('#')).map((item) => item.replace('#', ''));
+  return x.join(' ');
+}
+
 
 const Komentar = ({ item }) => {
   let title = item.title || item.text;
@@ -50,7 +56,10 @@ const Komentar = ({ item }) => {
   );
 };
 const Item = ({ item, i }) => {
-  const { screenName, quote, images } = item;
+  const {
+    screenName, quote, images, title,
+  } = item;
+
   const href = `/u/${screenName}`;
   const thread = quote ? (
     <Komentar item={quote} href={href}>
@@ -68,7 +77,7 @@ const Item = ({ item, i }) => {
           bordered={false}
           type="inner"
           cover={
-            images ? (<img alt="" style={{ width: '100%' }} src={images[0]} />) : null
+            images ? (<img alt={removeUrls(title)} style={{ width: '100%' }} src={images[0]} />) : null
           }
         >
           {thread}
