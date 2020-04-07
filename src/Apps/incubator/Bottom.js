@@ -16,7 +16,7 @@ const Listx = ({ prefix, rows }) => (
       dataSource={rows}
       renderItem={(item) => (
         <span>
-          <a href={`/${prefix}/${item.key}`}>
+          <a href={`https://incubator.netlify.app/${prefix}/${item.key}`}>
             <Tag
               style={{
                 backgroundColor: '#231f20',
