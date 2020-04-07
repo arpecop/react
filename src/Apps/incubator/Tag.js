@@ -7,7 +7,7 @@ import Item from './components/Item';
 
 import { Header } from './components/UI';
 import Bottom from './Bottom';
-import Top from './Top';
+
 import { env } from './env/constants';
 
 
@@ -23,7 +23,7 @@ const Tag = ({ tag }) => {
       <Header>
         <h1>{`#${tag}`}</h1>
       </Header>
-      <Top />
+
       {!loading && !error && data.rows ? (
         <>
           <Helmet>
