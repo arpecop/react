@@ -1,42 +1,38 @@
 /* eslint-disable no-param-reassign */
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
+import { useImmer } from 'use-immer';
+import FacebookLogin from 'react-facebook-login';
+import { useCookies } from 'react-cookie';
 
-import Amplify, { Auth, Hub } from 'aws-amplify';
-import awsconfig from '../../aws-exports';
-Amplify.configure(awsconfig);
-
-class App1 extends Component {
-  state = { user: null, customState: null };
-
-  componentDidMount() {
-    Hub.listen("auth", ({ payload: { event, data } }) => {
-      switch (event) {
-        case "signIn":
-          this.setState({ user: data });
-          break;
-        case "signOut":
-          this.setState({ user: null });
-          break;
-        case "customOAuthState":
-          this.setState({ customState: data });
-      }
-    });
-
-    Auth.currentAuthenticatedUser()
-      .then(user => this.setState({ user }))
-      .catch(() => console.log("Not signed in"));
-  }
-
-  render() {
-    const { user } = this.state;
-
-    return (
-      <div className="App">
-       
-        <button onClick={() => Auth.federatedSignIn()}>Open Hosted UI</button>
-        
-      </div>
-    );
-  }
-}
+const App1 = (props) => {
+  const [cookies, setCookie] = useCookies(['username', 'email']);
+  const [state, setState] = useImmer({
+    username: null,
+    password: null,
+  });
+  function responseFacebook() {}
+  return (
+    <div
+      className="App"
+      style={{
+        width: '100%',
+        height: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <FacebookLogin
+        appId="1088597931155576"
+        autoLoad
+        callback={responseFacebook}
+        render={(renderProps) => (
+          <button onClick={renderProps.onClick}>
+            This is my custom FB button
+          </button>
+        )}
+      />
+    </div>
+  );
+};
 export default App1;

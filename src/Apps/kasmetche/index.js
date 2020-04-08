@@ -30,7 +30,7 @@ const App = (props) => {
       return (
         <Wrapper props={props} title="🎄 Изтегли си цитат-късметче 🎄" app="quote">
           <div style={{ height: 599, width: 633, textAlign: 'center' }}>
-            <img src={`/quotes/${Math.floor((Math.random() * 255) + 0)}.png`} style={{ marginTop: 90, zIndex: 100 }} alt="" />
+            <img src={`/quotes/${Math.floor((Math.random() * 255) + 0)}.png`} style={{ marginTop: 80, zIndex: 100 }} alt="" />
             <img
               src={`https://graph.facebook.com/${match ? match.params.start_key : null}/picture?type=large`}
               style={{
