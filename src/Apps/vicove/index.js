@@ -46,6 +46,22 @@ const cats = [
   { value: 2138, key: 'Черен хумор' },
 ];
 
+const Cats = ({ cats }) => cats.map((item1) => (
+  <a
+    key={uuid()}
+    href={`/cat/${item1.key}`}
+  >
+    <Tag
+      color="magenta"
+      style={{
+        margin: 5,
+        cursor: 'pointer',
+      }}
+    >
+      {item1.key}
+    </Tag>
+  </a>
+));
 const JokeBr = ({ joke }) => joke.split('\n').map((item2) => (
   <span key={uuid()}>
     {item2}
@@ -206,9 +222,10 @@ const App = (props) => {
   } = state;
   return (
     <>
+      <h2 style={{ fontWeight: 'lighter' }}> 😜 Вицове </h2>
       {isLoading ? (
         <div style={{ textAlign: 'center' }}>
-          <h2 style={{ fontWeight: 'lighter' }}> Вицове </h2>
+
           <Button type="primary" loading />
         </div>
       ) : (
@@ -261,6 +278,7 @@ const App = (props) => {
               </div>
             ) : (
               <Col xs={23} sm={20} md={16} lg={15} xl={12}>
+                <Cats cats={cats} />
                 <List
                   size="large"
                   dataSource={items.rows}
@@ -274,22 +292,7 @@ const App = (props) => {
                   <Pagination pageSize={20} defaultCurrent={currentPage} total={total} onChange={onChange} />
                 ) : null}
                 <div style={{ textAlign: 'center' }}>
-                  {cats.map((item1) => (
-                    <a
-                      key={uuid()}
-                      href={`/cat/${item1.key}`}
-                    >
-                      <Tag
-                        color="magenta"
-                        style={{
-                          margin: 5,
-                          cursor: 'pointer',
-                        }}
-                      >
-                        {item1.key}
-                      </Tag>
-                    </a>
-                  ))}
+                  <Cats cats={cats} />
                   <div>
                     <Waypoint onEnter={openNotification} />
                     <a href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2">
