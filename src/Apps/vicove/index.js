@@ -10,8 +10,9 @@ import {
 import { Waypoint } from 'react-waypoint';
 import { Helmet } from 'react-helmet';
 import uuid from 'react-uuid';
-import App1 from './login';
+
 import Drawerx from './Drawer';
+import News from './News';
 import { cats } from './cats';
 
 import 'antd/dist/antd.css';
@@ -23,7 +24,7 @@ const Iframe = ({ src, height, width }) => (
   <iframe src={src} height={height} width={width} className="fullheight" scrolling="no" frameBorder="0" title="dsd" allow="encrypted-media" />
 
 );
-const Cats = ({ cats }) => cats.map((item1) => (
+const Cats = () => cats.map((item1) => (
   <a
     key={uuid()}
     href={`/cat/${item1.key}`}
@@ -106,7 +107,7 @@ const App = (props) => {
     async function mount() {
       if (isIndex) {
         const items = await axios(
-          `https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=20&skip=${Math.floor(
+          `https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=5&skip=${Math.floor(
             Math.random() * 59979,
           )}`,
         );
@@ -166,13 +167,8 @@ const App = (props) => {
         const items = await axios(
           `https://pouchdb.herokuapp.com/jokes/_all_docs?include_docs=true&limit=20&start_key=${match.params.id}`,
         );
-
         const measures = await axios(
-          `https://grafix.herokuapp.com/?text=${
-            isIndex
-              ? 'x'
-              : items.data.rows[0].doc.joke.replace(/\n/g, 'br')
-          }`,
+          `https://grafix.herokuapp.com/?text=${items.data.rows[0].doc.joke.replace(/\n/g, 'br')}`,
         );
         setState((draft) => {
           draft.measures = measures.data;
@@ -243,16 +239,17 @@ const App = (props) => {
               />
             </Helmet>
           ) : null}
-
+          {isIndex ? (<div><News /></div>) : null}
           <Row
             type="flex"
             justify="center"
             align="top"
             style={{ padding: 10 }}
           >
+
             {isLogin ? (
               <div>
-                <App1 />
+                Login
               </div>
             ) : (
               <Col xs={23} sm={20} md={16} lg={15} xl={12}>
@@ -267,10 +264,15 @@ const App = (props) => {
                   )}
                 />
                 {isPagination ? (
-                  <Pagination pageSize={20} defaultCurrent={currentPage} total={total} onChange={onChange} />
+                  <Pagination
+                    pageSize={20}
+                    defaultCurrent={currentPage}
+                    total={total}
+                    onChange={onChange}
+                  />
                 ) : null}
                 <div style={{ textAlign: 'center' }}>
-                  <Cats cats={cats} />
+                  <Cats />
                   <div>
                     <Waypoint onEnter={openNotification} />
                     <a href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2">
