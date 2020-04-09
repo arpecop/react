@@ -6,15 +6,16 @@ import { cats } from './cats'
 const Cats = ({ cats }) =>
     cats.map(item1 => (
         <p>
-       
             <a key={cats.value} href={`/cat/${item1.key}`}>
                 {item1.key}
             </a>
         </p>
     ))
-export default class Drawerx extends React.Component {
-    state = { visible: false }
-
+ class Drawerx extends React.Component {
+    constructor(props) {
+        super()
+        this.state = { visible: false }
+    }
     showDrawer = () => {
         this.setState({
             visible: true,
@@ -53,3 +54,4 @@ export default class Drawerx extends React.Component {
         )
     }
 }
+export default Drawerx;

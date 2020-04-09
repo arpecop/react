@@ -195,7 +195,10 @@ const App = (props) => {
   } = state;
   return (
     <>
-      <h2 style={{ fontWeight: 'lighter' }}> 😜 Вицове </h2>
+      <h2 style={{ fontWeight: 'lighter' }}>
+
+        <a href="https://arpecop.xyz"> 😜 Вицове </a>
+      </h2>
       <Drawerx />
       {isLoading ? (
         <div style={{ textAlign: 'center' }}>
@@ -239,7 +242,13 @@ const App = (props) => {
               />
             </Helmet>
           ) : null}
-          {isIndex ? (<div><News /></div>) : null}
+          {isIndex ? (
+            <div>
+              <h3>Новини</h3>
+              <News />
+              <h3>Най-четени</h3>
+            </div>
+          ) : null}
           <Row
             type="flex"
             justify="center"
@@ -253,7 +262,6 @@ const App = (props) => {
               </div>
             ) : (
               <Col xs={23} sm={20} md={16} lg={15} xl={12}>
-
                 <List
                   size="large"
                   dataSource={items.rows}
@@ -273,6 +281,7 @@ const App = (props) => {
                 ) : null}
                 <div style={{ textAlign: 'center' }}>
                   <Cats />
+
                   <div>
                     <Waypoint onEnter={openNotification} />
                     <a href="https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2">
