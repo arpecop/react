@@ -62,7 +62,7 @@ const Bottom = ({ tag }) => {
           {data1 ? <Listx rows={data1.rows} prefix="t" /> : <Spin />}
           <Title>Links</Title>
           {links.map((item) => (
-            <a href={item.href} key={item.id}>
+            <a href={item.url} key={item.id}>
 
               <Tag
                 style={{
