@@ -140,7 +140,7 @@ const App = (props) => {
         const item = await axios(
           `https://pouchdb.herokuapp.com/chetiva/${match.params.id2}`,
         );
-        console.log(item);
+
 
         setState((draft) => {
           draft.NewsItem = item.data;
@@ -298,7 +298,7 @@ const App = (props) => {
                 />
 
                 {NewsItem.react.child.map((item) => (
-                  <Refine item={item} />
+                  <Refine item={item} key={uuid()} />
                 ))}
 
                 <News />

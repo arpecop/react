@@ -5,7 +5,7 @@ import { cats } from './cats'
 
 const Cats = ({ cats }) =>
     cats.map(item1 => (
-        <p>
+        <p key={item1.key}>
             <a key={cats.value} href={`/cat/${item1.key}`}>
                 {item1.key}
             </a>
