@@ -38,20 +38,14 @@ class News extends Component {
     this.state = {
       isIndex: props.isIndex,
       singles: [],
-      single: null,
+
     };
   }
 
   async componentDidMount() {
-    const { isIndex } = this.state;
-    const { match } = this.props;
     const arts = await getApi('_design/i/_view/News?limit=20&descending=true');
-
-
     this.setState({
       singles: arts.rows,
-
-      // single
     });
   }
 
