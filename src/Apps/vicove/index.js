@@ -301,7 +301,7 @@ const App = (props) => {
                   <Refine item={item} />
                 ))}
 
-
+                <News />
               </div>
             ) : (
               <Col xs={23} sm={20} md={16} lg={15} xl={12}>
