@@ -8,7 +8,10 @@ import { env } from './env/constants';
 import { Title } from './components/UI';
 import useFetch from './components/useFetch';
 
-
+const links = [{ id: 1, url: 'https://duh.netlify.com', link: 'Blog' },
+  { id: 2, url: 'https://arpecop.xyz', link: 'Вицове' },
+  { id: 3, url: 'https://freeteenpicsandmovies.netlify.app', link: 'Free teen pics' },
+];
 const Listx = ({ prefix, rows }) => (
   <div style={{ textAlign: 'center' }}>
     <List
@@ -57,6 +60,23 @@ const Bottom = ({ tag }) => {
           {data ? <Listx rows={data.rows} prefix="u" /> : <Spin />}
           <Title>Tags</Title>
           {data1 ? <Listx rows={data1.rows} prefix="t" /> : <Spin />}
+          <Title>Links</Title>
+          {links.map((item) => (
+            <a href={item.href} key={item.id}>
+
+              <Tag
+                style={{
+                  backgroundColor: '#231f20',
+                  border: 'none',
+                  color: '#67d5e4',
+                  cursor: 'pointer',
+                  margin: 4,
+                }}
+              >
+                {item.link}
+              </Tag>
+            </a>
+          ))}
         </Col>
       </Row>
     </div>

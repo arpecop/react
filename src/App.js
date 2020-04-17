@@ -1,5 +1,5 @@
 // izteglisi//
-import Main from './Apps/vicove/index'
+import Main from './Apps/incubator/index';
 
-export default Main
+export default Main;
 // test

@@ -6,7 +6,6 @@ import TimeAgo from 'react-timeago';
 import WrapperBanner from './banners';
 import TextFormat from './TextFormat';
 
-const test = 'A large two bedroom flat set over the top two floors of a period conversion in Barnsbury #KFHproperty #propertyforsale #forsale #estateagent #realestate #interiordesign #interiors #house #home #islington #highbury #finsburypark #holloway #n1 #n5 #n4 #n7 #northlondon';
 function removeUrls(string) {
   const x = string.split(' ').filter((item) => item.includes('#')).map((item) => item.replace('#', ''));
   return x.join(' ');
