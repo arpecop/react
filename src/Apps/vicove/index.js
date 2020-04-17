@@ -5,12 +5,12 @@ import React, { useEffect } from 'react';
 import { useImmer } from 'use-immer';
 import axios from 'axios';
 import {
-  List, Button, Row, Col, Tag, notification, Pagination,
+  List, Button, Row, Col, Tag, notification, Pagination, Card,
 } from 'antd';
 import { Waypoint } from 'react-waypoint';
 import { Helmet } from 'react-helmet';
 import uuid from 'react-uuid';
-
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Drawerx from './Drawer';
 import News from './News';
 import { cats } from './cats';
@@ -46,6 +46,26 @@ const JokeBr = ({ joke }) => joke.split('\n').map((item2) => (
     <br />
   </span>
 ));
+const Refine = (item) => {
+  if (item.item && item.item.tag === 'p' && item.item.child) {
+    return <p>{item.item.child[0].text}</p>;
+  }
+  if (item.item && item.item.tag === 'img') {
+    return (
+      <div style={{ textAlign: 'center' }}>
+        <LazyLoadImage
+          alt="example"
+          src={item.item.attr.src}
+          style={{ maxWidth: '100%', margin: 'auto' }}
+        />
+      </div>
+    );
+  }
+  if (item.item.text) {
+    return null;
+  }
+  return null;
+};
 
 
 const Content = ({ item }) => (
@@ -95,7 +115,8 @@ const App = (props) => {
     collapsed: true,
     isCat: false,
     isItem: false,
-    isLogin: false,
+    isNews: false,
+    NewsItem: {},
     total: 0,
     currentPage: 1,
     isPagination: false,
@@ -115,11 +136,17 @@ const App = (props) => {
           draft.isLoading = false;
           draft.items = items.data;
         });
-      } else if (match.params.id === 'login') {
+      } else if (match.params.id === 'news') {
+        const item = await axios(
+          `https://pouchdb.herokuapp.com/chetiva/${match.params.id2}`,
+        );
+        console.log(item);
+
         setState((draft) => {
+          draft.NewsItem = item.data;
           draft.isLoading = false;
           draft.isCat = true;
-          draft.isLogin = true;
+          draft.isNews = true;
         });
       } else if (match.params.start_key) {
         const items = await axios(
@@ -191,7 +218,7 @@ const App = (props) => {
     }
   }
   const {
-    isLoading, items, measures, isCat, isLogin, isPagination, currentPage, total,
+    isLoading, items, measures, isCat, isNews, isPagination, currentPage, total, NewsItem,
   } = state;
   return (
     <>
@@ -202,7 +229,6 @@ const App = (props) => {
       <Drawerx />
       {isLoading ? (
         <div style={{ textAlign: 'center' }}>
-
           <Button type="primary" loading />
         </div>
       ) : (
@@ -256,9 +282,26 @@ const App = (props) => {
             style={{ padding: 10 }}
           >
 
-            {isLogin ? (
+            {isNews ? (
               <div>
-                Login
+                <h3 style={{ fontWeight: 100 }}>{NewsItem.title}</h3>
+                <Card
+                  hoverable
+                  style={{ border: 'none' }}
+                  cover={
+                    NewsItem.image ? (
+                      <div style={{ textAlign: 'center' }}>
+                        <LazyLoadImage alt="example" src={NewsItem.image} />
+                      </div>
+                    ) : null
+                                             }
+                />
+
+                {NewsItem.react.child.map((item) => (
+                  <Refine item={item} />
+                ))}
+
+
               </div>
             ) : (
               <Col xs={23} sm={20} md={16} lg={15} xl={12}>

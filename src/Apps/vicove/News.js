@@ -59,7 +59,7 @@ class News extends Component {
         <Row type="flex" justify="center">
           {singles.map((item) => (
             <Col xs={22} sm={20} md={15} lg={11} xl={5} key={item.key}>
-              <a href={`http://novinata.netlify.com/${item.key}`}>
+              <a href={`/news/${item.key}`}>
                 <Card
                   hoverable
                   style={{ border: 'none' }}

@@ -1,6 +1,6 @@
 import React from 'react'
-import { Drawer, Button } from 'antd'
-import Icon, { MenuOutlined } from '@ant-design/icons'
+import { Drawer,   } from 'antd'
+import  { MenuOutlined } from '@ant-design/icons'
 import { cats } from './cats'
 
 const Cats = ({ cats }) =>
