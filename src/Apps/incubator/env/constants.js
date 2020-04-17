@@ -1,11 +1,10 @@
 const env = {
   development: {
-    api: 'https://socket.arpecop.xyz/test/',
+    api: 'https://rudixauth.herokuapp.com/test/',
   },
   production: {
-    api: 'https://socket.arpecop.xyz/test/',
+    api: 'https://rudixauth.herokuapp.com/test/',
   },
 };
-
 
 module.exports = { env: env[process.env.NODE_ENV] };
