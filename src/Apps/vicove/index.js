@@ -303,7 +303,11 @@ const App = (props) => {
                 {NewsItem.react.child.map((item, i) => (
                   <Refine item={item} key={uuid()} />
                 ))}
+                <div>
+                  източник:
 
+                  {NewsItem.source }
+                </div>
                 <News />
               </div>
             ) : (
