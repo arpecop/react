@@ -10,7 +10,7 @@ import {
 import { Waypoint } from 'react-waypoint';
 import { Helmet } from 'react-helmet';
 import uuid from 'react-uuid';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 import Drawerx from './Drawer';
 import News from './News';
 import { cats } from './cats';
@@ -48,12 +48,15 @@ const JokeBr = ({ joke }) => joke.split('\n').map((item2) => (
 ));
 const Refine = (item) => {
   if (item.item && item.item.tag === 'p' && item.item.child) {
-    return <p>{item.item.child[0].text}</p>;
+    return <p>{item.item.child[0].text.replace('\n', <br />)}</p>;
+  }
+  if (item.item.node && item.item.node === 'text') {
+    return <p>{item.item.text.replace('\n', <br />)}</p>;
   }
   if (item.item && item.item.tag === 'img') {
     return (
       <div style={{ textAlign: 'center' }}>
-        <LazyLoadImage
+        <img
           alt="example"
           src={item.item.attr.src}
           style={{ maxWidth: '100%', margin: 'auto' }}
@@ -291,13 +294,13 @@ const App = (props) => {
                   cover={
                     NewsItem.image ? (
                       <div style={{ textAlign: 'center' }}>
-                        <LazyLoadImage alt="example" src={NewsItem.image} />
+                        <img alt="example" src={NewsItem.image} style={{ maxWidth: '100%' }} />
                       </div>
                     ) : null
                                              }
                 />
 
-                {NewsItem.react.child.map((item) => (
+                {NewsItem.react.child.map((item, i) => (
                   <Refine item={item} key={uuid()} />
                 ))}
 

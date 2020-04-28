@@ -11,26 +11,6 @@ const getApi = async (url) => new Promise((resolve) => {
   });
 });
 
-const Refine = (item) => {
-  if (item.item && item.item.tag === 'p' && item.item.child) {
-    return <p>{item.item.child[0].text}</p>;
-  }
-  if (item.item && item.item.tag === 'img') {
-    return (
-      <div style={{ textAlign: 'center' }}>
-        <LazyLoadImage
-          alt="example"
-          src={item.item.attr.src}
-          style={{ maxWidth: '100%', margin: 'auto' }}
-        />
-      </div>
-    );
-  }
-  if (item.item.text) {
-    return null;
-  }
-  return null;
-};
 
 class News extends Component {
   constructor(props) {
