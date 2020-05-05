@@ -24,7 +24,23 @@ const Programm = (props) => {
   return (
     <Row type="flex" justify="center">
       {state.items.map((item) => (
-        <Col xs={10} sm={8} md={6} lg={4} xl={2} key={item.key} style={{ textAlign: 'center' }}><img src={item.value.thumb.replace('img', 'thumb')} alt="" style={{ width: '100%' }} /></Col>
+        <Col
+          xs={10}
+          sm={8}
+          md={6}
+          lg={4}
+          xl={2}
+          key={item.key}
+          style={{ textAlign: 'center' }}
+        >
+          <a href="">
+            <img
+              src={item.value.thumb.replace('img', 'thumb')}
+              alt=""
+              style={{ width: '100%' }}
+            />
+          </a>
+        </Col>
       ))}
     </Row>
   );

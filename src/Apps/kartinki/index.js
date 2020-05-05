@@ -1,57 +1,80 @@
-import React from 'react';
-import useAxios from 'axios-hooks';
+import React, { Component } from 'react';
+
 import { Helmet } from 'react-helmet';
-import 'antd/dist/antd.css';
-// or 'antd/dist/antd.less'
-function App(props) {
-  const { isIndex, match } = props;
-  const [{ data, loading, error }] = useAxios(
-    `https://db.arpecop.xyz/kartinki/_design/api/_view/md5?limit=20&descending=true${isIndex ? '' : `&start_key="${match.params.id}"`}`,
-  );
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error!</p>;
+class FbLoginBtn extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      accessToken: null, userID: null, name: null,
+    };
+    // this.onStatusChange = this.onStatusChange.bind(this);
+  }
 
-  return (
-    <div>
-      <Helmet>
-        <title>kartinki</title>
-        <meta
-          property="og:url"
-          content={`https://kartinki.netlify.com/${data.rows[0].key}`}
-        />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content="kartinki" />
+  componentDidMount() {
+    const self = this;
+    const scriptTag = document.createElement('script');
+    scriptTag.type = 'text/javascript';
+    scriptTag.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2https://connect.facebook.net/bg_BG/sdk.js#xfbml=1&version=v6.0&appId=281985576166744&autoLogAppEvents=1.4&appId=281985576166744';
+    scriptTag.addEventListener('load', () => {
+      window.FB.Event.subscribe('auth.statusChange', self.onStatusChange.bind(self));
+      window.FB.getLoginStatus(self.onStatusChange.bind(self));
+    });
+    document.body.appendChild(scriptTag);
+  }
 
-        <meta
-          property="og:image"
-          content={`https://s3.eu-west-1.amazonaws.com/imgserve.fbook.space/${data.rows[0].value.md5}.jpg`}
-        />
-        <meta property="og:image:width" content={data.rows[0].value.w} />
-        <meta property="og:image:height" content={data.rows[0].value.h} />
-        <meta property="fb:app_id" content="770341770061627" />
-      </Helmet>
-      {data.rows.map((item) => (
-        <div style={{ margin: 'auto', textAlign: 'center' }}>
-          <hr />
-          <a key={item.id} href={`/${item.id}`}>
-            <img
-              alt=""
-              src={`https://s3.eu-west-1.amazonaws.com/imgserve.fbook.space/${item.value.md5}.jpg`}
-              style={{ maxWidth: '100%' }}
-            />
-          </a>
-          <div>
-            <a
-              className="ant-btn ant-btn-primary"
-              href={`https://www.facebook.com/sharer/sharer.php?u=https://kartinki.netlify.com/${item.key}`}
-            >
-              Сподели
-            </a>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
+  onStatusChange(response) {
+    if (response.status === 'connected') {
+      const { accessToken, userID } = response.authResponse;
+      console.log(response.authResponse);
+
+
+      fetch(`https://graph.facebook.com/me/?access_token=${accessToken}`)
+        .then((res) => res.json())
+        .then((data) => {
+          // Work with JSON data here
+          this.setState({ accessToken, userID, name: data.name });
+          console.log(data);
+        })
+        .catch((err) => {
+          // Do something for an error here
+        });
+    } else {
+      // this.onFailure();
+      this.setState({
+        accessToken: null, userID: null,
+      });
+    }
+  }
+
+  render() {
+    const { userID, name } = this.state;
+    return (
+      <div>
+
+        {userID ? (
+          <h1>
+            Welcome
+
+            {name}
+          </h1>
+        ) : (
+          <div
+            className="fb-login-button"
+            data-width={this.props.width}
+            data-max-rows="1"
+            data-size="large"
+            data-button-type="login_with"
+            data-show-faces="false"
+            data-auto-logout-link="true"
+            data-use-continue-as="false"
+            data-scope={this.props.dataScope}
+          />
+        )}
+
+      </div>
+    );
+  }
 }
-export default App;
+
+export default FbLoginBtn;
