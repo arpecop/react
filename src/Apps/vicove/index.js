@@ -13,7 +13,7 @@ import uuid from 'react-uuid';
 
 import Drawerx from './Drawer';
 import News from './News';
-import Programm from './programm';
+
 import { cats } from './cats';
 
 import 'antd/dist/antd.css';
@@ -276,8 +276,7 @@ const App = (props) => {
             <div>
               <h3>Новини</h3>
               <News />
-              <h3>Memes</h3>
-              <Programm />
+
               <h3>Най-четени</h3>
             </div>
           ) : null}
