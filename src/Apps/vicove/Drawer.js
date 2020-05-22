@@ -16,13 +16,13 @@ const Cats = ({ cats }) =>
         super()
         this.state = { visible: false }
     }
-    showDrawer = () => {
+      showDrawer = () => {
         this.setState({
             visible: true,
         })
     }
 
-    onClose = () => {
+      onClose = () => {
         this.setState({
             visible: false,
         })
