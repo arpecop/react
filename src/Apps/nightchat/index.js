@@ -2,10 +2,10 @@
 import React, { useEffect } from 'react';
 
 import axios from 'axios';
-
+import './src/main.css';
 
 import { RecoilRoot, useRecoilState } from 'recoil';
-import { loggedInUserData } from './state';
+import { loggedInUserData, nickname } from './state';
 
 const App = () => (
   <RecoilRoot>
@@ -14,11 +14,13 @@ const App = () => (
   </RecoilRoot>
 );
 const FirstScreen = () => {
-  const [user] = useRecoilState(loggedInUserData);
+  const [nick, setNickname] = useRecoilState(nickname);
+
   return (
-    <div>
-      Welcome dsds dsds dsdsds
-      {JSON.stringify(user)}
+    <div className="choosename">
+      <div className="placeholder">избери име</div>
+      <input className="input" onChange={(e) => setNickname({ nickname: e.target.value })} />
+      {JSON.stringify(nick)}
     </div>
   );
 };
@@ -48,19 +50,28 @@ const Login = () => {
     document.body.appendChild(scriptTag);
   }, []);
 
-  return user.name ? (
-    <div
-      className="fb-login-button"
-      data-max-rows="1"
-      data-size="large"
-      data-button-type="login_with"
-      data-show-faces="false"
-      data-auto-logout-link="true"
-      data-use-continue-as="false"
-      data-scope="user_friends"
+  return (
+    <div style={{
+      display: user.name ? 'none' : 'block',
+      width: '100%',
+      height: '100vh',
+      textAlign: 'center',
+    }}
     >
-      dsds
+      <div style={{ paddingTop: '50%' }}>
+        <img src="/logo512.png" alt="" />
+      </div>
+      <div
+        className="fb-login-button"
+        data-max-rows="1"
+        data-size="large"
+        data-button-type="login_with"
+        data-show-faces="false"
+        data-auto-logout-link="true"
+        data-use-continue-as="false"
+
+      />
     </div>
-  ) : null;
+  );
 };
 export default App;

@@ -8,11 +8,9 @@ export const loggedInUserData = atom({
     accessToken: null,
   },
 });
-export const loggedInUserData1 = atom({
-  key: 'loggedInUser1',
+export const nickname = atom({
+  key: 'nickname',
   default: {
-    name: null,
-    id: null,
-    accessToken: null,
+    nickname: null,
   },
 });
