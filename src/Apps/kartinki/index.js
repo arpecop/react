@@ -35,9 +35,7 @@ const Login = () => {
           `https://graph.facebook.com/me/?access_token=${s.authResponse.accessToken}`,
         )
         .then((response) => {
-          console.log(response);
           setUser({ ...response.data, ...s.authResponse });
-          // setStatus(s.authResponse);
         });
     }
   }
