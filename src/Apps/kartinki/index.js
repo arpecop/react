@@ -1,20 +1,43 @@
 /* eslint-disable no-undef */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import axios from 'axios';
-import 'antd/dist/antd.css';
-import { PageHeader, Tag, Button } from 'antd';
 
 
-function App() {
-  const [name, setName] = useState(null);
-  const [status, setStatus] = useState({});
+import { RecoilRoot, useRecoilState, useRecoilValue } from 'recoil';
+import { loggedInUserData, nickname } from './state';
+
+const App = () => (
+  <RecoilRoot>
+    <Login />
+    <FirstScreen />
+  </RecoilRoot>
+);
+const FirstScreen = () => {
+  const [nick, setNickname] = useRecoilState(nickname);
+  const user = useRecoilValue(loggedInUserData);
+  return (
+    <div className="choosename" style={{ display: user.id ? 'block' : 'none' }}>
+      <div className="placeholder">избери име</div>
+      <input className="input" onChange={(e) => setNickname({ nickname: e.target.value })} />
+      {JSON.stringify(nick)}
+    </div>
+  );
+};
+const Login = () => {
+  const [user, setUser] = useRecoilState(loggedInUserData);
+
   function loginStatus(s) {
+    console.log(s);
     if (s.status === 'connected') {
-      axios.get(`https://graph.facebook.com/me/?access_token=${s.authResponse.accessToken}`)
+      axios
+        .get(
+          `https://graph.facebook.com/me/?access_token=${s.authResponse.accessToken}`,
+        )
         .then((response) => {
-          setName(response.data.name);
-          setStatus(s.authResponse);
+          console.log(response);
+          setUser({ ...response.data, ...s.authResponse });
+          // setStatus(s.authResponse);
         });
     }
   }
@@ -28,37 +51,29 @@ function App() {
     });
     document.body.appendChild(scriptTag);
   }, []);
+
   return (
-    <div>
-      {name ? (
-        <>
-          <PageHeader
-            title="Title"
-            className="site-page-header"
-            subTitle={` ${name}`}
-            tags={<Tag color="blue">Running</Tag>}
-            extra={[
-              <Button key="3">{status.userID}</Button>,
-              <Button key="2">Operation</Button>,
-              <Button key="1" type="primary">
-                Primary
-              </Button>,
-            ]}
-            avatar={{ src: `https://graph.facebook.com/${status.userID}/picture` }}
-          />
-        </>
-      ) : (
-        <div
-          className="fb-login-button"
-          data-max-rows="1"
-          data-size="large"
-          data-button-type="login_with"
-          data-show-faces="false"
-          data-auto-logout-link="true"
-          data-use-continue-as="false"
-        />
-      )}
+    <div style={{
+      display: user.name ? 'none' : 'block',
+      width: '100%',
+      height: '100vh',
+      textAlign: 'center',
+    }}
+    >
+      <div style={{ paddingTop: '10%' }}>
+        <img src="/logo512.png" alt="" />
+      </div>
+      <div
+        className="fb-login-button"
+        data-size="large"
+        data-button-type="continue_with"
+        data-layout="default"
+        data-auto-logout-link="false"
+        data-use-continue-as="false"
+        data-width=""
+        data-scope="public_profile"
+      />
     </div>
   );
-}
+};
 export default App;

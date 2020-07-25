@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import './src/main.css';
 
-import { RecoilRoot, useRecoilState } from 'recoil';
+import { RecoilRoot, useRecoilState, useRecoilValue } from 'recoil';
 import { loggedInUserData, nickname } from './state';
 
 const App = () => (
@@ -15,9 +15,10 @@ const App = () => (
 );
 const FirstScreen = () => {
   const [nick, setNickname] = useRecoilState(nickname);
-
+  const user = useRecoilValue(loggedInUserData);
+  console.log(user);
   return (
-    <div className="choosename">
+    <div className="choosename" style={{ display: user.id ? 'block' : 'none' }}>
       <div className="placeholder">избери име</div>
       <input className="input" onChange={(e) => setNickname({ nickname: e.target.value })} />
       {JSON.stringify(nick)}
@@ -58,18 +59,18 @@ const Login = () => {
       textAlign: 'center',
     }}
     >
-      <div style={{ paddingTop: '50%' }}>
+      <div style={{ paddingTop: '10%' }}>
         <img src="/logo512.png" alt="" />
       </div>
       <div
         className="fb-login-button"
-        data-max-rows="1"
         data-size="large"
-        data-button-type="login_with"
-        data-show-faces="false"
-        data-auto-logout-link="true"
+        data-button-type="continue_with"
+        data-layout="default"
+        data-auto-logout-link="false"
         data-use-continue-as="false"
-
+        data-width=""
+        data-scope="public_profile"
       />
     </div>
   );
