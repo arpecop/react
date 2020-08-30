@@ -20,7 +20,6 @@ import 'antd/dist/antd.css';
 
 import './style.css';
 
-
 const Iframe = ({ src, height, width }) => (
   <iframe src={src} height={height} width={width} className="fullheight" scrolling="no" frameBorder="0" title="dsd" allow="encrypted-media" />
 
@@ -70,7 +69,6 @@ const Refine = (item) => {
   }
   return null;
 };
-
 
 const Content = ({ item }) => (
   <div
@@ -144,7 +142,6 @@ const App = (props) => {
         const item = await axios(
           `https://pouchdb.herokuapp.com/chetiva/${match.params.id2}`,
         );
-
 
         setState((draft) => {
           draft.NewsItem = item.data;

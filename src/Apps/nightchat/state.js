@@ -1,16 +1,16 @@
-import { atom } from 'recoil';
+import { atom } from 'recoil'
 
 export const loggedInUserData = atom({
-  key: 'loggedInUser',
-  default: {
-    name: null,
-    id: null,
-    accessToken: null,
-  },
-});
+   key: 'loggedInUser',
+   default: {
+      name: null,
+      id: null,
+      accessToken: null,
+   },
+})
 export const nickname = atom({
-  key: 'nickname',
-  default: {
-    nickname: null,
-  },
-});
+   key: 'nickname',
+   default: {
+      nickname: null,
+   },
+})

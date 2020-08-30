@@ -1,5 +1,5 @@
 // izteglisi//
-import Main from './Apps/kartinki/index';
+import Main from './Apps/news/index';
 
 export default Main;
 // test

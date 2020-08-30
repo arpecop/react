@@ -16,7 +16,7 @@ const App = () => (
 const FirstScreen = () => {
   const [nick, setNickname] = useRecoilState(nickname);
   const user = useRecoilValue(loggedInUserData);
-  console.log(user);
+
   return (
     <div className="choosename" style={{ display: user.id ? 'block' : 'none' }}>
       <div className="placeholder">избери име</div>
@@ -29,6 +29,7 @@ const Login = () => {
   const [user, setUser] = useRecoilState(loggedInUserData);
 
   function loginStatus(s) {
+    console.log(s);
     if (s.status === 'connected') {
       axios
         .get(
@@ -43,7 +44,7 @@ const Login = () => {
   useEffect(() => {
     const scriptTag = document.createElement('script');
     scriptTag.type = 'text/javascript';
-    scriptTag.src = 'https://connect.facebook.net/bg_BG/sdk.js#xfbml=1&version=v7.0&appId=281985576166744&autoLogAppEvents=1';
+    scriptTag.src = 'https://connect.facebook.net/bg_BG/sdk.js#xfbml=1&version=v8.0&appId=281985576166744&autoLogAppEvents=1';
     scriptTag.addEventListener('load', () => {
       window.FB.Event.subscribe('auth.statusChange', (ss) => loginStatus(ss));
       window.FB.getLoginStatus((ss) => loginStatus(ss));

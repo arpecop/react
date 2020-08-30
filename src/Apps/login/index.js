@@ -43,7 +43,11 @@ const App1 = (props) => {
   }
   useEffect(() => {
     function mount() {
-      if (cookies.username && props.isIndex && cookies.username !== 'loggedout') {
+      if (
+        cookies.username
+            && props.isIndex
+            && cookies.username !== 'loggedout'
+      ) {
         window.location.href = '/loggedin';
       }
     }
@@ -55,6 +59,12 @@ const App1 = (props) => {
     });
     setCookie('email', state.email, { path: '/' });
   }
+
+  function handleUpdate(event) {
+    setState((draft) => {
+      draft[event.target.name] = event.target.value;
+    });
+  }
   function SignOut() {
     setCookie('username', 'loggedout', { path: '/' });
     window.location.href = '/';
@@ -63,11 +73,13 @@ const App1 = (props) => {
     Auth.signIn({
       username: state.username, // Required, the username
       password: state.password, // Optional, the password
-    }).then((data) => {
-      setCookie('username', state.username, { path: '/' });
-
-      window.location.href = '/loggedin';
     })
+      .then((data) => {
+        console.log(data);
+        setCookie('username', state.username, { path: '/' });
+
+        // window.location.href = '/loggedin';
+      })
       .catch((err) => setState((draft) => {
         draft.error = err;
       }));
@@ -96,10 +108,11 @@ const App1 = (props) => {
   function Confirm() {
     Auth.confirmSignUp(state.username, state.confirmation, {
       forceAliasCreation: true,
-    }).then(() => setState((draft) => {
-      draft.successVerify = true;
-      draft.currentTab = 2;
-    }))
+    })
+      .then(() => setState((draft) => {
+        draft.successVerify = true;
+        draft.currentTab = 2;
+      }))
       .catch((err) => setState((draft) => {
         draft.error = err;
       }));
@@ -120,12 +133,32 @@ const App1 = (props) => {
       }}
     >
       <div style={{ display: 'inline-block' }}>
-        {successVerify ? (<Alert message="Code verified please Login with your details" type="success" closable style={{ marginBottom: 5 }} />) : null}
-        {success ? (<Alert message={`Check your email ${success.codeDeliveryDetails.Destination} for confirmation Code`} type="success" closable style={{ marginBottom: 5 }} />) : null}
-        {error ? (<Alert message={error.log || error.message} type="error" closable style={{ marginBottom: 5 }} />) : null}
-        { isIndex ? (
+        {successVerify ? (
+          <Alert
+            message="Code verified please Login with your details"
+            type="success"
+            closable
+            style={{ marginBottom: 5 }}
+          />
+        ) : null}
+        {success ? (
+          <Alert
+            message={`Check your email ${success.codeDeliveryDetails.Destination} for confirmation Code`}
+            type="success"
+            closable
+            style={{ marginBottom: 5 }}
+          />
+        ) : null}
+        {error ? (
+          <Alert
+            message={error.log || error.message}
+            type="error"
+            closable
+            style={{ marginBottom: 5 }}
+          />
+        ) : null}
+        {isIndex ? (
           <Collapse accordion defaultActiveKey={[currentTab]}>
-
             <Collapse.Panel header="Sign Up" key="1">
               {success ? (
                 <div>
@@ -146,12 +179,14 @@ const App1 = (props) => {
                     onChange={(e) => {
                       updateName(e.target.value);
                     }}
+                    name="username"
                     value={state.username}
                     prefix="user"
                     style={{ marginBottom: 5 }}
                   />
                   <Input.Password
                     placeholder="password"
+                    name="password"
                     onChange={(e) => {
                       updatePassword(e.target.value);
                     }}
@@ -160,9 +195,7 @@ const App1 = (props) => {
                   />
                   <Input
                     placeholder="email"
-                    onChange={(e) => {
-                      updateEmail(e.target.value);
-                    }}
+                    onChange={handleUpdate}
                     value={state.email}
                     style={{ marginBottom: 5 }}
                   />
@@ -190,19 +223,16 @@ const App1 = (props) => {
               />
               <Button onClick={SignIn}>Sign In</Button>
             </Collapse.Panel>
-
           </Collapse>
         ) : (
           <div>
-            <h1>
-              {cookies.username}
+            <h1>{cookies.username}</h1>
 
-            </h1>
-
-            <a onClick={SignOut} href="#endregion">Log Out</a>
+            <a onClick={SignOut} href="#endregion">
+              Log Out
+            </a>
           </div>
         )}
-
       </div>
     </div>
   );
