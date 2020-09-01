@@ -30,6 +30,7 @@ const App = ({ match, isIndex }) => {
         collection: 'newsbg',
         limit: 20,
         descending: false,
+        fields: ['title', 'image', 'vreme'],
       });
 
       setData(result.data);
