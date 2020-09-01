@@ -39,7 +39,6 @@ const App = ({ match, isIndex }) => {
         id: Math.round(match.params.id),
         collection: 'newsbg',
         limit: 1,
-        descending: false,
       });
       const articlex = {
         ...result.data.Items[0],
