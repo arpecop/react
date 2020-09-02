@@ -26,9 +26,8 @@ const App = ({ match, isIndex }) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await fetchx({
-        id: 1,
         collection: 'newsbg',
-        limit: 20,
+        limit: 50,
         descending: false,
         fields: ['title', 'image', 'vreme'],
       });
@@ -42,8 +41,8 @@ const App = ({ match, isIndex }) => {
         limit: 1,
       });
       const articlex = {
-        ...result.data.Items[0],
-        content: result.data.Items[0].content
+        ...result.data,
+        content: result.data.content
           .split('\n')
           .filter((word) => word.length > 6)
           .map((i) => ({ text: i, key: uuid() })),
