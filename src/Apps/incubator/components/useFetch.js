@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const useFetch = (url) => {
+export const useFetch = (url) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchUrl = async () => {
@@ -12,4 +12,17 @@ const useFetch = (url) => {
   }, []);
   return data;
 };
-export default useFetch;
+export const post = async (json) => {
+  const result = await axios.post(
+    'https://rudixlab.com/db/',
+    JSON.stringify(json),
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    },
+  );
+  return new Promise((resolve) => {
+    resolve(result);
+  });
+};

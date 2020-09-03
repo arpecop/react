@@ -6,7 +6,7 @@ import {
 import { env } from './env/constants';
 
 import { Title } from './components/UI';
-import useFetch from './components/useFetch';
+import { useFetch } from './components/useFetch';
 
 const links = [{ id: 1, url: 'https://duh.netlify.com', link: 'Blog' },
   { id: 2, url: 'https://arpecop.xyz', link: 'Вицове' },
@@ -47,7 +47,6 @@ const Listx = ({ prefix, rows }) => (
     />
   </div>
 );
-
 
 const Bottom = ({ tag }) => {
   const data1 = useFetch(`${env.api}twitter/_design/api/_view/tags?reduce=true&group=true&limit=25&skip=25&start_key="${tag}"&update=false`);

@@ -11,7 +11,6 @@ function removeUrls(string) {
   return x.join(' ');
 }
 
-
 const Komentar = ({ item }) => {
   let title = item.title || item.text;
   const url = item.urls && item.urls[0] ? item.urls[0] : null;
@@ -20,9 +19,7 @@ const Komentar = ({ item }) => {
 
   return (
 
-
     <Comment
-
 
       datetime={<TimeAgo date={new Date(parseInt(item.date, 10))} />}
       author={(
@@ -54,12 +51,13 @@ const Komentar = ({ item }) => {
     />
   );
 };
-const Item = ({ item, i }) => {
+const Item = ({ item, i, user }) => {
+  console.log(item);
   const {
     screenName, quote, images, title,
   } = item;
 
-  const href = `/u/${screenName}`;
+  const href = `/u/${user}`;
   const thread = quote ? (
     <Komentar item={quote} href={href}>
       <Komentar item={item} href={href} />
