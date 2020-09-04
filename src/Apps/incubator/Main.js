@@ -1,17 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from 'antd';
+import { post } from './components/useFetch';
 
+function getRandom(min, max) {
+  return Math.round(Math.random() * (max - min) + min);
+}
 const Tag = () => {
-  const data = 'abcdefghijklmnopqrstuvwxyz'.split('');
+  const [random, setRandom] = useState({ Items: [] });
+  useEffect(() => {
+    const fetchData = async () => {
+      const getSimilar = await post({
+        collection: 't',
+        id: getRandom(1593543944006, 1594365665452),
+        limit: 120,
+        descending: true,
+      });
+
+      setRandom(getSimilar.data);
+    };
+
+    fetchData();
+  }, []);
   return (
     <div style={{ textAlign: 'center' }}>
-      <Button.Group size="small">
-        {data.map((item) => (
-          <Button type="primary" key={item} href={`/t/${item}`}>
-            {item.toUpperCase()}
-          </Button>
-        ))}
-      </Button.Group>
+
+      {random.Items.map((item) => (
+        <Button style={{ margin: 5 }} type="primary" key={item.vreme} href={`/u/${item.u}`}>
+          {item.u.toUpperCase()}
+        </Button>
+      ))}
+
     </div>
   );
 };
