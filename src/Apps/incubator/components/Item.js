@@ -20,16 +20,15 @@ const Komentar = ({ item }) => {
   return (
 
     <Comment
-
       datetime={<TimeAgo date={new Date(parseInt(item.date, 10))} />}
       author={(
-        <a href={`/u/${item.screenName}`}>
+        <a href={`/u/${item.user.screen_name}`}>
           <h2 style={{ fontWeight: 'lighter', color: '#ccc' }}>
-            {item.screenName}
+            {item.user.screen_name}
           </h2>
         </a>
         )}
-      avatar={(<Avatar src={`https://avatars.io/twitter/${item.screenName}`} size="large" />)}
+      avatar={(<Avatar src={item.user.profile_image_url_https} size="large" />)}
       content={item.replyCount ? (
         <>
 
