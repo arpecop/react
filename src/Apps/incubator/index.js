@@ -18,7 +18,7 @@ const App = ({ match }) => (
         return <User user={match.params.id2} />;
       }
       if (match && match.params.id === 't') {
-        return <Tag tag={match.params.id2} />;
+        return <Main />;
       }
       return <Main />;
     })()}
