@@ -51,9 +51,8 @@ const Komentar = ({ item }) => {
   );
 };
 const Item = ({ item, i, user }) => {
-  console.log(item);
   const {
-    screenName, quote, images, title,
+    quote, images, title,
   } = item;
 
   const href = `/u/${user}`;

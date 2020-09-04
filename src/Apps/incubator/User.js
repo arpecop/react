@@ -10,9 +10,13 @@ import { post } from './components/useFetch';
 
 const uuid = require('uuid/v4');
 
+function getRandom(min, max) {
+  return Math.round(Math.random() * (max - min) + min);
+}
+
 const User = ({ user }) => {
   const [data, setData] = useState({ tweets: [] });
-
+  const [random, setRandom] = useState({ Items: [] });
   useEffect(() => {
     const fetchData = async () => {
       const getId = await post({
@@ -24,7 +28,14 @@ const User = ({ user }) => {
       const result = await axios(
         `https://rudixlab.com/t/${getId.data.vreme}/${user}/?format=json`,
       );
-      console.log(result.data.tweets);
+      const getSimilar = await post({
+        collection: 't',
+        id: getRandom(1593543944006, 1594365665452),
+        limit: 20,
+        descending: true,
+      });
+
+      setRandom(getSimilar.data);
       setData(result.data);
     };
 
@@ -39,11 +50,7 @@ const User = ({ user }) => {
       {data ? (
         <>
           <Header>
-            <img
-              src={`https://avatars.io/twitter/${user}`}
-              size="large"
-              alt=""
-            />
+
             <h1>{user}</h1>
           </Header>
 
@@ -60,7 +67,7 @@ const User = ({ user }) => {
       )}
       {data.tweets.map((item, i) => (<Item user={user} key={uuid()} item={item} i={i} />))}
 
-      <Bottom tag={user} />
+      <Bottom tag={user} items={random.Items} />
     </HelmetProvider>
   );
 };
