@@ -2,7 +2,7 @@ import React from 'react';
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 
 import User from './User';
-import Tag from './Tag';
+
 import Main from './Main';
 import { Body } from './components/UI';
 import './components/index.css';

@@ -1,11 +1,11 @@
 const promises = {
-  init: () => new Promise((resolve, reject) => {
+  init: () => new Promise((resolve) => {
     if (typeof FB !== 'undefined') {
       resolve();
     } else {
       window.fbAsyncInit = () => {
         FB.init({
-          appId: '2839078742783517',
+          appId: '874162999784545',
           cookie: true,
           xfbml: true,
           version: 'v2.5',

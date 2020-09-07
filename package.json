@@ -22,6 +22,7 @@
         "react-fb-like": "^0.5.1",
         "react-helmet": "^5.2.1",
         "react-helmet-async": "^1.0.6",
+        "react-hook-usefetch": "^1.0.4",
         "react-hookstore": "^1.4.4",
         "react-konva": "^16.10.1-0",
         "react-lazy-load": "^3.0.13",

@@ -45,6 +45,7 @@ const User = ({ user }) => {
     <HelmetProvider>
       <Helmet>
         <title>{`${user}`}</title>
+        <meta name="keywords" content="" />
       </Helmet>
 
       {data ? (

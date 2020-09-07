@@ -1,0 +1,8 @@
+{
+	"cover": "https://arpecop.com/static/celeb/cover.jpg",
+	"coverimg": "<img src=\"//arpecop.com/static/celeb/cover.jpg\">",
+	"title": " На коя известна личност приличаш ",
+	"contentx": "<div class=\"form-group\" style=\"text-align:center;\">  <button type=\"button\" class=\"btn btn-primary btn-lg\" onclick=\"celeb(); return false;\">Натисни за да разбереш на кого приличаш ...</button></div>",
+	"showshare": "true",
+	"geo": "BG"
+}
