@@ -100,7 +100,9 @@ const App = ({ match }) => {
           <meta property="og:type" content="website" />
           <meta property="og:title" content={data.title} />
           <meta property="og:description" content=" " />
-          <meta property="og:image" content={`https://s3.eu-central-1.amazonaws.com/img.rudixlab.com/results/${match.params.id2}`} />
+          <meta property="og:image" content={`https://s3.eu-central-1.amazonaws.com/img.rudixlab.com/results/${match.params.id2}.png`} />
+          <meta property="og:image:width" content="600" />
+          <meta property="og:image:height" content="315" />
         </Helmet>
       )}
       { !user.name && !loading && data && (
