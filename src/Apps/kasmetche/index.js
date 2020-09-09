@@ -1,53 +1,138 @@
-import React from 'react';
+/* eslint-disable no-undef */
+import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 
-import 'antd/dist/antd.css';
+import axios from 'axios';
+import useFetch from 'react-hook-usefetch';
 
-import Wrapper from './Wrapper';
-import Applist from './AppList';
+const post = async (json, url) => {
+  const result = await axios.post(
+    url,
+    JSON.stringify(json),
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    },
+  );
+  return new Promise((resolve) => {
+    resolve(result);
+  });
+};
 
+const Result = ({ user, appid }) => {
+  const [data, setData] = useState({ loading: true });
+  const urlParameters = Object.entries(user).map((e) => e.join('=')).join('&');
 
-const App = (props) => {
-  const { match } = props;
+  useEffect(() => {
+    const fetchData = async () => {
+      const getSimilar = await post({
+        url: `https://s3.eu-central-1.amazonaws.com/img.rudixlab.com/apps/${appid}/dev.html?${urlParameters}`,
+      }, 'https://grafix.herokuapp.com/shot/do');
 
-  return ((() => {
-    if (match && match.params.id === 'banica') {
-      return (
-        <Wrapper props={props} title="🎄 Новогодишна баница с късмети 2020 🎄" app="banica">
-          <div style={{ height: 599 }}>
-            <img
-              src={`https://graph.facebook.com/${match ? match.params.start_key : null}/picture?type=large`}
-              style={{
-                position: 'fixed', maxWidth: 110, left: 262, top: 45,
-              }}
-              alt=""
-            />
-            <img src="/banica/bg.png" style={{ position: 'fixed' }} alt="" />
-            <img src={`/banica/${Math.floor((Math.random() * 30) + 0)}.png`} style={{ position: 'fixed', top: 190, left: 205 }} alt="" />
-          </div>
-        </Wrapper>
-      );
-    } if (match && match.params.id === 'quote') {
-      return (
-        <Wrapper props={props} title="🎄 Изтегли си цитат-късметче 🎄" app="quote">
-          <div style={{ height: 599, width: 633, textAlign: 'center' }}>
-            <img src={`/quotes/${Math.floor((Math.random() * 255) + 0)}.png`} style={{ marginTop: 80, zIndex: 100 }} alt="" />
-            <img
-              src={`https://graph.facebook.com/${match ? match.params.start_key : null}/picture?type=large`}
-              style={{
-                position: 'fixed',
-                maxWidth: 110,
-                left: 262,
-                top: 25,
-                borderRadius: '50%',
-              }}
-              alt=""
-            />
-          </div>
-        </Wrapper>
-      );
+      setData(getSimilar.data);
+    };
+    fetchData();
+  }, []);
+
+  return (
+    <>
+      {data.loading ? (<h1>Зареждам ...</h1>) : (
+        <>
+          <img
+            src={`https://grafix.herokuapp.com/shot/${data.shid}.png`}
+            alt=""
+            style={{ maxWidth: '100%', margin: 'auto' }}
+          />
+          <a
+            target="_blank"
+            rel="noreferrer"
+            style={{
+              padding: 10,
+              backgroundColor: '#4267b2',
+              textDecoration: 'none',
+              color: 'white',
+            }}
+            href="https://www.facebook.com/sharer/sharer.php?u="
+            className="fb-xfbml-parse-ignore"
+          >
+            Споделяне
+          </a>
+        </>
+      )}
+    </>
+  );
+};
+
+const App = ({ match }) => {
+  console.log(match);
+  const [user, setUser] = useState({});
+  const { data, loading } = useFetch(`/fb/${match ? match.params.id : 'godini'}/app.json`, {});
+
+  function loginStatus(s) {
+    if (s.status === 'connected') {
+      axios
+        .get(
+          `https://graph.facebook.com/me/?access_token=${s.authResponse.accessToken}`,
+        )
+        .then((response) => {
+          setUser({ ...response.data, ...s.authResponse });
+          // setStatus(s.authResponse);
+        });
     }
+  }
+  useEffect(() => {
+    const scriptTag = document.createElement('script');
+    scriptTag.type = 'text/javascript';
+    scriptTag.src = 'https://connect.facebook.net/bg_BG/sdk.js#xfbml=1&version=v8.0&appId=874162999784545&autoLogAppEvents=1';
+    scriptTag.addEventListener('load', () => {
+      window.FB.Event.subscribe('auth.statusChange', (ss) => loginStatus(ss));
+      window.FB.getLoginStatus((ss) => loginStatus(ss));
+    });
+    document.body.appendChild(scriptTag);
+  }, []);
 
-    return <Applist />;
-  })());
+  return (
+    <div style={{ textAlign: 'center' }}>
+      {match && match.params.id2 && (
+        <Helmet>
+          <meta property="og:url" content="https://www.your-domain.com/your-page.html" />
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content={data.title} />
+          <meta property="og:description" content=" " />
+          <meta property="og:image" content={`https://s3.eu-central-1.amazonaws.com/img.rudixlab.com/results/${match.params.id2}`} />
+        </Helmet>
+      )}
+      { !user.name && !loading && data && (
+      <>
+        <div style={{ width: '100%', position: 'fixed' }}>
+          <h1 style={{ color: 'white' }}>{data.title}</h1>
+        </div>
+
+        <div>
+          <img
+            src={data.cover}
+            alt=""
+            style={{ width: '100%' }}
+          />
+        </div>
+        <div
+          className="fb-login-button"
+          data-size="large"
+          data-button-type="continue_with"
+          data-layout="default"
+          data-auto-logout-link="false"
+          data-use-continue-as="false"
+          data-width=""
+          data-scope="public_profile"
+          style={{ marginTop: -120 }}
+        />
+
+      </>
+      )}
+
+      {user.name && <Result user={user} appid={match ? match.params.id : 'godini'} />}
+    </div>
+  );
 };
 export default App;
