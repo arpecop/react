@@ -1,9 +1,15 @@
 /* eslint-disable no-undef */
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { Shuffle } from 'react-lodash';
 
 import axios from 'axios';
 import useFetch from 'react-hook-usefetch';
+
+const apps = ['asciiprepare', 'ass', 'assbg_BG', 'assen', 'assen_US', 'banica', 'cars', 'carss', 'celeb', 'celebus', 'denposleden', 'godini', 'goodbad', 'iaponsko', 'iaponskoime', 'imetoti', 'indianskoime', 'iztegli', 'japan', 'japanen', 'kolednaimg', 'match', 'moiatazodia', 'podhojda', 'predishenjivot', 'vazrast'];
+function shuffle(array) {
+  array.sort(() => Math.random() - 0.5);
+}
 
 const post = async (json, url) => {
   const result = await axios.post(
@@ -53,10 +59,10 @@ const Result = ({ user, appid }) => {
               textDecoration: 'none',
               color: 'white',
             }}
-            href="https://www.facebook.com/sharer/sharer.php?u="
+            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://kasmetche.netlify.app/${appid}/${data.shid}`)}`}
             className="fb-xfbml-parse-ignore"
           >
-            Споделяне
+            Споделяне1
           </a>
         </>
       )}
@@ -65,10 +71,9 @@ const Result = ({ user, appid }) => {
 };
 
 const App = ({ match }) => {
-  console.log(match);
   const [user, setUser] = useState({});
   const { data, loading } = useFetch(`/fb/${match ? match.params.id : 'godini'}/app.json`, {});
-
+  apps.slice(0, 5).map((app) => fetch(`/fb/${app}/app.json`));
   function loginStatus(s) {
     if (s.status === 'connected') {
       axios

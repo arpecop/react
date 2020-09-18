@@ -1,5 +1,5 @@
 // izteglisi//
-import Main from './Apps/izteglisi/index';
+import Main from './Apps/kasmetche/index';
 
 export default Main;
 // test
