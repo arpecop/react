@@ -5,6 +5,7 @@ import axios from 'axios';
 import uuid from 'react-uuid';
 import { Helmet } from 'react-helmet';
 import 'antd/dist/antd.css';
+import Links from './links';
 // or 'antd/dist/antd.less'
 const fetchx = async (json) => {
   const result = await axios.post(
@@ -98,6 +99,7 @@ const App = ({ match, isIndex }) => {
 
         </>
       )}
+      <Links />
     </>
   );
 };
