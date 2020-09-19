@@ -4,7 +4,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import uuid from 'react-uuid';
 import { Helmet } from 'react-helmet';
-
+import 'antd/dist/antd.css';
+// or 'antd/dist/antd.less'
 const fetchx = async (json) => {
   const result = await axios.post(
     'https://rudixlab.com/db/',
