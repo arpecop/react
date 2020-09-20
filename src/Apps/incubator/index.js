@@ -5,6 +5,7 @@ import User from './User';
 
 import Main from './Main';
 import { Body } from './components/UI';
+import Links from '../news/links';
 import './components/index.css';
 
 const App = ({ match }) => (
@@ -28,6 +29,9 @@ const App = ({ match }) => (
         color: '#02bac8',
       }}
     >
+      <div>
+        <Links />
+      </div>
       RudixLabs © 2019 : the site is not associated or affiliated with Twitter
     </div>
   </Body>
