@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'antd';
+import { Helmet } from 'react-helmet-async';
 import { post } from './components/useFetch';
 
 function getRandom(min, max) {
   return Math.round(Math.random() * (max - min) + min);
 }
-const Tag = () => {
+const Tag = ({ tag }) => {
   const [random, setRandom] = useState({ Items: [] });
   useEffect(() => {
     const fetchData = async () => {
@@ -23,13 +24,22 @@ const Tag = () => {
   }, []);
   return (
     <div style={{ textAlign: 'center' }}>
-
+      {tag && (
+      <Helmet>
+        <title>{`#${tag}`}</title>
+        <meta name="description" />
+      </Helmet>
+      )}
       {random.Items.map((item) => (
-        <Button style={{ margin: 5 }} type="primary" key={item.vreme} href={`/u/${item.u}`}>
+        <Button
+          style={{ margin: 5 }}
+          type="primary"
+          key={item.vreme}
+          href={`/u/${item.u}`}
+        >
           {item.u.toUpperCase()}
         </Button>
       ))}
-
     </div>
   );
 };

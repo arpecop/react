@@ -19,7 +19,7 @@ const Links = () => (
   <>
     <h2>Links</h2>
     {link.map((item) => (
-      <a key={item.id} href={item.url} style={{ marginLeft: 5 }}>
+      <a key={item.id} href={item.url} style={{ marginLeft: 15 }}>
         {item.link}
       </a>
     ))}

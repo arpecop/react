@@ -10,7 +10,6 @@ import Bottom from './Bottom';
 
 import { env } from './env/constants';
 
-
 const uuid = require('uuid/v4');
 
 const Tag = ({ tag }) => {
@@ -30,7 +29,7 @@ const Tag = ({ tag }) => {
             <title>{`#${tag}`}</title>
             <meta
               name="description"
-              content={`${data.rows[0].doc.screenName} : ${data.rows[0].doc.title}`}
+
             />
           </Helmet>
           {data.rows.map((item, i) => (
@@ -38,7 +37,6 @@ const Tag = ({ tag }) => {
           ))}
         </>
       ) : null}
-
 
       <Bottom tag={tag} />
     </HelmetProvider>

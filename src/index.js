@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Main from './App';
-import * as serviceWorker from './serviceWorker';
 
 const App = () => (
   <Router>
@@ -29,5 +28,3 @@ const App = () => (
 );
 
 ReactDOM.render(<App />, document.getElementById('root'));
-
-serviceWorker.unregister();
