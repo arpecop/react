@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'antd';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet';
 import { post } from './components/useFetch';
 
 function getRandom(min, max) {
