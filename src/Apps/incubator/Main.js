@@ -24,12 +24,14 @@ const Tag = ({ tag }) => {
   }, []);
   return (
     <div style={{ textAlign: 'center' }}>
-      {tag && (
-      <Helmet>
-        <title>{`#${tag}`}</title>
-        <meta name="description" />
-      </Helmet>
-      )}
+
+      <>
+        <Helmet>
+          <title>{`#${tag}`}</title>
+          <meta name="description" />
+        </Helmet>
+      </>
+
       {random.Items.map((item) => (
         <Button
           style={{ margin: 5 }}

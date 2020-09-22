@@ -19,9 +19,9 @@ const App = ({ match }) => (
         return <User user={match.params.id2} />;
       }
       if (match && match.params.id === 't') {
-        return <Main tag="test" />;
+        return <Main tag={match.params.id2} />;
       }
-      return <Main />;
+      return <Main tag="cool" />;
     })()}
     <div
       style={{
