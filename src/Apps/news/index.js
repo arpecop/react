@@ -24,6 +24,31 @@ for (let i = 0; i < 23; i++) {
 }
 
 // or 'antd/dist/antd.less'
+const Itemz = ({ data }) => (
+  <List
+    itemLayout="vertical"
+    size="large"
+    pagination={{
+      pageSize: 3,
+    }}
+    dataSource={data.Items}
+    renderItem={(item) => (
+      <a href={`/${item.vreme}`}>
+        <List.Item
+          key={item.vreme}
+          extra={<img width={272} alt="logo" src={item.image[0]} />}
+        >
+          <List.Item.Meta
+            title={<a href={item.href}>{item.title}</a>}
+            description={item.description}
+          />
+          {item.content}
+        </List.Item>
+      </a>
+    )}
+  />
+);
+
 const fetchx = async (json) => {
   const result = await axios.post(
     'https://rudixlab.com/db/',
@@ -79,7 +104,7 @@ const App = ({ match, isIndex }) => {
 
   return (
     <>
-      {isIndex && <div>{itemz(data)}</div>}
+      {isIndex && <Itemz data={data} />}
       {match && (
       <>
         <Helmet>
@@ -97,28 +122,7 @@ const App = ({ match, isIndex }) => {
         ))}
         източник:
         {article.source}
-        <List
-          itemLayout="vertical"
-          size="large"
-          pagination={{
-            pageSize: 3,
-          }}
-          dataSource={data.Items}
-          renderItem={(item) => (
-            <a href={`/${item.vreme}`}>
-              <List.Item
-                key={item.vreme}
-                extra={<img width={272} alt="logo" src={item.image[0]} />}
-              >
-                <List.Item.Meta
-                  title={<a href={item.href}>{item.title}</a>}
-                  description={item.description}
-                />
-                {item.content}
-              </List.Item>
-            </a>
-          )}
-        />
+        <Itemz data={data} />
       </>
       )}
       <Links />
