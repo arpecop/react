@@ -25,12 +25,11 @@ const Tag = ({ tag }) => {
   return (
     <div style={{ textAlign: 'center' }}>
 
-      <>
-        <Helmet>
-          <title>{`#${tag}`}</title>
-          <meta name="description" />
-        </Helmet>
-      </>
+      <Helmet>
+        <title>{`#${tag}`}</title>
+        <meta name="description" />
+      </Helmet>
+      <h1>{`#${tag}`}</h1>
 
       {random.Items.map((item) => (
         <Button

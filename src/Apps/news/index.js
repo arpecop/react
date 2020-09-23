@@ -4,14 +4,25 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import uuid from 'react-uuid';
 import { Helmet } from 'react-helmet';
-import { Layout, Card } from 'antd';
-
+import { List, Avatar, Space } from 'antd';
+import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import Links from './links';
 
-const {
-  Content,
-} = Layout;
+const listData = [];
+for (let i = 0; i < 23; i++) {
+  listData.push({
+    href: 'https://ant.design',
+    title: `ant design part ${i}`,
+    avatar:
+         'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+    description:
+         'Ant Design, a design language for background applications, is refined by Ant UED Team.',
+    content:
+         'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+  });
+}
+
 // or 'antd/dist/antd.less'
 const fetchx = async (json) => {
   const result = await axios.post(
@@ -65,47 +76,53 @@ const App = ({ match, isIndex }) => {
     fetchData();
   }, []);
   const isOdd = (num) => num % 2;
-  const itemz = (data1) => data1.Items.map(({ title, image, vreme }, i) => (
-    <a href={`/${vreme}`} key={vreme}>
-      <Card
-
-        hoverable
-        style={{ backgroundColor: isOdd(i) ? '#d6d9dc' : 'white' }}
-        cover={<img alt="example" src={image} />}
-      >
-        <Card.Meta title={title} />
-      </Card>
-
-    </a>
-
-  ));
 
   return (
-    <Layout>
-      <Content>
-        {isIndex && (
-        <div>
-          {itemz(data)}
-        </div>
-        )}
-        {match && (
-        <>
-          <Helmet>
-            <title>{article.title}</title>
-            <meta name="description" content="Helmet application" />
-          </Helmet>
-          <h1>{article.title}</h1>
-          <img src={article.image} alt={article.title} style={{ maxWidth: '100%' }} />
-          {article.content.map(({ key, text }) => (<p key={key}>{text}</p>))}
-          източник:
-          {article.source}
-          {itemz(data)}
-
-        </>
-        )}
-        <Links />
-      </Content>
-    </Layout>
+    <>
+      {isIndex && <div>{itemz(data)}</div>}
+      {match && (
+      <>
+        <Helmet>
+          <title>{article.title}</title>
+          <meta name="description" content="Helmet application" />
+        </Helmet>
+        <h1>{article.title}</h1>
+        <img
+          src={article.image}
+          alt={article.title}
+          style={{ maxWidth: '100%' }}
+        />
+        {article.content.map(({ key, text }) => (
+          <p key={key}>{text}</p>
+        ))}
+        източник:
+        {article.source}
+        <List
+          itemLayout="vertical"
+          size="large"
+          pagination={{
+            pageSize: 3,
+          }}
+          dataSource={data.Items}
+          renderItem={(item) => (
+            <a href={`/${item.vreme}`}>
+              <List.Item
+                key={item.vreme}
+                extra={<img width={272} alt="logo" src={item.image[0]} />}
+              >
+                <List.Item.Meta
+                  title={<a href={item.href}>{item.title}</a>}
+                  description={item.description}
+                />
+                {item.content}
+              </List.Item>
+            </a>
+          )}
+        />
+      </>
+      )}
+      <Links />
+    </>
   );
 };
 

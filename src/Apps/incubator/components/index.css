@@ -9,3 +9,9 @@ body {
 .anticon-search {
 	color: #fff;
 }
+h1,
+h2,
+a {
+	font-weight: lighter;
+	color: #02bac8;
+}
