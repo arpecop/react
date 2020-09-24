@@ -10,8 +10,10 @@ body {
 	color: #fff;
 }
 h1,
-h2,
-a {
+h2 {
 	font-weight: lighter;
+	color: #02bac8;
+}
+a {
 	color: #02bac8;
 }
