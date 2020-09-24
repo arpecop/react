@@ -17,6 +17,7 @@ function getRandom(min, max) {
 const User = ({ user }) => {
   const [data, setData] = useState({ tweets: [] });
   const [random, setRandom] = useState({ Items: [] });
+  const [url, setUrl] = useState('');
   useEffect(() => {
     const fetchData = async () => {
       const getId = await post({
@@ -28,6 +29,7 @@ const User = ({ user }) => {
       const result = await axios(
         `https://rudixlab.com/t/${getId.data.vreme}/${user}/?format=json`,
       );
+      setUrl(`https://rudixlab.com/t/${getId.data.vreme}/${user}/`);
       const getSimilar = await post({
         collection: 't',
         id: getRandom(1593543944006, 1594365665452),
@@ -52,7 +54,7 @@ const User = ({ user }) => {
         <>
           <Header>
 
-            <h1>{user}</h1>
+            <a href={url}><h1>{user}</h1></a>
           </Header>
 
           <Helmet>
