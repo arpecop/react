@@ -9,21 +9,20 @@ import { List } from 'antd';
 import 'antd/dist/antd.css';
 import Links from './links';
 
-const listData = [];
-for (let i = 0; i < 23; i++) {
-  listData.push({
-    href: 'https://ant.design',
-    title: `ant design part ${i}`,
-    avatar:
-         'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-    description:
-         'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-    content:
-         'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-  });
-}
-
 // or 'antd/dist/antd.less'
+const Row = ({ row }) => {
+  if (row.includes('<img')) {
+    const regex = /<img.*?src="(.*?)"/;
+    const src = regex.exec(row)[1];
+    return (
+      <div style={{ textAlign: 'center' }}>
+        <img src={src} alt="" style={{ maxWidth: '100%' }} />
+      </div>
+    );
+  }
+  return (<p>{row}</p>);
+};
+
 const Itemz = ({ data }) => (
   <List
     itemLayout="vertical"
@@ -89,7 +88,7 @@ const App = ({ match, isIndex }) => {
         ...result.data,
         content: result.data.content
           .split('\n')
-          .filter((word) => word.length > 6)
+          .filter((word) => word.length > 10)
           .map((i) => ({ text: i, key: uuid() })),
       };
 
@@ -110,7 +109,9 @@ const App = ({ match, isIndex }) => {
           <title>{article.title}</title>
           <meta name="description" content="Helmet application" />
         </Helmet>
-        <h1 style={{ fontWeight: 'lighter', fontSize: '2rem' }}>{article.title}</h1>
+        <h1 style={{ fontWeight: 'lighter', fontSize: '2rem' }}>
+          {article.title}
+        </h1>
         <div style={{ textAlign: 'center' }}>
           <img
             src={article.image}
@@ -119,7 +120,10 @@ const App = ({ match, isIndex }) => {
           />
         </div>
         {article.content.map(({ key, text }) => (
-          <p key={key}>{text}</p>
+          <>
+
+            <Row row={text} key={key} />
+          </>
         ))}
         източник:
         {article.source}
