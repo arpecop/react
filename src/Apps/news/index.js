@@ -22,7 +22,11 @@ const Row = ({ row }) => {
   }
   return (<p>{row}</p>);
 };
-
+const Itemz2 = ({ data }) => data.Items.map(({ vreme, title }) => (
+  <a href={`/${vreme}`}>
+    {title}
+  </a>
+));
 const Itemz = ({ data }) => (
   <List
     itemLayout="vertical"
@@ -102,7 +106,12 @@ const App = ({ match, isIndex }) => {
 
   return (
     <div style={{ width: '90%', margin: 'auto' }}>
-      {isIndex && <Itemz data={data} />}
+      {isIndex && (
+      <>
+        <Itemz data={data} />
+        <Itemz2 data={data} />
+      </>
+      )}
       {match && (
       <>
         <Helmet>
@@ -121,7 +130,6 @@ const App = ({ match, isIndex }) => {
         </div>
         {article.content.map(({ key, text }) => (
           <>
-
             <Row row={text} key={key} />
           </>
         ))}
