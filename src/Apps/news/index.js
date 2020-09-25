@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import uuid from 'react-uuid';
 import { Helmet } from 'react-helmet';
-import { List, Avatar, Space } from 'antd';
-import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
+import { List } from 'antd';
+
 import 'antd/dist/antd.css';
 import Links from './links';
 
@@ -100,10 +100,9 @@ const App = ({ match, isIndex }) => {
     }
     fetchData();
   }, []);
-  const isOdd = (num) => num % 2;
 
   return (
-    <>
+    <div style={{ width: '90%', margin: 'auto' }}>
       {isIndex && <Itemz data={data} />}
       {match && (
       <>
@@ -111,12 +110,14 @@ const App = ({ match, isIndex }) => {
           <title>{article.title}</title>
           <meta name="description" content="Helmet application" />
         </Helmet>
-        <h1>{article.title}</h1>
-        <img
-          src={article.image}
-          alt={article.title}
-          style={{ maxWidth: '100%' }}
-        />
+        <h1 style={{ fontWeight: 'lighter', fontSize: '2rem' }}>{article.title}</h1>
+        <div style={{ textAlign: 'center' }}>
+          <img
+            src={article.image}
+            alt={article.title}
+            style={{ maxWidth: '100%', margin: 'auto' }}
+          />
+        </div>
         {article.content.map(({ key, text }) => (
           <p key={key}>{text}</p>
         ))}
@@ -126,7 +127,7 @@ const App = ({ match, isIndex }) => {
       </>
       )}
       <Links />
-    </>
+    </div>
   );
 };
 
