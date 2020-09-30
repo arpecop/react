@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import axios from 'axios';
 import uuid from 'react-uuid';
+import TimeAgo from 'react-timeago';
 import { Helmet } from 'react-helmet';
 import { List } from 'antd';
 
@@ -43,7 +44,7 @@ const Itemz = ({ data }) => (
         >
           <List.Item.Meta
             title={<a href={item.href}>{item.title}</a>}
-            description={item.description}
+            description={(<TimeAgo date={new Date(item.vreme)} />)}
           />
           {item.content}
         </List.Item>
@@ -121,6 +122,8 @@ const App = ({ match, isIndex }) => {
         <h1 style={{ fontWeight: 'lighter', fontSize: '2rem' }}>
           {article.title}
         </h1>
+
+        <TimeAgo date={new Date(article.datePublished)} />
         <div style={{ textAlign: 'center' }}>
           <img
             src={article.image}
@@ -128,11 +131,7 @@ const App = ({ match, isIndex }) => {
             style={{ maxWidth: '100%', margin: 'auto' }}
           />
         </div>
-        {article.content.map(({ key, text }) => (
-          <>
-            <Row row={text} key={key} />
-          </>
-        ))}
+        {article.content.map(({ key, text }) => (<Row row={text} key={key} />))}
         източник:
         {article.source}
         <Itemz data={data} />
