@@ -42,7 +42,7 @@ const User = ({ user }) => {
     };
 
     fetchData();
-  }, []);
+  }, [user]);
   return (
     <HelmetProvider>
       <Helmet>

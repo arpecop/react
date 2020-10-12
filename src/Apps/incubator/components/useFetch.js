@@ -9,7 +9,7 @@ export const useFetch = (url) => {
       setData(response.data);
     };
     fetchUrl();
-  }, []);
+  }, [url]);
   return data;
 };
 export const post = async (json) => {
