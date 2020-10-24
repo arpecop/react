@@ -6,11 +6,6 @@ import TimeAgo from 'react-timeago';
 import WrapperBanner from './banners';
 import TextFormat from './TextFormat';
 
-function removeUrls(string) {
-  const x = string.split(' ').filter((item) => item.includes('#')).map((item) => item.replace('#', ''));
-  return x.join(' ');
-}
-
 const Komentar = ({ item }) => {
   let title = item.title || item.text;
   const url = item.urls && item.urls[0] ? item.urls[0] : null;
@@ -20,7 +15,7 @@ const Komentar = ({ item }) => {
   return (
 
     <Comment
-      datetime={<TimeAgo date={new Date(parseInt(item.date, 10))} />}
+      datetime={<TimeAgo date={new Date(item.created_at)} />}
       author={(
         <a href={`/u/${item.user.screen_name}`}>
           <h2 style={{ fontWeight: 'lighter', color: '#ccc' }}>
@@ -52,7 +47,7 @@ const Komentar = ({ item }) => {
 };
 const Item = ({ item, i, user }) => {
   const {
-    quote, images, title,
+    quote,
   } = item;
 
   const href = `/u/${user}`;
@@ -66,14 +61,20 @@ const Item = ({ item, i, user }) => {
   return (
     <Row type="flex" justify="center">
       <Col xs={23} sm={20} md={18} lg={10}>
-        {i === 1 || i === 3 ? (<WrapperBanner />) : null}
+        {i === 1 || i === 3 ? <WrapperBanner /> : null}
         <Card
           style={{ marginBottom: 5, backgroundColor: '#231f20' }}
           bordered={false}
           type="inner"
           cover={
-            images ? (<img alt={removeUrls(title)} style={{ width: '100%' }} src={images[0]} />) : null
-          }
+                 item.entities.media ? (
+                   <img
+                     alt=""
+                     style={{ width: '100%' }}
+                     src={item.entities.media[0].media_url_https}
+                   />
+                 ) : null
+              }
         >
           {thread}
         </Card>
