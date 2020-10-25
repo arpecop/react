@@ -53,15 +53,11 @@ const User = ({ user }) => {
       {data ? (
         <>
           <Header>
-
             <a href={url}><h1>{user}</h1></a>
           </Header>
-
           <Helmet>
             <title>{`${user}`}</title>
-
           </Helmet>
-
         </>
       ) : (
         <div style={{ textAlign: 'center', padding: 20 }}>
