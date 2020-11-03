@@ -55,7 +55,7 @@ const Itemz = ({ data }) => (
 
 const fetchx = async (json) => {
   const result = await axios.post(
-    'https://rudixlab.com/db/',
+    'https://rudixlab.herokuapp.com/db/',
     JSON.stringify(json),
     {
       headers: {

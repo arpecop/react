@@ -14,7 +14,7 @@ export const useFetch = (url) => {
 };
 export const post = async (json) => {
   const result = await axios.post(
-    'https://rudixlab.com/db/',
+    'https://rudixlab.herokuapp.com/db/',
     JSON.stringify(json),
     {
       headers: {

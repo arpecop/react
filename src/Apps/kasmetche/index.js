@@ -1,15 +1,11 @@
 /* eslint-disable no-undef */
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Shuffle } from 'react-lodash';
 
 import axios from 'axios';
 import useFetch from 'react-hook-usefetch';
 
 const apps = ['asciiprepare', 'ass', 'assbg_BG', 'assen', 'assen_US', 'banica', 'cars', 'carss', 'celeb', 'celebus', 'denposleden', 'godini', 'goodbad', 'iaponsko', 'iaponskoime', 'imetoti', 'indianskoime', 'iztegli', 'japan', 'japanen', 'kolednaimg', 'match', 'moiatazodia', 'podhojda', 'predishenjivot', 'vazrast'];
-function shuffle(array) {
-  array.sort(() => Math.random() - 0.5);
-}
 
 const post = async (json, url) => {
   const result = await axios.post(
@@ -32,14 +28,17 @@ const Result = ({ user, appid }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const getSimilar = await post({
-        url: `https://s3.eu-central-1.amazonaws.com/img.rudixlab.com/apps/${appid}/dev.html?${urlParameters}`,
-      }, 'https://grafix.herokuapp.com/shot/do');
+      const getSimilar = await post(
+        {
+          url: `https://s3.eu-central-1.amazonaws.com/img.rudixlab.herokuapp.com/apps/${appid}/dev.html?${urlParameters}`,
+        },
+        'https://grafix.herokuapp.com/shot/do',
+      );
 
       setData(getSimilar.data);
     };
     fetchData();
-  }, []);
+  }, [appid, urlParameters]);
 
   return (
     <>
@@ -51,7 +50,7 @@ const Result = ({ user, appid }) => {
             style={{ maxWidth: '100%', margin: 'auto' }}
           />
           <a
-            target="_blank"
+
             rel="noreferrer"
             style={{
               padding: 10,
@@ -105,7 +104,7 @@ const App = ({ match }) => {
           <meta property="og:type" content="website" />
           <meta property="og:title" content={data.title} />
           <meta property="og:description" content=" " />
-          <meta property="og:image" content={`https://s3.eu-central-1.amazonaws.com/img.rudixlab.com/results/${match.params.id2}.png`} />
+          <meta property="og:image" content={`https://s3.eu-central-1.amazonaws.com/img.rudixlab.herokuapp.com/results/${match.params.id2}.png`} />
           <meta property="og:image:width" content="600" />
           <meta property="og:image:height" content="315" />
         </Helmet>

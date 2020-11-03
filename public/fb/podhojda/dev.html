@@ -176,14 +176,14 @@
 		console.log(prevdata)
 
 		if (data[1] == "female") {
-			$('#img').attr('src', 'http://s3.eu-central-1.amazonaws.com/img.rudixlab.com/apps/celeb/images/' + fix_name(malerand).file)
+			$('#img').attr('src', 'http://s3.eu-central-1.amazonaws.com/img.rudixlab.herokuapp.com/apps/celeb/images/' + fix_name(malerand).file)
 			$('#name').html(fix_name(malerand).name);
 
 			prevdata.description = "(:result:), нещата биха се получили с теб и  " + fix_nameplain(malerand).name;
 			$.post("http://arpecop.com/db", prevdata);
 
 		} else {
-			$('#img').attr('src', 'http://s3.eu-central-1.amazonaws.com/img.rudixlab.com/apps/celeb/images/' + fix_name(femalerand).file)
+			$('#img').attr('src', 'http://s3.eu-central-1.amazonaws.com/img.rudixlab.herokuapp.com/apps/celeb/images/' + fix_name(femalerand).file)
 			$('#name').html(fix_name(femalerand).name);
 
 			prevdata.description = "(:result:), нещата биха се получили с теб и " + fix_nameplain(femalerand).name;
