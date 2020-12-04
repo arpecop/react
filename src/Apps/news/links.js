@@ -8,9 +8,9 @@ const link = [
     url: 'https://freeteenpicsandmovies.netlify.app',
     link: 'Free teen pics',
   },
-  { id: 4, url: 'https://rudixlab.herokuapp.com', link: 'DevOps Bulgaria' },
+  { id: 4, url: 'https://rudixlab.com', link: 'DevOps Bulgaria' },
   { id: 5, url: 'https://novinata.netlify.app/', link: 'Новини' },
-  { id: 6, url: 'https://news.rudixlab.herokuapp.com/', link: 'Новини 2' },
+  { id: 6, url: 'https://news.rudixlab.com/', link: 'Новини 2' },
   { id: 7, url: 'https://bigblog.netlify.app/', link: 'Big Blog' },
   { id: 8, url: 'https://arpecop.gitlab.io/izteglisi/', link: 'Izteglisi' },
 ];
