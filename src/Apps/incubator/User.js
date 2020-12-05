@@ -29,7 +29,7 @@ const User = ({ user }) => {
       const result = await axios(
         `https://rudixlab.herokuapp.com/t/${getId.data.vreme}/${user}/?format=json`,
       );
-      setUrl(`https://rudixlab.herokuapp.com/t/${getId.data.vreme}/${user}/`);
+      setUrl(`https://rudixlab.com/t/${getId.data.vreme}/${user}/`);
       const getSimilar = await post({
         collection: 't',
         id: getRandom(1593543944006, 1594365665452),
