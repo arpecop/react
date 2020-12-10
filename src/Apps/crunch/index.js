@@ -58,15 +58,19 @@ function App(props) {
 
   return (
     <div className="container">
-      <Helmet>
-        <title> </title>
-      </Helmet>
       {match && (
-        <>
-          <h1>{article.title}</h1>
-          <img src={article.image} alt="" style={{ maxWidth: '100%' }} />
-          {article.content.map((row) => (row.node === 'element' ? <p>{row.child[0].text}</p> : ''))}
-        </>
+      <>
+        <Helmet>
+          <title>{article.title}</title>
+        </Helmet>
+        <h1>{article.title}</h1>
+        <img src={article.image} alt="" style={{ maxWidth: '100%' }} />
+        {article.content.map((row) => (row.node === 'element' && row.child ? (
+          <p>{row.child[0].text}</p>
+        ) : (
+          ''
+        )))}
+      </>
       )}
       <h1>IT News Bulgaria</h1>
       {data.Items.map(({ image, title, vreme }) => (
