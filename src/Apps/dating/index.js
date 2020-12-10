@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 import './src/tailwind.min.css';
 import Grid from 'styled-components-grid';
 import Wrapper from './Wrapper';
