@@ -10,7 +10,7 @@ const link = [
   },
   {
     id: 4,
-    url: 'https://noticiasti.me',
+    url: 'https://noticiasti.xyz',
     link: 'DevOps Bulgaria',
   },
   { id: 5, url: 'https://novinata.netlify.app/', link: 'Новини' },

@@ -45,7 +45,7 @@ function App(props) {
       });
       const articlex = {
         ...result.data,
-        content: result.data.content
+        content: result.data.content.child
           .map((i) => ({ ...i, key: uuid() })),
         // .fiter((item) => !item.key),
       };
@@ -70,9 +70,10 @@ function App(props) {
         ) : (
           ''
         )))}
+        source: TechCrunch
       </>
       )}
-      <h1>IT News Bulgaria</h1>
+      <h1>Noticias TI</h1>
       {data.Items.map(({ image, title, vreme }) => (
         <div key={vreme}>
           <a href={`/${vreme}`} className="item">
