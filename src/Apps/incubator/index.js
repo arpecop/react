@@ -11,7 +11,7 @@ import './components/index.css';
 const App = ({ match }) => (
   <Body>
     <div className="headertop">
-      <img src="/twitterlogo.png" alt="" />
+      <img src="/twitterlogo.png" alt="" style={{ maxWidth: '100%' }} />
     </div>
 
     {(() => {
