@@ -7,13 +7,14 @@ import Main from './Main';
 import { Body } from './components/UI';
 import Links from '../news/links';
 import './components/index.css';
+import WrapperBanner from './components/banners';
 
 const App = ({ match }) => (
   <Body>
     <div className="headertop">
       <img src="/twitterlogo.png" alt="" style={{ maxWidth: '100%' }} />
     </div>
-
+    <WrapperBanner />
     {(() => {
       if (match && match.params.id === 'u') {
         return <User user={match.params.id2} />;
@@ -32,7 +33,8 @@ const App = ({ match }) => (
       <div>
         <Links />
       </div>
-      RudixLabs © 2019 : the site is not associated or affiliated with Twitter
+      RudixLabs © 2019 : the site is not associated or affiliated with
+      Twitter
     </div>
   </Body>
 );
