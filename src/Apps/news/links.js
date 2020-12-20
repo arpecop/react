@@ -11,7 +11,7 @@ const link = [
   {
     id: 4,
     url: 'https://noticiasti.xyz',
-    link: 'DevOps Bulgaria',
+    link: 'Noticias TI',
   },
   { id: 5, url: 'https://novinata.netlify.app/', link: 'Новини' },
   { id: 6, url: 'https://news.rudixlab.com/', link: 'Новини 2' },

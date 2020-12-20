@@ -1,19 +1,19 @@
 body {
-	background-color: #222937;
+   background-color: #222937;
 }
 .ant-input {
-	background-color: #222937;
-	color: #fff;
-	border: 2px solid #fff;
+   background-color: #222937;
+   color: #fff;
+   border: 2px solid #fff;
 }
 .anticon-search {
-	color: #fff;
+   color: #fff;
 }
 h1,
 h2 {
-	font-weight: lighter;
-	color: #02bac8;
+   font-weight: lighter;
+   color: #02bac8;
 }
 a {
-	color: #02bac8;
+   color: #02bac8;
 }

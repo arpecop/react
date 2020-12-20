@@ -27,7 +27,10 @@ const Komentar = ({ item }) => {
       content={item.replyCount ? (
         <>
 
-          <span style={{ color: '#fff' }}><TextFormat text={title} /></span>
+          <span style={{ color: '#fff' }}>
+
+            <TextFormat text={title} />
+          </span>
           <span style={{ color: '#FFF' }}>
 
             {` ${item.replyCount}    `}
@@ -41,7 +44,7 @@ const Komentar = ({ item }) => {
             {` ${item.favoriteCount}  `}
           </span>
         </>
-      ) : (<span style={{ fontWeight: 'lighter', color: '#fff', fontSize: '0.9rem' }}><TextFormat text={title} /></span>)}
+      ) : (<span style={{ color: '#fff' }}><TextFormat text={title} /></span>)}
     />
   );
 };
