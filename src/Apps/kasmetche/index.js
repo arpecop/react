@@ -50,7 +50,6 @@ const Result = ({ user, appid }) => {
             style={{ maxWidth: '100%', margin: 'auto' }}
           />
           <a
-
             rel="noreferrer"
             style={{
               padding: 10,

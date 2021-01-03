@@ -5,7 +5,6 @@ import User from './User';
 
 import Main from './Main';
 import { Body } from './components/UI';
-import Links from '../news/links';
 import './components/index.css';
 import WrapperBanner from './components/banners';
 
@@ -15,11 +14,13 @@ const App = ({ match }) => (
       <img src="/twitterlogo.png" alt="" style={{ maxWidth: '100%' }} />
     </div>
     <div style={{ border: '2px solid #FBBB15' }}>
-      <img
-        src="https://userz.net/img/amazon.jpg"
-        alt="amazon hot deals"
-        style={{ maxWidth: '100%' }}
-      />
+      <div style={{ textAlign: 'center', backgroundColor: '#FBBB15' }}>
+        <img
+          src="https://userz.net/img/amazon.jpg"
+          alt="amazon hot deals"
+          style={{ maxWidth: '100%' }}
+        />
+      </div>
       <h1 style={{ padding: 0, margin: 0, textAlign: 'center' }}>
         Shop from Amazon hot Deals for 2021
       </h1>
