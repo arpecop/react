@@ -8,7 +8,7 @@ import './main.css';
 
 const fetchx = async (json) => {
   const result = await axios.post(
-    'https://rudixlab.com/db/',
+    'https://arpecop.herokuapp.com/db/',
     JSON.stringify(json),
     {
       headers: {
