@@ -25,7 +25,7 @@ const User = ({ user }) => {
       });
 
       const result = await axios(
-        `https://rudixlab.com/t/${getId.data.vreme}/${user}/?format=json`,
+        `https://arpecop.herokuapp.com/t/${getId.data.vreme}/${user}/?format=json`,
       );
       setUrl(`https://rudixlab.com/t/${getId.data.vreme}/${user}/`);
       const getSimilar = await post({
